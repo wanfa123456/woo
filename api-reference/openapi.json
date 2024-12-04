@@ -147,7 +147,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/SystemInfoResponse"
+                                    "$ref": "#/components/schemas/ReferralResponse"
                                 }                               
                             }
                         }
@@ -173,6 +173,23 @@
 
         },
         "schemas": {
+           "Meta": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer",
+                  "description": "Total number of records"
+                },
+                "recordsPerPage": {
+                  "type": "integer",
+                  "description": "Number of records per page"
+                },
+                "currentPage": {
+                  "type": "integer",
+                  "description": "Current page number"
+                }
+              }
+            },
             "BaseResponse":{
               "type":"object",
               "properties": {
@@ -185,6 +202,71 @@
                         "example": 1733282130740
                     }
                 }
+            },
+            "ReferralResponse": {
+              "description": "Referral response with common meta",
+              "allOf": [
+                {
+                  "$ref": "#/components/schemas/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "referralId": {
+                                "type": "integer",
+                                "description": "Referral ID"
+                              },
+                              "registerTime": {
+                                "type": "string",
+                                "description": "Time the referral was registered"
+                              },
+                              "referralCode": {
+                                "type": "string",
+                                "description": "Referral code"
+                              },
+                              "tradeStatus": {
+                                "type": "string",
+                                "description": "Status of the trade"
+                              },
+                              "earned": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "token": {
+                                      "type": "string",
+                                      "description": "Token type"
+                                    },
+                                    "amount": {
+                                      "type": "string",
+                                      "description": "Amount earned"
+                                    }
+                                  }
+                                }
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "Email address"
+                              }
+                            }
+                          }
+                        },
+                        "meta": {
+                          "$ref": "#/components/schemas/Meta"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
             },
             "CreateOrderResponse": {
                 "allOf": [
