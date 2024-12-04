@@ -25,8 +25,7 @@
   "tabs": [
     {
       "name": "API Reference",
-      "url": "api-reference",
-      "openapi": "https://petstore3.swagger.io/api/v3/openapi.json"
+      "url": "api-reference"
     }
   ],
   "anchors": [
@@ -58,13 +57,22 @@
         "api-reference/introduction"
       ]
     },
-    
     {
       "group": "Public Data",
       "pages": [
-        "api-reference/endpoint/public_data/systemInfo",
-        "api-reference/endpoint/public_data/create",
-        "api-reference/endpoint/public_data/delete"
+        "api-reference/endpoint/public_data/systemInfo"
+      ]
+    },
+    {
+      "group": "Trading",
+      "pages": [
+        "api-reference/endpoint/trading/post_order"
+      ]
+    },
+    {
+      "group": "Account",
+      "pages": [
+        "api-reference/endpoint/account/summary"
       ]
     }
   ],

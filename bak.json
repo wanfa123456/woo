@@ -44,7 +44,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/CreateOrderResponse"
+                                    "$ref": "#/components/responses/CreateOrderResponse"
                                 }                               
                             }
                         }
@@ -76,7 +76,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/SystemInfoResponse"
+                                    "$ref": "#/components/responses/SystemInfoResponse"
                                 }                               
                             }
                         }
@@ -147,7 +147,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/SystemInfoResponse"
+                                    "$ref": "#/components/responses/SummaryResponse"
                                 }                               
                             }
                         }
@@ -168,68 +168,69 @@
     },
     "components": {
         "responses":{
-
-
-
-        },
-        "schemas": {
-            "BaseResponse":{
-              "type":"object",
-              "properties": {
-                    "success": {
-                        "type": "boolean",
-                        "example": "true"
-                    },
-                    "timestamp": {
-                        "type": "integer",
-                        "example": 1733282130740
-                    }
-                }
-            },
-            "CreateOrderResponse": {
-                "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
-                  {
+             "BaseResponse": {
+              "description": "A response indicating the result of an operation",
+              "content": {
+                "application/json": {
+                  "schema": {
                     "type": "object",
                     "properties": {
-                      "data": {
-                        "type": "object",
-
-                        "properties": {
-                          "orderId": {
-                            "type": "integer",
-                            "description": ""
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "price": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "quantity": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "amount": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "clientOrderId": {
-                            "type": "integer",
-                            "description": ""
-                          }
-                        }
-                        
+                      "success": {
+                        "type": "boolean",
+                        "example": true
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Operation completed successfully"
                       }
                     }
                   }
-                ]
+                }
+              }
+            },
+            "CreateOrderResponse": {
+              "description": "Create order response",
+              "allOf": [
+                { "$ref": "#/components/responses/BaseResponse" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "orderId": {
+                          "type": "integer",
+                          "description": "The ID of the created order"
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": "The type of order"
+                        },
+                        "price": {
+                          "type": "string",
+                          "description": "The price of the order"
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "description": "The quantity of the item ordered"
+                        },
+                        "amount": {
+                          "type": "string",
+                          "description": "The total amount of the order"
+                        },
+                        "clientOrderId": {
+                          "type": "integer",
+                          "description": "The client-specific order ID"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
             },
             "SystemInfoResponse": {
                 "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
+                  { "$ref": "#/components/responses/BaseResponse" },
                   {
                     "type": "object",
                     "properties": {
@@ -258,7 +259,7 @@
             },
             "SummaryResponse": {
                 "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
+                  { "$ref": "#/components/responses/BaseResponse" },
                   {
                     "type": "object",
                     "properties": {
@@ -284,7 +285,9 @@
                     }
                   }
                 ]
-            },
+            }
+        },
+        "schemas": {
             "CreateOrder": {
                "required":["symbol","side","type"],
                 "type": "object",
@@ -349,7 +352,6 @@
             }
           
         },
-
         "securitySchemes": {
             "petstore_auth": {
                 "type": "oauth2",
