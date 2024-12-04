@@ -19,7 +19,7 @@
     },
     "servers": [
         {
-            "url": "https://api.woo.org/"
+            "url": "/api/v3"
         }
     ],
     "tags": [
@@ -45,40 +45,12 @@
         }
     ],
     "paths": {
-        "/v3/public/systemInfo": {
-            "get": {
-                "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
-                
-                "parameters": [
-                    
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                  
-                                    "$ref": "#/components/schemas/BaseResponse111"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    
-                ]
-            }
-        },
         "/pet": {
             "put": {
                 "tags": [
                     "pet"
                 ],
-                "summary": "Limit: 10 requests per 1 second per IP address",
+                "summary": "Update an existing pet",
                 "description": "Update an existing pet by Id",
                 "operationId": "updatePet",
                 "requestBody": {
@@ -967,50 +939,7 @@
     },
     "components": {
         "schemas": {
-            "BaseResponse111": { "$ref": "base.json#/components/schemas/BaseResponse" },
-            "BaseResponse":{
-              "type":"object",
-              "properties": {
-                    "success": {
-                        "type": "boolean",
-                        "example": "true"
-                    },
-                    "timestamp": {
-                        "type": "integer",
-                        "example": 1733282130740
-                    }
-                }
-            },
-            "SystemInfoResponse": {
-                "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-
-                        "properties": {
-                          "status": {
-                            "type": "integer",
-                            "description": ""
-                          },
-                          "msg": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "estimated_end_time": {
-                            "type": "integer",
-                            "description": ""
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                ]
-              },
-            "base.json": {
+            "Order": {
                 "type": "object",
                 "properties": {
                     "id": {

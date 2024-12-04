@@ -1,0 +1,22 @@
+{
+	        "type": "object",
+	        "properties": {
+	          "data": {
+	            "type": "object",
+	            "properties": {
+	              "status": {
+	                "type": "integer",
+	                "description": "type"
+	              },
+	              "msg": {
+	                "type": "string",
+	                "description": "msg"
+	              },
+	              "estimated_end_time": {
+	                "type": "integer",
+	                "description": "estimated end time"
+	              }
+	            }	            
+	          }
+	        }
+	      }
