@@ -67,7 +67,8 @@
     {
       "group": "Trading",
       "pages": [
-        "api-reference/endpoint/trading/post_order"
+        "api-reference/endpoint/trading/post_order",
+        "api-reference/endpoint/trading/cancel_order"
       ]
     },
     {

@@ -62,3 +62,11 @@ local start
 nodemon --watch api-reference/ --ext json,yaml --exec "node merge-openapi.js" & mintlify dev  --verbose 
 ```
 
+
+
+
+--- How to add an endpoint
+1. ![add page route] (image/add_page.png)
+
+
+
