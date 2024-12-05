@@ -1,0 +1,16 @@
+{
+
+	"BaseResponse":{
+              "type":"object",
+              "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": "true"
+                    },
+                    "timestamp": {
+                        "type": "integer",
+                        "example": 1733282130740
+                    }
+                }
+            }
+}

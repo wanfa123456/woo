@@ -32,7 +32,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/CreateOrder"
+                                "$ref": "schemas/CreateOrder.json#/CreateOrder"
                             }
                         }
                     },
@@ -44,7 +44,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/CreateOrderResponse"
+                                    "$ref": "responses/CreateOrderResponse.json#/CreateOrderResponse"
                                 }                               
                             }
                         }
@@ -76,7 +76,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/SystemInfoResponse"
+                                    "$ref": "responses/SystemInfoResponse.json#/SystemInfoResponse"
                                 }                               
                             }
                         }
@@ -94,52 +94,7 @@
             "get": {
                 "description": "Get referral information from each user you has referred.",
                 
-                "parameters": [
-                    {
-                        "name": "startTime",
-                        "in": "query",
-                        "description": "start time in unix timestamp",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "endTime",
-                        "in": "query",
-                        "description": "end time in unix timestamp",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "the page you wish to query.",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "size",
-                        "in": "query",
-                        "description": "the page size you wish to query, default = 25, 1000 at max.",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 25
-
-                        }
-                    }
-
-                ],
+                "parameters": {"$ref": "parameters/referral_summary.json#/parameters"},
                 
                 "responses": {
                     "200": {
@@ -147,7 +102,7 @@
                         "content": {
                             "application/json": {
                                 "schema":{
-                                    "$ref": "#/components/schemas/ReferralResponse"
+                                    "$ref": "responses/ReferralResponse.json#/ReferralResponse"
                                 }                               
                             }
                         }
@@ -167,268 +122,9 @@
         }
     },
     "components": {
-        "responses":{
-
-
-
-        },
-        "schemas": {
-           
-            "BaseResponse":{
-              "type":"object",
-              "properties": {
-                    "success": {
-                        "type": "boolean",
-                        "example": "true"
-                    },
-                    "timestamp": {
-                        "type": "integer",
-                        "example": 1733282130740
-                    }
-                }
-            },
-            "ReferralResponse": {
-              "description": "Referral response with common meta",
-              "allOf": [
-                {
-                  "$ref": "#/components/schemas/BaseResponse"
-                },
-                {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "rows": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "referralId": {
-                                "type": "integer",
-                                "description": "Referral ID"
-                              },
-                              "registerTime": {
-                                "type": "string",
-                                "description": "Time the referral was registered"
-                              },
-                              "referralCode": {
-                                "type": "string",
-                                "description": "Referral code"
-                              },
-                              "tradeStatus": {
-                                "type": "string",
-                                "description": "Status of the trade"
-                              },
-                              "earned": {
-                                "type": "array",
-                                "items": {
-                                  "type": "object",
-                                  "properties": {
-                                    "token": {
-                                      "type": "string",
-                                      "description": "Token type"
-                                    },
-                                    "amount": {
-                                      "type": "string",
-                                      "description": "Amount earned"
-                                    }
-                                  }
-                                }
-                              },
-                              "email": {
-                                "type": "string",
-                                "description": "Email address"
-                              }
-                            }
-                          }
-                        },
-                        "meta": {
-                          "$ref": "common/meta.json#/Meta"
-                        }
-                      }
-                    }
-                  }
-                }
-              ]
-            },
-            "CreateOrderResponse": {
-                "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-
-                        "properties": {
-                          "orderId": {
-                            "type": "integer",
-                            "description": ""
-                          },
-                          "type": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "price": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "quantity": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "amount": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "clientOrderId": {
-                            "type": "integer",
-                            "description": ""
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                ]
-            },
-            "SystemInfoResponse": {
-                "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-
-                        "properties": {
-                          "status": {
-                            "type": "integer",
-                            "description": ""
-                          },
-                          "msg": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "estimated_end_time": {
-                            "type": "integer",
-                            "description": ""
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                ]
-            },
-            "SummaryResponse": {
-                "allOf": [
-                  { "$ref": "#/components/schemas/BaseResponse" },
-                  {
-                    "type": "object",
-                    "properties": {
-                      "data": {
-                        "type": "object",
-
-                        "properties": {
-                          "status": {
-                            "type": "integer",
-                            "description": ""
-                          },
-                          "msg": {
-                            "type": "string",
-                            "description": ""
-                          },
-                          "estimated_end_time": {
-                            "type": "integer",
-                            "description": ""
-                          }
-                        }
-                        
-                      }
-                    }
-                  }
-                ]
-            },
-            "CreateOrder": {
-               "required":["symbol","side","type"],
-                "type": "object",
-                "properties": {
-                    "symbol": {
-                        "type": "string",
-                        "description": "Symbol name",
-                        "example": "SPOT_BTC_USDT"
-                    },
-                    "clientOrderId": {
-                        "type": "integer",
-                        "description": "Valid input ranges from 0 to 9223372036854775807",
-                        "example": "1954766344355779056"
-                    },
-                    "orderTag": {
-                        "type": "string",
-                        "description": "Optional tag for this order, max string length: 64",
-                        "example": ""
-                    },
-                    "side": {
-                        "type": "string",
-                        "description": "BUY/SELL",
-                        "example": ""
-                    },
-                    "positionSide": {
-                        "type": "string",
-                        "description": "Position side; The default is BOTH in the one way mode;  Can only be LONG or SHORT in the hedge mode.  Only applicable to perpetual instruments.",
-                        "example": ""
-                    },
-                    "type": {
-                        "type": "string",
-                        "description": "LIMIT/MARKET/IOC/FOK/POST_ONLY/ASK/BID",
-                        "example": ""
-                    },
-                    "price": {
-                        "type": "string",
-                        "description": "Only applicable to LIMIT/IOC/FOK/POST_ONLY orders;  MARKET/ASK/BID orders will ignore this field",
-                        "example": ""
-                    },
-                    "quantity": {
-                        "type": "string",
-                        "description": "Either quantity or amount is required;  If both are passed, the request will be rejected",
-                        "example": ""
-                    },
-                    "amount": {
-                        "type": "string",
-                        "description": "Only applicable to MARKET/ASK/BID orders on spot instruments;  Either quantity or amount is required;  If both are passed, the request will be rejected",
-                        "example": ""
-                    },
-                    "reduceOnly": {
-                        "type": "boolean",
-                        "description": "Only applicable to perpetual instruments; Whether the order can only reduce in position size; valid options are true/false",
-                        "example": ""
-                    },
-                  
-                    "visibleQuantity": {
-                        "type": "string",
-                        "description": "The order quantity visible on orderbook",
-                        "example": ""
-                    }
-                }
-            }
-          
-        },
-
+      
         "securitySchemes": {
-            "petstore_auth": {
-                "type": "oauth2",
-                "flows": {
-                    "implicit": {
-                        "authorizationUrl": "https://petstore3.swagger.io/oauth/authorize",
-                        "scopes": {
-                            "write:pets": "modify pets in your account",
-                            "read:pets": "read your pets"
-                        }
-                    }
-                }
-            },
+            
             "bearerAuth": {
                 "type": "http",
                 "scheme":"bearer",

@@ -3,9 +3,9 @@
                "required":["symbol","side","type"],
                 "type": "object",
                 "properties": {
-                    "symbolsss": {
+                    "symbol": {
                         "type": "string",
-                        "description": "Symbol name sss",
+                        "description": "Symbol name",
                         "example": "SPOT_BTC_USDT"
                     },
                     "clientOrderId": {

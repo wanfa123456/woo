@@ -1,0 +1,31 @@
+{
+	"SystemInfoResponse": {
+                "allOf": [
+                  { "$ref": "../common/BaseResponse.json#/BaseResponse" },
+                  {
+                    "type": "object",
+                    "properties": {
+                      "data": {
+                        "type": "object",
+
+                        "properties": {
+                          "status": {
+                            "type": "integer",
+                            "description": ""
+                          },
+                          "msg": {
+                            "type": "string",
+                            "description": ""
+                          },
+                          "estimated_end_time": {
+                            "type": "integer",
+                            "description": ""
+                          }
+                        }
+                        
+                      }
+                    }
+                  }
+                ]
+            }
+}

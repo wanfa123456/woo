@@ -1,0 +1,67 @@
+{
+  "ReferralResponse": {
+              "description": "Referral response with common meta",
+              "allOf": [
+                {
+                  "$ref": "../common/BaseResponse.json#/BaseResponse"
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "rows": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "referralId": {
+                                "type": "integer",
+                                "description": "Referral ID"
+                              },
+                              "registerTime": {
+                                "type": "string",
+                                "description": "Time the referral was registered"
+                              },
+                              "referralCode": {
+                                "type": "string",
+                                "description": "Referral code"
+                              },
+                              "tradeStatus": {
+                                "type": "string",
+                                "description": "Status of the trade"
+                              },
+                              "earned": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "token": {
+                                      "type": "string",
+                                      "description": "Token type"
+                                    },
+                                    "amount": {
+                                      "type": "string",
+                                      "description": "Amount earned"
+                                    }
+                                  }
+                                }
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "Email address"
+                              }
+                            }
+                          }
+                        },
+                        "meta": {
+                          "$ref": "../common/meta.json#/Meta"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+}

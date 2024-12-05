@@ -33,6 +33,7 @@ Install our Github App to auto propagate changes from your repo to your deployme
 
 
 
+
 check openapi.json格式
 mintlify openapi-check api-reference/openapi.json 
 
@@ -42,3 +43,8 @@ mintlify openapi-check openapi-merged.json
 swagger 不支持ref 引用外部文件  所以需要 merge 合并 引用文件到 openapi.json里
 swagger-cli bundle api-reference/openapi.json --outfile openapi-merged.json --type json
 
+npm install -g nodemon
+
+
+nodemon --watch api-reference/ --ext json,yaml --exec "node merge-openapi.js" & mintlify dev  --verbose 
+ 
