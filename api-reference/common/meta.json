@@ -1,0 +1,19 @@
+{
+  "Meta": {
+    "type": "object",
+    "properties": {
+      "total": {
+        "type": "integer",
+        "description": "Total number of record11"
+      },
+      "recordsPerPage": {
+        "type": "integer",
+        "description": "Number of records per page"
+      },
+      "currentPage": {
+        "type": "integer",
+        "description": "Current page number"
+      }
+    }
+  }
+}

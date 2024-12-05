@@ -173,23 +173,7 @@
 
         },
         "schemas": {
-           "Meta": {
-              "type": "object",
-              "properties": {
-                "total": {
-                  "type": "integer",
-                  "description": "Total number of records"
-                },
-                "recordsPerPage": {
-                  "type": "integer",
-                  "description": "Number of records per page"
-                },
-                "currentPage": {
-                  "type": "integer",
-                  "description": "Current page number"
-                }
-              }
-            },
+           
             "BaseResponse":{
               "type":"object",
               "properties": {
@@ -260,7 +244,7 @@
                           }
                         },
                         "meta": {
-                          "$ref": "#/components/schemas/Meta"
+                          "$ref": "common/meta.json#/Meta"
                         }
                       }
                     }
