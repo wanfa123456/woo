@@ -23,6 +23,45 @@
     }
   ],
   "paths": {
+    "/v3/futures/defaultMarginMode": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DefaultMarginModeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/asset/token/history": {
       "get": {
         "description": "get token history",
@@ -272,50 +311,6 @@
         "name": "x-api-timestamp"
       }
     },
-    "parameters": {
-      "start_filter": {
-        "name": "startTime",
-        "in": "query",
-        "description": "start www time in unix timestamp",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer"
-        }
-      },
-      "end_filter": {
-        "name": "endTime",
-        "in": "query",
-        "description": "end time in unix timestamp",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer"
-        }
-      },
-      "page_filter": {
-        "name": "page",
-        "in": "query",
-        "description": "the page you wish to query.",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer",
-          "default": 1
-        }
-      },
-      "size_filter": {
-        "name": "size",
-        "in": "query",
-        "description": "the page size you wish to query, default = 25, 1000 at max.",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer",
-          "default": 25
-        }
-      }
-    },
     "schemas": {
       "CommonResponse": {
         "type": "object",
@@ -329,6 +324,39 @@
             "description": "timestamp"
           }
         }
+      },
+      "DefaultMarginModeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "integer",
+                          "description": ""
+                        },
+                        "defaultMarginMode": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "Meta": {
         "type": "object",
@@ -606,6 +634,50 @@
             }
           }
         ]
+      }
+    },
+    "parameters": {
+      "start_filter": {
+        "name": "startTime",
+        "in": "query",
+        "description": "start www time in unix timestamp",
+        "required": false,
+        "explode": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "end_filter": {
+        "name": "endTime",
+        "in": "query",
+        "description": "end time in unix timestamp",
+        "required": false,
+        "explode": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "page_filter": {
+        "name": "page",
+        "in": "query",
+        "description": "the page you wish to query.",
+        "required": false,
+        "explode": true,
+        "schema": {
+          "type": "integer",
+          "default": 1
+        }
+      },
+      "size_filter": {
+        "name": "size",
+        "in": "query",
+        "description": "the page size you wish to query, default = 25, 1000 at max.",
+        "required": false,
+        "explode": true,
+        "schema": {
+          "type": "integer",
+          "default": 25
+        }
       }
     }
   }

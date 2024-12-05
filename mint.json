@@ -87,6 +87,12 @@
       "pages": [
         "api-reference/endpoint/assets/token_history"
       ]
+    },
+    {
+      "group": "Futures",
+      "pages": [
+        "api-reference/endpoint/futures/defaultMarginMode"
+      ]
     }
   ],
   "footerSocials": {

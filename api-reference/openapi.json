@@ -24,6 +24,34 @@
     ],
     
     "paths": {
+        "/v3/futures/defaultMarginMode": {
+            "get": {
+                "description": "",
+                "parameters": {"$ref": "parameters/defaultMarginMode.json#/parameters"},
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "$ref": "responses/DefaultMarginModeResponse.json#/DefaultMarginModeResponse"
+                                }                               
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                      "ApiKeyAuth": [],
+                      "ApiSignAuth": [],
+                      "ApiTimestampAuth": []
+                    }
+                ]
+            }
+        },
         "/v3/asset/token/history": {
             "get": {
                 "description": "get token history",
