@@ -66,7 +66,7 @@ nodemon --watch api-reference/ --ext json,yaml --exec "node merge-openapi.js" & 
 
 
 --- How to add an endpoint
-1. ![add page route] (image/add_page.png)
+1. ![add page route] (images/add_page.png)
 
 
 
