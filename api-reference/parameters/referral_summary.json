@@ -1,51 +1,46 @@
-
 {
-  "parameters": 
-    [
-                    {
-                        "name": "startTime",
-                        "in": "query",
-                        "description": "start time in unix timestamp",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "endTime",
-                        "in": "query",
-                        "description": "end time in unix timestamp",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    },
-                    {
-                        "name": "page",
-                        "in": "query",
-                        "description": "the page you wish to query.",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 1
-                        }
-                    },
-                    {
-                        "name": "size",
-                        "in": "query",
-                        "description": "the page size you wish to query, default = 25, 1000 at max.",
-                        "required": false,
-                        "explode": true,
-                        "schema": {
-                            "type": "integer",
-                            "default": 25
-
-                        }
-                    }
-
-                ]
-  
+    "parameters": [
+        {
+            "name": "startTime",
+            "in": "query",
+            "description": "start time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "integer"
+            }
+        },
+        {
+            "name": "endTime",
+            "in": "query",
+            "description": "end time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "integer"
+            }
+        },
+        {
+            "name": "page",
+            "in": "query",
+            "description": "the page you wish to query.",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "integer",
+                "default": 1
+            }
+        },
+        {
+            "name": "size",
+            "in": "query",
+            "description": "the page size you wish to query, default = 25, 1000 at max.",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "integer",
+                "default": 25
+            }
+        }
+    ]
 }

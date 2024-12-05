@@ -75,6 +75,18 @@
       "pages": [
         "api-reference/endpoint/account/summary"
       ]
+    },
+    {
+      "group": "Spot Margin",
+      "pages": [
+        "api-reference/endpoint/spot_margin/set_leverage"
+      ]
+    },
+    {
+      "group": "Assets",
+      "pages": [
+        "api-reference/endpoint/assets/token_history"
+      ]
     }
   ],
   "footerSocials": {

@@ -1,0 +1,13 @@
+{
+    "size_filter": {
+        "name": "size",
+        "in": "query",
+        "description": "the page size you wish to query, default = 25, 1000 at max.",
+        "required": false,
+        "explode": true,
+        "schema": {
+            "type": "integer",
+            "default": 25
+        }
+    }
+}

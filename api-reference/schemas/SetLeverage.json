@@ -1,0 +1,15 @@
+{
+    "SetLeverage": {
+        "required": [
+            "leverage"
+        ],
+        "type": "object",
+        "properties": {
+            "leverage": {
+                "type": "integer",
+                "description": "For margin mode: 3, 4, 5, 10; for futures mode: 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50",
+                "example": "5"
+            }
+        }
+    }
+}

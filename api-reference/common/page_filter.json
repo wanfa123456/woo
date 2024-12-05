@@ -1,0 +1,13 @@
+{
+    "page_filter": {
+        "name": "page",
+        "in": "query",
+        "description": "the page you wish to query.",
+        "required": false,
+        "explode": true,
+        "schema": {
+            "type": "integer",
+            "default": 1
+        }
+    }
+}

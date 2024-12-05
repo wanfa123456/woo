@@ -1,0 +1,26 @@
+{
+    "parameters": [
+        {
+            "name": "type",
+            "in": "query",
+            "description": "WITHDRAW/DEPOSIT/FIAT_WITHDRAW/FIAT_DEPOSIT/EARN/VAULT_WITHDRAW/VAULT_DEPOSIT/YIELD_TO_BALANCE/CREDIT/DISTRIBUTION/REFERRAL/SUB_ACCOUNT_TRANSFER/REBATE/LIQUIDATION/SPECIAL/STAKING/UNSTAKING/UNSTAKING_FEE/INTEREST/CONVERT/FUNDING_FEE/SPOT_TRADING/TRADING_FEE/REALIZED_PNL/RFQ/ COPY_FEE / COPY_PROFIT_SHARED / FEE_REBATE",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "$ref": "../common/start_filter.json#/start_filter"
+        },
+        {
+            "$ref": "../common/end_filter.json#/end_filter"
+        },
+        {
+            "$ref": "../common/page_filter.json#/page_filter"
+        },
+        {
+            "$ref": "../common/size_filter.json#/size_filter"
+        }
+    ]
+}

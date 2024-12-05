@@ -1,0 +1,12 @@
+{
+    "end_filter": {
+        "name": "endTime",
+        "in": "query",
+        "description": "end time in unix timestamp",
+        "required": false,
+        "explode": true,
+        "schema": {
+            "type": "integer"
+        }
+    }
+}

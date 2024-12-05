@@ -1,0 +1,12 @@
+{
+    "start_filter": {
+        "name": "startTime",
+        "in": "query",
+        "description": "start www time in unix timestamp",
+        "required": false,
+        "explode": true,
+        "schema": {
+            "type": "integer"
+        }
+    }
+}

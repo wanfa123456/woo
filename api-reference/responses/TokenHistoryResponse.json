@@ -1,0 +1,51 @@
+{
+    "TokenHistoryResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": ""
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "type"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "token"
+                                        },
+                                        "amount": {
+                                            "type": "string",
+                                            "description": "amount"
+                                        },
+                                        "timestamp": {
+                                            "type": "integer",
+                                            "description": "timestamp"
+                                        }
+                                    }
+                                }
+                            },
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

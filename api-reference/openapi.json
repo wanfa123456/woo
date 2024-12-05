@@ -24,6 +24,72 @@
     ],
     
     "paths": {
+        "/v3/asset/token/history": {
+            "get": {
+                "description": "get token history",
+                "parameters": {"$ref": "parameters/token_history.json#/parameters"},
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "$ref": "responses/TokenHistoryResponse.json#/TokenHistoryResponse"
+                                }                               
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                      "ApiKeyAuth": [],
+                      "ApiSignAuth": [],
+                      "ApiTimestampAuth": []
+                    }
+                ]
+            }
+        },
+        "/v3/spotMargin/leverage": {
+            "post": {
+                "description": "set leverage",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "schemas/SetLeverage.json#/SetLeverage"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "$ref": "common/commonResponse.json#/CommonResponse"
+                                }                               
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                      "ApiKeyAuth": [],
+                      "ApiSignAuth": [],
+                      "ApiTimestampAuth": []
+                    }
+                ]
+            }
+        },
         "/v3/trade/order": {
             "post": {
                 "description": "post order",

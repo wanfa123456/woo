@@ -1,0 +1,15 @@
+{
+    "CommonResponse": {
+        "type": "object",
+        "properties": {
+            "success": {
+                "type": "boolean",
+                "description": "true"
+            },
+            "timestamp": {
+                "type": "integer",
+                "description": "timestamp"
+            }
+        }
+    }
+}

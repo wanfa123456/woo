@@ -3,7 +3,7 @@ const { exec } = require('child_process');
 console.log('Watching for OpenAPI file changes...');
 
 exec(
-  'swagger-cli bundle api-reference/openapi.json --outfile openapi-merged.json --type json',
+  'openapi bundle api-reference/openapi.json  --output openapi-merged.json',
   (error, stdout, stderr) => {
     if (error) {
       console.error(`Error while merging OpenAPI files: ${error.message}`);

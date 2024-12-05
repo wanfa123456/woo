@@ -45,8 +45,12 @@ swagger-cli validate  openapi-merged.json
 
 
 swagger 不支持ref 引用外部文件  所以需要 merge 合并 引用文件到 openapi.json里
+
 ```
-swagger-cli bundle api-reference/openapi.json --outfile openapi-merged.json --type json
+npm install -g @redocly/openapi-cli
+
+openapi bundle api-reference/openapi.json  --output openapi-merged.json
+
 ```
 
 ```
@@ -57,3 +61,4 @@ local start
 ```
 nodemon --watch api-reference/ --ext json,yaml --exec "node merge-openapi.js" & mintlify dev  --verbose 
 ```
+
