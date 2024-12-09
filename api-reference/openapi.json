@@ -36,206 +36,22 @@
         "/v3/public/systemInfo": {
             "$ref": "path/public_data/systemInfo.json"
         },
-        
+        "/v3/account/referral/summary": {
+          "$ref": "path/account/summary.json"  
+        },
         "/v3/futures/defaultMarginMode": {
-            "get": {
-                "description": "get account level default margin mode",
-                "parameters": {"$ref": "parameters/defaultMarginMode.json#/parameters"},
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/DefaultMarginModeResponse.json#/DefaultMarginModeResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            }
+          "$ref": "path/futures/defaultMarginMode.json"  
         },
         "/v3/asset/token/history": {
-            "get": {
-                "description": "get token history",
-                "parameters": {"$ref": "parameters/token_history.json#/parameters"},
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/TokenHistoryResponse.json#/TokenHistoryResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            }
+          "$ref": "path/asset/token_history.json"  
         },
         "/v3/spotMargin/leverage": {
-            "post": {
-                "description": "set leverage",
-                "requestBody": {
-                    "description": "",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "schemas/SetLeverage.json#/SetLeverage"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "common/commonResponse.json#/CommonResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            }
+          "$ref": "path/spotMargin/leverage.json"  
         },
         "/v3/trade/order": {
-            "post": {
-                "description": "post order",
-                "requestBody": {
-                    "description": "",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "schemas/CreateOrder.json#/CreateOrder"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/CreateOrderResponse.json#/CreateOrderResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            },
-            "delete": {
-                "description": "cancel order",
-                "requestBody": {
-                    "description": "",
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "schemas/CancelOrder.json#/CancelOrder"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/CancelOrderResponse.json#/CancelOrderResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            }
-        },
-        
-        "/v3/account/referral/summary": {
-            "get": {
-                "description": "Get referral information from each user you has referred.",
-                
-                "parameters": {"$ref": "parameters/referral_summary.json#/parameters"},
-                
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/ReferralResponse.json#/ReferralResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    {
-                      "ApiKeyAuth": [],
-                      "ApiSignAuth": [],
-                      "ApiTimestampAuth": []
-                    }
-                ]
-            }
+          "$ref": "path/trade/order.json"  
         }
+        
     },
     "components": {
       

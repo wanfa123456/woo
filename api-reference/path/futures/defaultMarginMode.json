@@ -1,6 +1,6 @@
 {
   "get": {
-    "description": "Retrieve a list of Spot and USDT perpetual instruments.",
+    "description": "get account level default margin mode",
     "parameters": {
       "$ref": "../../parameters/defaultMarginMode.json#/parameters"
     },
@@ -10,7 +10,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+              "$ref": "../../responses/DefaultMarginModeResponse.json#/DefaultMarginModeResponse"
             }
           }
         }
@@ -19,6 +19,12 @@
         "description": "Invalid status value"
       }
     },
-    "security": []
+    "security": [
+      {
+        "ApiKeyAuth": [],
+        "ApiSignAuth": [],
+        "ApiTimestampAuth": []
+      }
+    ]
   }
 }

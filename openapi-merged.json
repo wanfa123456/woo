@@ -67,14 +67,26 @@
     },
     "/v3/public/instruments": {
       "get": {
-        "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
+        "description": "Retrieve a list of Spot and USDT perpetual instruments.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TokenNetworkResponse"
+                  "$ref": "#/components/schemas/InstrumentsResponse"
                 }
               }
             }
@@ -84,6 +96,99 @@
           }
         },
         "security": []
+      }
+    },
+    "/v3/public/systemInfo": {
+      "get": {
+        "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemInfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/account/referral/summary": {
+      "get": {
+        "description": "Get referral information from each user you has referred.111",
+        "parameters": [
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "start time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "end time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "the page you wish to query.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "the page size you wish to query, default = 25, 1000 at max.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferralResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
       }
     },
     "/v3/futures/defaultMarginMode": {
@@ -287,99 +392,6 @@
           }
         ]
       }
-    },
-    "/v3/public/systemInfo": {
-      "get": {
-        "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemInfoResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": []
-      }
-    },
-    "/v3/account/referral/summary": {
-      "get": {
-        "description": "Get referral information from each user you has referred.",
-        "parameters": [
-          {
-            "name": "startTime",
-            "in": "query",
-            "description": "start time in unix timestamp",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "endTime",
-            "in": "query",
-            "description": "end time in unix timestamp",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "name": "page",
-            "in": "query",
-            "description": "the page you wish to query.",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            }
-          },
-          {
-            "name": "size",
-            "in": "query",
-            "description": "the page size you wish to query, default = 25, 1000 at max.",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "integer",
-              "default": 25
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ReferralResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
-      }
     }
   },
   "components": {
@@ -518,6 +530,233 @@
           }
         ]
       },
+      "InstrumentsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "integer",
+                          "description": ""
+                        },
+                        "baseAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseAssetMultiplier": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteMin": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteMax": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteTick": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMin": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMax": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseTick": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "minNotional": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "bidCapRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "bidFloorRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "askCapRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "askFloorRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingIntervalHours": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingCap": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingFloor": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "impactNotional": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "TRADING, SUSPENDED, TESTING"
+                        },
+                        "orderMode": {
+                          "type": "string",
+                          "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
+                        },
+                        "baseIMR": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMMR": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "SystemInfoResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "msg": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "estimated_end_time": {
+                    "type": "integer",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of record"
+          },
+          "recordsPerPage": {
+            "type": "integer",
+            "description": "Number of records per page"
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "Current page number"
+          }
+        }
+      },
+      "ReferralResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "referralId": {
+                          "type": "integer",
+                          "description": "Referral ID"
+                        },
+                        "registerTime": {
+                          "type": "string",
+                          "description": "Time the referral was registered"
+                        },
+                        "referralCode": {
+                          "type": "string",
+                          "description": "Referral code"
+                        },
+                        "tradeStatus": {
+                          "type": "string",
+                          "description": "Status of the trade"
+                        },
+                        "earned": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "token": {
+                                "type": "string",
+                                "description": "Token type"
+                              },
+                              "amount": {
+                                "type": "string",
+                                "description": "Amount earned"
+                              }
+                            }
+                          }
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "Email address"
+                        }
+                      }
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "DefaultMarginModeResponse": {
         "allOf": [
           {
@@ -550,23 +789,6 @@
             }
           }
         ]
-      },
-      "Meta": {
-        "type": "object",
-        "properties": {
-          "total": {
-            "type": "integer",
-            "description": "Total number of record"
-          },
-          "recordsPerPage": {
-            "type": "integer",
-            "description": "Number of records per page"
-          },
-          "currentPage": {
-            "type": "integer",
-            "description": "Current page number"
-          }
-        }
       },
       "TokenHistoryResponse": {
         "allOf": [
@@ -772,99 +994,6 @@
                   "status": {
                     "type": "string",
                     "description": ""
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "SystemInfoResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommonResponse"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "integer",
-                    "description": ""
-                  },
-                  "msg": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "estimated_end_time": {
-                    "type": "integer",
-                    "description": ""
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "ReferralResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommonResponse"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "rows": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "referralId": {
-                          "type": "integer",
-                          "description": "Referral ID"
-                        },
-                        "registerTime": {
-                          "type": "string",
-                          "description": "Time the referral was registered"
-                        },
-                        "referralCode": {
-                          "type": "string",
-                          "description": "Referral code"
-                        },
-                        "tradeStatus": {
-                          "type": "string",
-                          "description": "Status of the trade"
-                        },
-                        "earned": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "token": {
-                                "type": "string",
-                                "description": "Token type"
-                              },
-                              "amount": {
-                                "type": "string",
-                                "description": "Amount earned"
-                              }
-                            }
-                          }
-                        },
-                        "email": {
-                          "type": "string",
-                          "description": "Email address"
-                        }
-                      }
-                    }
-                  },
-                  "meta": {
-                    "$ref": "#/components/schemas/Meta"
                   }
                 }
               }

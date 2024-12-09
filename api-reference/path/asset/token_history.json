@@ -1,8 +1,8 @@
 {
   "get": {
-    "description": "Retrieve a list of Spot and USDT perpetual instruments.",
+    "description": "get token history",
     "parameters": {
-      "$ref": "../../parameters/defaultMarginMode.json#/parameters"
+      "$ref": "../../parameters/token_history.json#/parameters"
     },
     "responses": {
       "200": {
@@ -10,7 +10,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+              "$ref": "../../responses/TokenHistoryResponse.json#/TokenHistoryResponse"
             }
           }
         }
@@ -19,6 +19,12 @@
         "description": "Invalid status value"
       }
     },
-    "security": []
+    "security": [
+      {
+        "ApiKeyAuth": [],
+        "ApiSignAuth": [],
+        "ApiTimestampAuth": []
+      }
+    ]
   }
 }

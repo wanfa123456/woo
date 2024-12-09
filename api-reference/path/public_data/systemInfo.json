@@ -8,7 +8,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "responses/SystemInfoResponse.json#/SystemInfoResponse"
+              "$ref": "../../responses/SystemInfoResponse.json#/SystemInfoResponse"
             }
           }
         }

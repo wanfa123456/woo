@@ -1,0 +1,74 @@
+{
+  "post": {
+    "description": "post order",
+    "requestBody": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../../schemas/CreateOrder.json#/CreateOrder"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/CreateOrderResponse.json#/CreateOrderResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": [],
+        "ApiSignAuth": [],
+        "ApiTimestampAuth": []
+      }
+    ]
+  },
+  "delete": {
+    "description": "cancel order",
+    "requestBody": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../../schemas/CancelOrder.json#/CancelOrder"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/CancelOrderResponse.json#/CancelOrderResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": [],
+        "ApiSignAuth": [],
+        "ApiTimestampAuth": []
+      }
+    ]
+  }
+}
