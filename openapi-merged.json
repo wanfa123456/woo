@@ -23,9 +23,30 @@
     }
   ],
   "paths": {
+    "/v3/public/token": {
+      "get": {
+        "description": "Get the available tokens that WOO X supports.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
     "/v3/public/instruments": {
       "get": {
-        "description": "",
+        "description": "Retrieve a list of Spot and USDT perpetual instruments.",
         "parameters": [
           {
             "name": "symbol",
@@ -58,7 +79,7 @@
     },
     "/v3/futures/defaultMarginMode": {
       "get": {
-        "description": "",
+        "description": "get account level default margin mode",
         "parameters": [
           {
             "name": "symbol",
@@ -393,6 +414,47 @@
             "description": "timestamp"
           }
         }
+      },
+      "TokenResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "network": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fullname": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "decimals": {
+                          "type": "integer",
+                          "description": ""
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "InstrumentsResponse": {
         "allOf": [

@@ -1,0 +1,43 @@
+{
+    "TokenResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "network": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "fullname": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "decimals": {
+                                            "type": "integer",
+                                            "description": ""
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
