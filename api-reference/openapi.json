@@ -24,6 +24,30 @@
     ],
     
     "paths": {
+        "/v3/public/instruments": {
+            "get": {
+                "description": "",
+                "parameters": {"$ref": "parameters/defaultMarginMode.json#/parameters"},
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "$ref": "responses/InstrumentsResponse.json#/InstrumentsResponse"
+                                }                               
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                   
+                ]
+            }
+        },
         "/v3/futures/defaultMarginMode": {
             "get": {
                 "description": "",
@@ -139,6 +163,42 @@
                             "application/json": {
                                 "schema":{
                                     "$ref": "responses/CreateOrderResponse.json#/CreateOrderResponse"
+                                }                               
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid status value"
+                    }
+                },
+                "security": [
+                    {
+                      "ApiKeyAuth": [],
+                      "ApiSignAuth": [],
+                      "ApiTimestampAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "description": "cancel order",
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "schemas/CancelOrder.json#/CancelOrder"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema":{
+                                    "$ref": "responses/CancelOrderResponse.json#/CancelOrderResponse"
                                 }                               
                             }
                         }

@@ -1,0 +1,26 @@
+{
+    "CancelOrder": {
+        "required": [
+            "symbol"
+        ],
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "Symbol name",
+                "example": "SPOT_BTC_USDT"
+            },
+            "orderId": {
+                "type": "integer",
+                "description": "Id of the order; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
+                "example": "1954766344355779056"
+            },
+            "clientOrderId": {
+                "type": "integer",
+                "description": "Client order Id as assigned by the user; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
+                "example": "1954766344355779056"
+            }
+            
+        }
+    }
+}

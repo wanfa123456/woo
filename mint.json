@@ -61,7 +61,8 @@
     {
       "group": "Public Data",
       "pages": [
-        "api-reference/endpoint/public_data/systemInfo"
+        "api-reference/endpoint/public_data/systemInfo",
+        "api-reference/endpoint/public_data/instruments"
       ]
     },
     {

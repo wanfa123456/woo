@@ -23,6 +23,39 @@
     }
   ],
   "paths": {
+    "/v3/public/instruments": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InstrumentsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
     "/v3/futures/defaultMarginMode": {
       "get": {
         "description": "",
@@ -187,6 +220,42 @@
             "ApiTimestampAuth": []
           }
         ]
+      },
+      "delete": {
+        "description": "cancel order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
       }
     },
     "/v3/public/systemInfo": {
@@ -324,6 +393,123 @@
             "description": "timestamp"
           }
         }
+      },
+      "InstrumentsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "integer",
+                          "description": ""
+                        },
+                        "baseAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseAssetMultiplier": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteMin": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteMax": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteTick": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMin": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMax": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseTick": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "minNotional": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "bidCapRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "bidFloorRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "askCapRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "askFloorRatio": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingIntervalHours": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingCap": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingFloor": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "impactNotional": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "TRADING, SUSPENDED, TESTING"
+                        },
+                        "orderMode": {
+                          "type": "string",
+                          "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
+                        },
+                        "baseIMR": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseMMR": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "DefaultMarginModeResponse": {
         "allOf": [
@@ -534,6 +720,50 @@
                   },
                   "clientOrderId": {
                     "type": "integer",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "CancelOrder": {
+        "required": [
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name",
+            "example": "SPOT_BTC_USDT"
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "Id of the order; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
+            "example": "1954766344355779056"
+          },
+          "clientOrderId": {
+            "type": "integer",
+            "description": "Client order Id as assigned by the user; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
+            "example": "1954766344355779056"
+          }
+        }
+      },
+      "CancelOrderResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
                     "description": ""
                   }
                 }
