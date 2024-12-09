@@ -1,0 +1,55 @@
+{
+    "TokenNetworkResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "protocol": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "minimumWithdrawal": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "withdrawalFee": {
+                                            "type": "string",
+                                            "description": ""
+                                        },
+                                        "allowDeposit": {
+                                            "type": "integer",
+                                            "description": ""
+                                        },
+                                        "allowWithdraw": {
+                                            "type": "integer",
+                                            "description": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

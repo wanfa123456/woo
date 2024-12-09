@@ -25,7 +25,7 @@
   "paths": {
     "/v3/public/token": {
       "get": {
-        "description": "Get the available tokens that WOO X supports.",
+        "description": "Get the available tokens that WOO X supports.qqq",
         "responses": {
           "200": {
             "description": "successful operation",
@@ -44,28 +44,37 @@
         "security": []
       }
     },
-    "/v3/public/instruments": {
+    "/v3/public/tokenNetwork": {
       "get": {
-        "description": "Retrieve a list of Spot and USDT perpetual instruments.",
-        "parameters": [
-          {
-            "name": "symbol",
-            "in": "query",
-            "description": "",
-            "required": false,
-            "explode": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/InstrumentsResponse"
+                  "$ref": "#/components/schemas/TokenNetworkResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/instruments": {
+      "get": {
+        "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenNetworkResponse"
                 }
               }
             }
@@ -456,7 +465,7 @@
           }
         ]
       },
-      "InstrumentsResponse": {
+      "TokenNetworkResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CommonResponse"
@@ -472,96 +481,32 @@
                     "items": {
                       "type": "object",
                       "properties": {
-                        "symbol": {
+                        "protocol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "name": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "minimumWithdrawal": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "withdrawalFee": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "allowDeposit": {
                           "type": "integer",
                           "description": ""
                         },
-                        "baseAsset": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseAssetMultiplier": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteAsset": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteMin": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteMax": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteTick": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMin": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMax": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseTick": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "minNotional": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "bidCapRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "bidFloorRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "askCapRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "askFloorRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingIntervalHours": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingCap": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingFloor": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "impactNotional": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "status": {
-                          "type": "string",
-                          "description": "TRADING, SUSPENDED, TESTING"
-                        },
-                        "orderMode": {
-                          "type": "string",
-                          "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
-                        },
-                        "baseIMR": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMMR": {
-                          "type": "string",
+                        "allowWithdraw": {
+                          "type": "integer",
                           "description": ""
                         }
                       }

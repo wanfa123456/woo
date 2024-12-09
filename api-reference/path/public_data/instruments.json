@@ -1,0 +1,24 @@
+{
+  "get": {
+    "description": "Retrieve a list of Spot and USDT perpetual instruments.",
+    "parameters": {
+      "$ref": "parameters/defaultMarginMode.json#/parameters"
+    },
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": []
+  }
+}

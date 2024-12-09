@@ -25,52 +25,18 @@
     
     "paths": {
         "/v3/public/token": {
-            "get": {
-                "description": "Get the available tokens that WOO X supports.",
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/TokenResponse.json#/TokenResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                   
-                ]
-            }
+            "$ref": "path/public_data/token.json"
+        },
+        "/v3/public/tokenNetwork": {
+            "$ref": "path/public_data/tokenNetwork.json"
         },
         "/v3/public/instruments": {
-            "get": {
-                "description": "Retrieve a list of Spot and USDT perpetual instruments.",
-                "parameters": {"$ref": "parameters/defaultMarginMode.json#/parameters"},
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/InstrumentsResponse.json#/InstrumentsResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                   
-                ]
-            }
+            "$ref": "path/public_data/instruments.json"
         },
+        "/v3/public/systemInfo": {
+            "$ref": "path/public_data/systemInfo.json"
+        },
+        
         "/v3/futures/defaultMarginMode": {
             "get": {
                 "description": "get account level default margin mode",
@@ -239,34 +205,7 @@
                 ]
             }
         },
-        "/v3/public/systemInfo": {
-            "get": {
-                "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
-                
-                "parameters": [
-                    
-                ],
-                
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "responses/SystemInfoResponse.json#/SystemInfoResponse"
-                                }                               
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Invalid status value"
-                    }
-                },
-                "security": [
-                    
-                ]
-            }
-        },
+        
         "/v3/account/referral/summary": {
             "get": {
                 "description": "Get referral information from each user you has referred.",

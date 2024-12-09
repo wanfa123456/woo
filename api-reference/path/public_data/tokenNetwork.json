@@ -1,0 +1,21 @@
+{
+  "get": {
+    "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/TokenNetworkResponse.json#/TokenNetworkResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": []
+  }
+}
