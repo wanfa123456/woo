@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit1111",
+  "name": "WOO",
   "apiSpec": "openapi-merged.json",
   "logo": {
     "dark": "/logo/dark.svg",
@@ -22,11 +22,21 @@
       "url": "mailto:hi@mintlify.com"
     }
   ],
-  
+  "primaryTab": {
+    "name": "Home"
+  },
   "tabs": [
     {
       "name": "API Reference",
       "url": "api-reference"
+    },
+    {
+      "name": "Troubleshooting",
+      "url": "troubleshooting"
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
     }
   ],
   "anchors": [
@@ -34,24 +44,12 @@
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "home"
       ]
     },
-    {
-      "group": "Essentials",
-      "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
-      ]
-    },
+    
     {
       "group": "API Documentation",
       "pages": [
@@ -64,7 +62,9 @@
         "api-reference/endpoint/public_data/systemInfo",
         "api-reference/endpoint/public_data/instruments",
         "api-reference/endpoint/public_data/token",
-        "api-reference/endpoint/public_data/tokenNetwork"
+        "api-reference/endpoint/public_data/tokenNetwork",
+        "api-reference/endpoint/public_data/tokenInfo",
+        "api-reference/endpoint/public_data/marketTrades"
       ]
     },
     {
@@ -96,6 +96,52 @@
       "group": "Futures",
       "pages": [
         "api-reference/endpoint/futures/defaultMarginMode"
+      ]
+    },
+    {
+      "group": "Websocket",
+      "pages": [
+        "api-reference/websocket_introduction"
+      ]
+    },
+    {
+      "group": "Commands",
+      "pages": [
+        "api-reference/endpoint/websocket/subscribe",
+        "api-reference/endpoint/websocket/unSubscribe",
+        "api-reference/endpoint/websocket/unSubscribe_all",
+        "api-reference/endpoint/websocket/List_subscription",
+        "api-reference/endpoint/websocket/Additional_information"
+      ]
+    },
+    {
+      "group": "Public",
+      "pages": [
+        "api-reference/endpoint/websocket/Orderbook_update"
+      ]
+    },
+    {
+      "group": "Introduction",
+      "pages": [
+        "troubleshooting/introduction"
+      ]
+    },
+    {
+      "group": "User Issues",
+      "pages": [
+        "troubleshooting/user-issues/deposit-issues"
+      ]
+    },
+    {
+      "group": "Api change log",
+      "pages": [
+        "changelog/release_note"
+      ]
+    },
+    {
+      "group": "Classification",
+      "pages": [
+        "changelog/classification"
       ]
     }
   ],

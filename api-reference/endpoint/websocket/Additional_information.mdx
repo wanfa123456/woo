@@ -1,0 +1,24 @@
+---
+title: 'Additional information'
+---
+### General
+Each WebSocket connection is valid for a maximum of 24 hours.  Expect automatic disconnection at the 24-hour mark.
+
+The WebSocket server sends a ping command to the client every 1 minute. If the server does not receive a pong response within 5 minutes, it will disconnect the client.
+
+### Connection limits (NOT IMPLEMENTED IN PHASE I)
+A client IP can establish a maximum of 100 connections per minute.  Exceeding this will result in rejected attempts and a cooldown period.
+
+A client IP can maintain up to 200 active WebSocket connections at any given time.  Any attempt to exceed this will result in new connections being denied.
+
+Note: Extensive retries after hitting limits will result in an IP ban.
+
+### Subscription limits
+Each connection can handle up to 500 subscribe/unsubscribe/list subscription requests per minute.  Exceeding this rate will result in request rejects. (NOT IMPLEMENTED IN PHASE I)
+
+Each connection can subscribe to a maximum of 200 live topics simultaneously.  Further subscription attempts will be rejected once this limit is reached.
+
+While subscribing to topics within a single connection, it is not recommended to exceed 200 TPS.
+
+When submitting batch subscriptions, the server processes them sequentially.  If the subscription limit is reached mid-way, the server will accept subscriptions until the limit is met.  Any subscriptions that exceed the limit will be rejected.
+

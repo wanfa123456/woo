@@ -1,0 +1,63 @@
+---
+title: 'Websocket Api'
+description: 'Example section for showcasing API endpoints'
+---
+
+### Public streams
+wss://wss.woox.io/v3/public (Production)
+
+wss://wss.staging.woox.io/v3/public (Staging)
+
+### Private streams
+wss://wss.woox.io/v3/private (Production)
+
+wss://wss.staging.woox.io/v3/private (Staging)
+
+Users need to be authenticated before subscribing to any topic. They would be disconnected if authentication fails. Refer to Authenticaton for more information.
+
+### Authentication
+The public market data topics do not require authentication.  The following only applies to private user data topics.
+
+Refer to Authenticaton for more details about how to sign the request with api_key and api_secret.  The request method, request path and request body are all blank.  The message to sign is therefore just the timestamp.
+
+| Name  | Type   | Required | Description |
+|-------|--------|----------|-------------|
+| apikey | string | Y        | API key   |
+| sign | string   | Y        | Signature   |
+| timestamp | string | Y        | Timestamp   |
+
+<RequestExample>
+
+```bash
+{
+    "id":"123",
+    "event":"auth",
+    "params":{
+        "apikey":"CUS69ZJOXwSV38xo...",
+        "sign":"4180da84117fc9753b...",
+        "timestamp":1621910107900
+    }
+}
+```
+
+</RequestExample>
+
+
+
+<ResponseExample>
+
+```json Response
+{
+    "id":"123",
+    "event":"auth",
+    "success":true,
+    "ts":1621910107315
+}
+```
+
+</ResponseExample>
+
+
+
+
+

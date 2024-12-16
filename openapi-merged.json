@@ -120,6 +120,39 @@
         "security": []
       }
     },
+    "/v3/public/tokenInfo": {
+      "get": {
+        "description": "Retrieve spot token information.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenInfoResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
     "/v3/account/referral/summary": {
       "get": {
         "description": "Get referral information from each user you has referred.111",
@@ -669,6 +702,47 @@
                   "estimated_end_time": {
                     "type": "integer",
                     "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TokenInfoResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "canCollateral": {
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        "canShort": {
+                          "type": "boolean",
+                          "description": ""
+                        },
+                        "delisted": {
+                          "type": "integer",
+                          "description": ""
+                        }
+                      }
+                    }
                   }
                 }
               }

@@ -1,0 +1,71 @@
+---
+title: 'Orderbook update'
+---
+
+### Subscribe to order book delta updates with different number of levels.
+
+1. With depth level of 50, the incremental changes pushed every 50ms
+
+2. With depth level of 200, the incremental changes pushed every 100ms
+
+3. With depth level of 500, the incremental changes pushed every 200ms
+
+### To keep a local copy of the order book, please follow the steps below:
+
+1. Open a market data stream and subscribe to orderbookupdate@{symbol}@{depth}
+
+2. Buffer the updates you receive from the stream
+
+3. Get an order book snapshot from https://api.woo.org/v3/public/orderbook?symbol=PERP_BTC_USDT&maxLevel={depth}.
+
+4. Start processing any updates where prevTs = timestamp in the snapshot
+
+5. Check prevTs of each newly processed update is the same as the ts of the previous update
+
+6. If you receive a price level with 0 size, delete that price level
+
+7. If you receive a price level that does not exist, insert that price level and size
+
+8. If you receive a price level that already exists, update that price level with the new size
+
+### Topic: orderbookupdate@{symbol}@{depth} e.g., orderbookupdate@SPOT_BTC_USDT@50
+
+<RequestExample>
+
+```bash
+{
+    "topic": "orderbookupdate@SPOT_BTC_USDT@100",
+    "ts": 1618826337580, // when ws sends the data
+    "data": {
+        "s": "SPOT_BTC_USDT",    // symbol
+        "prevTs":1618826337380,  // orderbook generation system time of the previously sent message
+        "asks": [                // delta updates on the ask side
+            [
+                "56749.15",
+                "3.92864"
+            ],
+            [
+                "56749.8",
+                "0"
+            ],
+            ...
+        ],
+        "bids": [                // delta updates on the bid side
+            [
+                "56745.2",
+                "1.03895025"
+            ],
+            [
+                "56744.6",
+                "1.0807"
+            ],
+            ...
+        ],
+        "ts": 1618826337570      // orderbook generation time
+    }
+}
+```
+
+</RequestExample>
+
+

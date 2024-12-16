@@ -36,6 +36,9 @@
         "/v3/public/systemInfo": {
             "$ref": "path/public_data/systemInfo.json"
         },
+        "/v3/public/tokenInfo": {
+            "$ref": "path/public_data/tokenInfo.json"
+        },
         "/v3/account/referral/summary": {
           "$ref": "path/account/summary.json"  
         },

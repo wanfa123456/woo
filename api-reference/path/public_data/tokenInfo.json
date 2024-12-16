@@ -1,0 +1,24 @@
+{
+  "get": {
+    "description": "Retrieve spot token information.",
+    "parameters": {
+      "$ref": "../../parameters/token.json#/parameters"
+    },
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/TokenInfoResponse.json#/TokenInfoResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": []
+  }
+}

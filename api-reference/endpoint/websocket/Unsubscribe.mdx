@@ -1,0 +1,31 @@
+---
+title: 'Unsubscribe'
+---
+
+<RequestExample>
+
+```bash
+{
+  "id": .....
+  "cmd": "UN_SUBSCRIBE",
+  "params": ["topic1", "topic2"]
+}
+```
+
+</RequestExample>
+
+
+
+<ResponseExample>
+
+```json Response
+{
+  "id": "{req_id}",
+  "cmd": "UN_SUBSCRIBE",
+  "success": true,
+  "time": {timestamp},
+  "data": ["topic1", "topic2"]
+}
+```
+
+</ResponseExample>
