@@ -1,0 +1,66 @@
+---
+title: 'Account'
+description: 'Subscribe to receive account information updates. Updates will be sent both when specific events occur, such as a change in trading mode, and at regular intervals.'
+---
+
+
+
+### Push interval: push on update and every 1 second
+
+### Topic: account
+<RequestExample>
+
+```bash
+// trading mode is spot only
+
+{
+    "topic": "account",
+    "ts": 1716861043337,
+    "data":
+    {
+        "m": "PURE_SPOT",                       // trading mode
+        "v": "10000"                            // account total value
+    }
+}
+
+// trading mode is spot & margin
+
+{
+    "topic": "account",
+    "ts": 1716861043337,
+    "data":
+    {
+        "m": "MARGIN",                          // trading mode
+        "l": 4,                                 // account leverage for margin
+        "mr": "7739.3757",                      // margin ratio
+        "omr": "7739.3757",                     // open margin ratio
+        "imr": "1.0006",                        // initial margin ratio
+        "mmr": "0.0126",                        // maintenance margin ratio
+        "tc": "1146085.27376211",               // total collateral
+        "fc": "1145937.09993548",               // free collateral
+        "v": "10000"                            // account total value        
+    }
+}
+
+// trading mode is spot & futures
+
+{
+    "topic": "account",
+    "ts": 1716861043337,
+    "data":
+    {
+        "m": "FUTURE",                          // trading mode
+        "M": "ISOLATED",                        // default margin mode for futures
+        "P": "ONE_WAY",                         // position mode
+        "mr": "7739.3757",                      // margin ratio
+        "omr": "7739.3757",                     // open margin ratio
+        "imr": "1.0006",                        // initial margin ratio
+        "mmr": "0.0126",                        // maintenance margin ratio
+        "tc": "1146085.27376211",               // total collateral
+        "fc": "1145937.09993548",               // free collateral
+        "v": "10000"                            // account total value
+    }
+}
+```
+
+</RequestExample>

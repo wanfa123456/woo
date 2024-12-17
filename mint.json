@@ -51,9 +51,10 @@
     },
     
     {
-      "group": "API Documentation",
+      "group": "",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/introduction",
+        "api-reference/authentication"
       ]
     },
     {
@@ -99,25 +100,32 @@
       ]
     },
     {
-      "group": "Websocket",
+      "group": "Websocket Streams",
       "pages": [
-        "api-reference/websocket_introduction"
-      ]
-    },
-    {
-      "group": "Commands",
-      "pages": [
-        "api-reference/endpoint/websocket/subscribe",
-        "api-reference/endpoint/websocket/unSubscribe",
-        "api-reference/endpoint/websocket/unSubscribe_all",
-        "api-reference/endpoint/websocket/List_subscription",
-        "api-reference/endpoint/websocket/Additional_information"
-      ]
-    },
-    {
-      "group": "Public",
-      "pages": [
-        "api-reference/endpoint/websocket/Orderbook_update"
+        "api-reference/websocket_introduction",
+        {
+          "group": "Public Market Data",
+          "pages": [
+            "api-reference/endpoint/websocket/Orderbook_update",
+            "api-reference/endpoint/websocket/BBO"
+          ]
+        },
+        {
+          "group": "Private User Data",
+          "pages": [
+            "api-reference/endpoint/websocket/private/Account"
+          ]
+        },
+        {
+          "group": "Commands",
+          "pages": [
+            "api-reference/endpoint/websocket/subscribe",
+            "api-reference/endpoint/websocket/unSubscribe",
+            "api-reference/endpoint/websocket/unSubscribe_all",
+            "api-reference/endpoint/websocket/List_subscription",
+            "api-reference/endpoint/websocket/Additional_information"
+          ]
+        }
       ]
     },
     {

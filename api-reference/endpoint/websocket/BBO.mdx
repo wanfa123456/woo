@@ -1,0 +1,30 @@
+---
+title: 'BBO'
+description: 'Subscribe to the BBO data.'
+---
+
+
+
+### Push interval: 10ms
+
+### Topic: bbo@{symbol} e.g., bbo@SPOT_BTC_USDT
+<RequestExample>
+
+```bash
+{
+    "topic": "bbo@SPOT_BTC_USDT",
+    "ts": 1618820361552,
+    "data": {
+        "s": "SPOT_BTC_USDT",   // symbol
+        "a": "42598.2",         // best ask price
+        "A": "1.05",            // best ask quantity
+        "b": "42598.1",         // best bid price
+        "B": "2.01"             // best bid quantity
+        "ts": 1618820361540     // bbo generation time in engine
+    }
+}
+```
+
+</RequestExample>
+
+
