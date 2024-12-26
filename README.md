@@ -64,7 +64,7 @@ nodemon --watch api-reference/ --ext json,yaml --exec "node merge-openapi.js" & 
 
 https://wootraders.atlassian.net/wiki/spaces/PEng/pages/333578505/V3+API
 
-
+https://orderly.network/docs/build-on-evm/evm-api/websocket-api/authentication
 
 
 

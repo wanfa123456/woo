@@ -120,8 +120,8 @@
           "group": "Commands",
           "pages": [
             "api-reference/endpoint/websocket/subscribe",
-            "api-reference/endpoint/websocket/unSubscribe",
-            "api-reference/endpoint/websocket/unSubscribe_all",
+            "api-reference/endpoint/websocket/UnSubscribe",
+            "api-reference/endpoint/websocket/UnSubscribe_all",
             "api-reference/endpoint/websocket/List_subscription",
             "api-reference/endpoint/websocket/Additional_information"
           ]
