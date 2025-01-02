@@ -5,6 +5,7 @@
     "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
     "termsOfService": "http://swagger.io/terms/",
     "contact": {
+      "name": "API Team",
       "email": "apiteam@swagger.io"
     },
     "license": {
@@ -19,41 +20,21 @@
   },
   "servers": [
     {
-      "url": "https://api.woo.org/"
+      "url": "https://api.woox.io/"
     }
   ],
   "paths": {
-    "/v3/public/token": {
+    "/v3/public/systemInfo": {
       "get": {
-        "description": "Get the available tokens that WOO X supports.qqq",
+        "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "successful operation",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TokenResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": []
-      }
-    },
-    "/v3/public/tokenNetwork": {
-      "get": {
-        "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenNetworkResponse"
+                  "$ref": "#/components/schemas/SystemInfoResponse"
                 }
               }
             }
@@ -72,7 +53,7 @@
           {
             "name": "symbol",
             "in": "query",
-            "description": "",
+            "description": "Symbol name",
             "required": false,
             "explode": true,
             "schema": {
@@ -98,9 +79,9 @@
         "security": []
       }
     },
-    "/v3/public/systemInfo": {
+    "/v3/public/token": {
       "get": {
-        "description": "Get current system maintenance status. A status value of 0 means the system is functioning properly, a status value of 1 means the trading services are under maintenance and a status value of 2 means the system is under maintenance.",
+        "description": "Get the available tokens that WOO X supports.",
         "parameters": [],
         "responses": {
           "200": {
@@ -108,7 +89,29 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SystemInfoResponse"
+                  "$ref": "#/components/schemas/TokenResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/tokenNetwork": {
+      "get": {
+        "description": "Get the available networks for each token as well as the deposit/withdrawal information.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenNetworkResponse"
                 }
               }
             }
@@ -127,7 +130,7 @@
           {
             "name": "token",
             "in": "query",
-            "description": "",
+            "description": "Token name in upper case",
             "required": false,
             "explode": true,
             "schema": {
@@ -153,14 +156,337 @@
         "security": []
       }
     },
-    "/v3/account/referral/summary": {
+    "/v3/public/marketTrades": {
       "get": {
-        "description": "Get referral information from each user you has referred.111",
+        "description": "Get the latest market trades. In the response, a source of 1 means these are internal trades on WOO X and a source of 0 means they are external trades from aggregated sources.",
         "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Numbers of trades you want to query. Maximum of 1000 trades allowed.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketTradesResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/marketTradesHistory": {
+      "get": {
+        "description": "Get historical market trades data. In the response, a source of 1 means these are internal trades on WOO X and a source of 0 means they are external trades from aggregated sources.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "The id cursor for fetching the previous page of results, excluding the trade associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent trades.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "The id cursor for fetching the next page of results, excluding the trade associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent trades.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Numbers of trades you want to query. Maximum of 1000 trades allowed.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketTradesHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/orderbook": {
+      "get": {
+        "description": "Get the snapshot of the symbol order book. Price of asks/bids are in descending order.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "query",
+            "description": "Maximum number of levels to show on both sides",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OrderbookResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/kline": {
+      "get": {
+        "description": "Get the latest klines of the trading instrument.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "1m/3m/5m/15m/30m/1h/2h/4h/6h/12h/1d/1w/1mon/1y",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Numbers of klines. Maximum of 1000 klines allowed.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KlineResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/klineHistory": {
+      "get": {
+        "description": "Get the historical klines of the trading instrument.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "description": "1m/3m/5m/15m/30m/1h/2h/4h/6h/12h/1d/1w/1mon/1y",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "before",
+            "in": "query",
+            "description": "The start timestamp cursor for fetching the previous page of results, excluding the kline associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent kline.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "description": "The start timestamp cursor for fetching the next page of results, excluding the kline associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent kline.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Numbers of klines you want to query. Maximum of 1000 klines allowed.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 100
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KlineHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/fundingRate": {
+      "get": {
+        "description": "Get predicted funding rate and the latest funding rate.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FundingRateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": []
+      }
+    },
+    "/v3/public/fundingRateHistory": {
+      "get": {
+        "description": "Get funding rate history for one market.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "startTime",
             "in": "query",
-            "description": "start time in unix timestamp",
+            "description": "Start timestamp in Unix timestamp format in milliseconds",
             "required": false,
             "explode": true,
             "schema": {
@@ -170,7 +496,7 @@
           {
             "name": "endTime",
             "in": "query",
-            "description": "end time in unix timestamp",
+            "description": "End timestamp in Unix timestamp format in milliseconds",
             "required": false,
             "explode": true,
             "schema": {
@@ -180,7 +506,7 @@
           {
             "name": "page",
             "in": "query",
-            "description": "the page you wish to query.",
+            "description": "Page number",
             "required": false,
             "explode": true,
             "schema": {
@@ -191,7 +517,7 @@
           {
             "name": "size",
             "in": "query",
-            "description": "the page size you wish to query, default = 25, 1000 at max.",
+            "description": "Data size per page",
             "required": false,
             "explode": true,
             "schema": {
@@ -206,7 +532,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReferralResponse"
+                  "$ref": "#/components/schemas/FundingRateHistoryResponse"
                 }
               }
             }
@@ -215,23 +541,17 @@
             "description": "Invalid status value"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
+        "security": []
       }
     },
-    "/v3/futures/defaultMarginMode": {
+    "/v3/public/futures": {
       "get": {
-        "description": "get account level default margin mode",
+        "description": "Get basic futures information for all the markets.",
         "parameters": [
           {
             "name": "symbol",
             "in": "query",
-            "description": "",
+            "description": "Symbol name",
             "required": false,
             "explode": true,
             "schema": {
@@ -245,7 +565,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/DefaultMarginModeResponse"
+                  "$ref": "#/components/schemas/FuturesResponse"
                 }
               }
             }
@@ -254,40 +574,22 @@
             "description": "Invalid status value"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
+        "security": []
       }
     },
-    "/v3/asset/token/history": {
+    "/v3/public/insuranceFund": {
       "get": {
-        "description": "get token history",
+        "description": "Get the insurance fund balance by perp contract.",
         "parameters": [
           {
-            "name": "type",
+            "name": "symbol",
             "in": "query",
-            "description": "WITHDRAW/DEPOSIT/FIAT_WITHDRAW/FIAT_DEPOSIT/EARN/VAULT_WITHDRAW/VAULT_DEPOSIT/YIELD_TO_BALANCE/CREDIT/DISTRIBUTION/REFERRAL/SUB_ACCOUNT_TRANSFER/REBATE/LIQUIDATION/SPECIAL/STAKING/UNSTAKING/UNSTAKING_FEE/INTEREST/CONVERT/FUNDING_FEE/SPOT_TRADING/TRADING_FEE/REALIZED_PNL/RFQ/ COPY_FEE / COPY_PROFIT_SHARED / FEE_REBATE",
-            "required": false,
+            "description": "Symbol name",
+            "required": true,
             "explode": true,
             "schema": {
               "type": "string"
             }
-          },
-          {
-            "$ref": "#/components/parameters/start_filter"
-          },
-          {
-            "$ref": "#/components/parameters/end_filter"
-          },
-          {
-            "$ref": "#/components/parameters/page_filter"
-          },
-          {
-            "$ref": "#/components/parameters/size_filter"
           }
         ],
         "responses": {
@@ -296,7 +598,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TokenHistoryResponse"
+                  "$ref": "#/components/schemas/InsuranceFundResponse"
                 }
               }
             }
@@ -305,125 +607,7 @@
             "description": "Invalid status value"
           }
         },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
-      }
-    },
-    "/v3/spotMargin/leverage": {
-      "post": {
-        "description": "set leverage",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SetLeverage"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CommonResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
-      }
-    },
-    "/v3/trade/order": {
-      "post": {
-        "description": "post order",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateOrder"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CreateOrderResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
-      },
-      "delete": {
-        "description": "cancel order",
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CancelOrder"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/CancelOrderResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
-          }
-        },
-        "security": [
-          {
-            "ApiKeyAuth": [],
-            "ApiSignAuth": [],
-            "ApiTimestampAuth": []
-          }
-        ]
+        "security": []
       }
     }
   },
@@ -469,6 +653,148 @@
           }
         }
       },
+      "SystemInfoResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "integer",
+                    "description": ""
+                  },
+                  "msg": {
+                    "type": "string",
+                    "description": ""
+                  },
+                  "estimated_end_time": {
+                    "type": "integer",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "InstrumentsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "TRADING, SUSPENDED, TESTING"
+                        },
+                        "baseAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "baseAssetMultiplier": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "quoteAsset": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quoteMin": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "quoteMax": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "quoteTick": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "baseMin": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "baseMax": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "baseTick": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "minNotional": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "bidCapRatio": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "bidFloorRatio": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "askCapRatio": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "askFloorRatio": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "fundingIntervalHours": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "fundingCap": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "fundingFloor": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "orderMode": {
+                          "type": "string",
+                          "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
+                        },
+                        "baseIMR": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "baseMMR": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "TokenResponse": {
         "allOf": [
           {
@@ -485,7 +811,7 @@
                     "items": {
                       "type": "object",
                       "properties": {
-                        "network": {
+                        "token": {
                           "type": "string",
                           "description": ""
                         },
@@ -494,10 +820,14 @@
                           "description": ""
                         },
                         "decimals": {
-                          "type": "integer",
+                          "type": "number",
                           "description": ""
                         },
-                        "token": {
+                        "network": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "balanceToken": {
                           "type": "string",
                           "description": ""
                         }
@@ -530,6 +860,10 @@
                           "type": "string",
                           "description": ""
                         },
+                        "network": {
+                          "type": "string",
+                          "description": ""
+                        },
                         "token": {
                           "type": "string",
                           "description": ""
@@ -539,169 +873,23 @@
                           "description": ""
                         },
                         "minimumWithdrawal": {
-                          "type": "string",
+                          "type": "number",
                           "description": ""
                         },
                         "withdrawalFee": {
-                          "type": "string",
+                          "type": "number",
                           "description": ""
                         },
                         "allowDeposit": {
-                          "type": "integer",
+                          "type": "number",
                           "description": ""
                         },
                         "allowWithdraw": {
-                          "type": "integer",
+                          "type": "number",
                           "description": ""
                         }
                       }
                     }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "InstrumentsResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommonResponse"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "rows": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "symbol": {
-                          "type": "integer",
-                          "description": ""
-                        },
-                        "baseAsset": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseAssetMultiplier": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteAsset": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteMin": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteMax": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "quoteTick": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMin": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMax": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseTick": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "minNotional": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "bidCapRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "bidFloorRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "askCapRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "askFloorRatio": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingIntervalHours": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingCap": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "fundingFloor": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "impactNotional": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "status": {
-                          "type": "string",
-                          "description": "TRADING, SUSPENDED, TESTING"
-                        },
-                        "orderMode": {
-                          "type": "string",
-                          "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
-                        },
-                        "baseIMR": {
-                          "type": "string",
-                          "description": ""
-                        },
-                        "baseMMR": {
-                          "type": "string",
-                          "description": ""
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "SystemInfoResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommonResponse"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "status": {
-                    "type": "integer",
-                    "description": ""
-                  },
-                  "msg": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "estimated_end_time": {
-                    "type": "integer",
-                    "description": ""
                   }
                 }
               }
@@ -729,6 +917,10 @@
                           "type": "string",
                           "description": ""
                         },
+                        "delisted": {
+                          "type": "number",
+                          "description": ""
+                        },
                         "canCollateral": {
                           "type": "boolean",
                           "description": ""
@@ -736,10 +928,6 @@
                         "canShort": {
                           "type": "boolean",
                           "description": ""
-                        },
-                        "delisted": {
-                          "type": "integer",
-                          "description": ""
                         }
                       }
                     }
@@ -750,88 +938,7 @@
           }
         ]
       },
-      "Meta": {
-        "type": "object",
-        "properties": {
-          "total": {
-            "type": "integer",
-            "description": "Total number of record"
-          },
-          "recordsPerPage": {
-            "type": "integer",
-            "description": "Number of records per page"
-          },
-          "currentPage": {
-            "type": "integer",
-            "description": "Current page number"
-          }
-        }
-      },
-      "ReferralResponse": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/CommonResponse"
-          },
-          {
-            "type": "object",
-            "properties": {
-              "data": {
-                "type": "object",
-                "properties": {
-                  "rows": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "referralId": {
-                          "type": "integer",
-                          "description": "Referral ID"
-                        },
-                        "registerTime": {
-                          "type": "string",
-                          "description": "Time the referral was registered"
-                        },
-                        "referralCode": {
-                          "type": "string",
-                          "description": "Referral code"
-                        },
-                        "tradeStatus": {
-                          "type": "string",
-                          "description": "Status of the trade"
-                        },
-                        "earned": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "properties": {
-                              "token": {
-                                "type": "string",
-                                "description": "Token type"
-                              },
-                              "amount": {
-                                "type": "string",
-                                "description": "Amount earned"
-                              }
-                            }
-                          }
-                        },
-                        "email": {
-                          "type": "string",
-                          "description": "Email address"
-                        }
-                      }
-                    }
-                  },
-                  "meta": {
-                    "$ref": "#/components/schemas/Meta"
-                  }
-                }
-              }
-            }
-          }
-        ]
-      },
-      "DefaultMarginModeResponse": {
+      "MarketTradesResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CommonResponse"
@@ -848,11 +955,27 @@
                       "type": "object",
                       "properties": {
                         "symbol": {
-                          "type": "integer",
+                          "type": "string",
                           "description": ""
                         },
-                        "defaultMarginMode": {
+                        "side": {
                           "type": "string",
+                          "description": ""
+                        },
+                        "source": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "executedPrice": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "executedQuantity": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "executedTimestamp": {
+                          "type": "number",
                           "description": ""
                         }
                       }
@@ -864,7 +987,7 @@
           }
         ]
       },
-      "TokenHistoryResponse": {
+      "MarketTradesHistoryResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CommonResponse"
@@ -881,30 +1004,84 @@
                       "type": "object",
                       "properties": {
                         "id": {
-                          "type": "integer",
+                          "type": "number",
                           "description": ""
                         },
-                        "type": {
+                        "symbol": {
                           "type": "string",
-                          "description": "type"
+                          "description": ""
                         },
-                        "token": {
+                        "side": {
                           "type": "string",
-                          "description": "token"
+                          "description": ""
                         },
-                        "amount": {
+                        "executedPrice": {
                           "type": "string",
-                          "description": "amount"
+                          "description": ""
                         },
-                        "timestamp": {
-                          "type": "integer",
-                          "description": "timestamp"
+                        "executedQuantity": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "executedTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "source": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "OrderbookResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "asks": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "price": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "description": ""
                         }
                       }
                     }
                   },
-                  "meta": {
-                    "$ref": "#/components/schemas/Meta"
+                  "bids": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "price": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -912,85 +1089,7 @@
           }
         ]
       },
-      "SetLeverage": {
-        "required": [
-          "leverage"
-        ],
-        "type": "object",
-        "properties": {
-          "leverage": {
-            "type": "integer",
-            "description": "For margin mode: 3, 4, 5, 10; for futures mode: 1, 2, 3, 4, 5, 10, 15, 20, 30, 40, 50",
-            "example": "5"
-          }
-        }
-      },
-      "CreateOrder": {
-        "required": [
-          "symbol",
-          "side",
-          "type"
-        ],
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string",
-            "description": "Symbol name",
-            "example": "SPOT_BTC_USDT"
-          },
-          "clientOrderId": {
-            "type": "integer",
-            "description": "Valid input ranges from 0 to 9223372036854775807",
-            "example": "1954766344355779056"
-          },
-          "orderTag": {
-            "type": "string",
-            "description": "Optional tag for this order, max string length: 64",
-            "example": ""
-          },
-          "side": {
-            "type": "string",
-            "description": "BUY/SELL",
-            "example": ""
-          },
-          "positionSide": {
-            "type": "string",
-            "description": "Position side; The default is BOTH in the one way mode;  Can only be LONG or SHORT in the hedge mode.  Only applicable to perpetual instruments.",
-            "example": ""
-          },
-          "type": {
-            "type": "string",
-            "description": "LIMIT/MARKET/IOC/FOK/POST_ONLY/ASK/BID",
-            "example": ""
-          },
-          "price": {
-            "type": "string",
-            "description": "Only applicable to LIMIT/IOC/FOK/POST_ONLY orders;  MARKET/ASK/BID orders will ignore this field",
-            "example": ""
-          },
-          "quantity": {
-            "type": "string",
-            "description": "Either quantity or amount is required;  If both are passed, the request will be rejected",
-            "example": ""
-          },
-          "amount": {
-            "type": "string",
-            "description": "Only applicable to MARKET/ASK/BID orders on spot instruments;  Either quantity or amount is required;  If both are passed, the request will be rejected",
-            "example": ""
-          },
-          "reduceOnly": {
-            "type": "boolean",
-            "description": "Only applicable to perpetual instruments; Whether the order can only reduce in position size; valid options are true/false",
-            "example": ""
-          },
-          "visibleQuantity": {
-            "type": "string",
-            "description": "The order quantity visible on orderbook",
-            "example": ""
-          }
-        }
-      },
-      "CreateOrderResponse": {
+      "KlineResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CommonResponse"
@@ -1001,29 +1100,53 @@
               "data": {
                 "type": "object",
                 "properties": {
-                  "orderId": {
-                    "type": "integer",
-                    "description": ""
-                  },
-                  "type": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "price": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "quantity": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "amount": {
-                    "type": "string",
-                    "description": ""
-                  },
-                  "clientOrderId": {
-                    "type": "integer",
-                    "description": ""
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "open": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "close": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "low": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "high": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "volume": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "amount": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "startTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "endTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -1031,30 +1154,7 @@
           }
         ]
       },
-      "CancelOrder": {
-        "required": [
-          "symbol"
-        ],
-        "type": "object",
-        "properties": {
-          "symbol": {
-            "type": "string",
-            "description": "Symbol name",
-            "example": "SPOT_BTC_USDT"
-          },
-          "orderId": {
-            "type": "integer",
-            "description": "Id of the order; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
-            "example": "1954766344355779056"
-          },
-          "clientOrderId": {
-            "type": "integer",
-            "description": "Client order Id as assigned by the user; Either orderId or clientOrderId is required. If both are passed, orderId will be used.",
-            "example": "1954766344355779056"
-          }
-        }
-      },
-      "CancelOrderResponse": {
+      "KlineHistoryResponse": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CommonResponse"
@@ -1065,59 +1165,271 @@
               "data": {
                 "type": "object",
                 "properties": {
-                  "status": {
-                    "type": "string",
-                    "description": ""
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "open": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "close": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "high": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "low": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "volume": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "amount": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "type": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "startTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "endTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
                   }
                 }
               }
             }
           }
         ]
-      }
-    },
-    "parameters": {
-      "start_filter": {
-        "name": "startTime",
-        "in": "query",
-        "description": "start www time in unix timestamp",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer"
-        }
       },
-      "end_filter": {
-        "name": "endTime",
-        "in": "query",
-        "description": "end time in unix timestamp",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer"
-        }
+      "FundingRateResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "estFundingRate": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "estFundingRateTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "lastFundingRate": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "lastFundingRateTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "nextFundingTime": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "lastFundingIntervalHours": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "estFundingIntervalHours": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
-      "page_filter": {
-        "name": "page",
-        "in": "query",
-        "description": "the page you wish to query.",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer",
-          "default": 1
-        }
+      "FundingRateHistoryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingRate": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "fundingRateTimestamp": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "nextFundingTime": {
+                          "type": "number",
+                          "description": ""
+                        },
+                        "markPrice": {
+                          "type": "string",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
-      "size_filter": {
-        "name": "size",
-        "in": "query",
-        "description": "the page size you wish to query, default = 25, 1000 at max.",
-        "required": false,
-        "explode": true,
-        "schema": {
-          "type": "integer",
-          "default": 25
-        }
+      "FuturesResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "indexPrice": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "markPrice": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "estFundingRate": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "lastFundingRate": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "openInterest": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hOpen": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hClose": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hHigh": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hLow": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hVolume": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "24hAmount": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "nextFundingTime": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "InsuranceFundResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "description": ""
+                        },
+                        "balance": {
+                          "type": "number",
+                          "description": ""
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
       }
     }
   }

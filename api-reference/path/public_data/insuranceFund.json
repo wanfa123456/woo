@@ -1,12 +1,12 @@
 {
 	"get": {
-		"description": "Retrieve a list of Spot and USDT perpetual instruments.",
+		"description": "Get the insurance fund balance by perp contract.",
 		"parameters": [
 			{
 				"name": "symbol",
 				"in": "query",
 				"description": "Symbol name",
-				"required": false,
+				"required": true,
 				"explode": true,
 				"schema": {
 					"type": "string"
@@ -19,7 +19,7 @@
 				"content": {
 					"application/json": {
 						"schema": {
-							"$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+							"$ref": "../../responses/InsuranceFundResponse.json#/InsuranceFundResponse"
 						}
 					}
 				}

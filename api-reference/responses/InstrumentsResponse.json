@@ -1,119 +1,115 @@
 {
-    "InstrumentsResponse": {
-        "allOf": [
-            {
-                "$ref": "../common/commonResponse.json#/CommonResponse"
-            },
-            {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "rows": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "symbol": {
-                                            "type": "integer",
-                                            "description": ""
-                                        },
-                                        "baseAsset": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "baseAssetMultiplier": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "quoteAsset": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "quoteMin": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "quoteMax": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "quoteTick": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "baseMin": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "baseMax": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "baseTick": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "minNotional": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "bidCapRatio": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "bidFloorRatio": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "askCapRatio": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "askFloorRatio": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "fundingIntervalHours": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "fundingCap": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "fundingFloor": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "impactNotional": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "status": {
-                                            "type": "string",
-                                            "description": "TRADING, SUSPENDED, TESTING"
-                                        },
-                                        "orderMode": {
-                                            "type": "string",
-                                            "description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
-                                        },
-                                        "baseIMR": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "baseMMR": {
-                                            "type": "string",
-                                            "description": ""
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    }
+	"InstrumentsResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"symbol": {
+											"type": "string",
+											"description": ""
+										},
+										"status": {
+											"type": "string",
+											"description": "TRADING, SUSPENDED, TESTING"
+										},
+										"baseAsset": {
+											"type": "string",
+											"description": ""
+										},
+										"baseAssetMultiplier": {
+											"type": "number",
+											"description": ""
+										},
+										"quoteAsset": {
+											"type": "string",
+											"description": ""
+										},
+										"quoteMin": {
+											"type": "number",
+											"description": ""
+										},
+										"quoteMax": {
+											"type": "number",
+											"description": ""
+										},
+										"quoteTick": {
+											"type": "number",
+											"description": ""
+										},
+										"baseMin": {
+											"type": "number",
+											"description": ""
+										},
+										"baseMax": {
+											"type": "number",
+											"description": ""
+										},
+										"baseTick": {
+											"type": "number",
+											"description": ""
+										},
+										"minNotional": {
+											"type": "number",
+											"description": ""
+										},
+										"bidCapRatio": {
+											"type": "number",
+											"description": ""
+										},
+										"bidFloorRatio": {
+											"type": "number",
+											"description": ""
+										},
+										"askCapRatio": {
+											"type": "number",
+											"description": ""
+										},
+										"askFloorRatio": {
+											"type": "number",
+											"description": ""
+										},
+										"fundingIntervalHours": {
+											"type": "number",
+											"description": ""
+										},
+										"fundingCap": {
+											"type": "number",
+											"description": ""
+										},
+										"fundingFloor": {
+											"type": "number",
+											"description": ""
+										},
+										"orderMode": {
+											"type": "string",
+											"description": "NORMAL, POST_ONLY, REDUCE_ONLY, CANCEL_ONLY"
+										},
+										"baseIMR": {
+											"type": "number",
+											"description": ""
+										},
+										"baseMMR": {
+											"type": "number",
+											"description": ""
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
 }

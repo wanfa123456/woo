@@ -1,0 +1,44 @@
+{
+	"get": {
+		"description": "Get the latest market trades. In the response, a source of 1 means these are internal trades on WOO X and a source of 0 means they are external trades from aggregated sources.",
+		"parameters": [
+			{
+				"name": "symbol",
+				"in": "query",
+				"description": "Symbol name",
+				"required": true,
+				"explode": true,
+				"schema": {
+					"type": "string"
+				}
+			},
+			{
+				"name": "limit",
+				"in": "query",
+				"description": "Numbers of trades you want to query. Maximum of 1000 trades allowed.",
+				"required": false,
+				"explode": true,
+				"schema": {
+					"type": "integer",
+					"default": 10
+				}
+			}
+		],
+		"responses": {
+			"200": {
+				"description": "successful operation",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "../../responses/MarketTradesResponse.json#/MarketTradesResponse"
+						}
+					}
+				}
+			},
+			"400": {
+				"description": "Invalid status value"
+			}
+		},
+		"security": []
+	}
+}

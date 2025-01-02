@@ -1,6 +1,6 @@
 {
 	"get": {
-		"description": "Retrieve a list of Spot and USDT perpetual instruments.",
+		"description": "Get basic futures information for all the markets.",
 		"parameters": [
 			{
 				"name": "symbol",
@@ -19,7 +19,7 @@
 				"content": {
 					"application/json": {
 						"schema": {
-							"$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+							"$ref": "../../responses/FuturesResponse.json#/FuturesResponse"
 						}
 					}
 				}

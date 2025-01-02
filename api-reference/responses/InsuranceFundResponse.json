@@ -1,5 +1,5 @@
 {
-	"TokenResponse": {
+	"InsuranceFundResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -19,20 +19,8 @@
 											"type": "string",
 											"description": ""
 										},
-										"fullname": {
-											"type": "string",
-											"description": ""
-										},
-										"decimals": {
+										"balance": {
 											"type": "number",
-											"description": ""
-										},
-										"network": {
-											"type": "string",
-											"description": ""
-										},
-										"balanceToken": {
-											"type": "string",
 											"description": ""
 										}
 									}

@@ -1,43 +1,43 @@
 {
-    "TokenInfoResponse": {
-        "allOf": [
-            {
-                "$ref": "../common/commonResponse.json#/CommonResponse"
-            },
-            {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "rows": {
-                                "type": "array",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "token": {
-                                            "type": "string",
-                                            "description": ""
-                                        },
-                                        "canCollateral": {
-                                            "type": "boolean",
-                                            "description": ""
-                                        },
-                                        "canShort": {
-                                            "type": "boolean",
-                                            "description": ""
-                                        },
-                                        "delisted": {
-                                            "type": "integer",
-                                            "description": ""
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    }
+	"TokenInfoResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"token": {
+											"type": "string",
+											"description": ""
+										},
+										"delisted": {
+											"type": "number",
+											"description": ""
+										},
+										"canCollateral": {
+											"type": "boolean",
+											"description": ""
+										},
+										"canShort": {
+											"type": "boolean",
+											"description": ""
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
 }

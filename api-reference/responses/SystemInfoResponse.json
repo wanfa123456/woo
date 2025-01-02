@@ -1,31 +1,31 @@
 {
-    "SystemInfoResponse": {
-        "allOf": [
-            {
-                "$ref": "../common/commonResponse.json#/CommonResponse"
-            },
-            {
-                "type": "object",
-                "properties": {
-                    "data": {
-                        "type": "object",
-                        "properties": {
-                            "status": {
-                                "type": "integer",
-                                "description": ""
-                            },
-                            "msg": {
-                                "type": "string",
-                                "description": ""
-                            },
-                            "estimated_end_time": {
-                                "type": "integer",
-                                "description": ""
-                            }
-                        }
-                    }
-                }
-            }
-        ]
-    }
+	"SystemInfoResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"status": {
+								"type": "integer",
+								"description": ""
+							},
+							"msg": {
+								"type": "string",
+								"description": ""
+							},
+							"estimated_end_time": {
+								"type": "integer",
+								"description": ""
+							}
+						}
+					}
+				}
+			}
+		]
+	}
 }

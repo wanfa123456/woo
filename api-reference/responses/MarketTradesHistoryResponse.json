@@ -1,5 +1,5 @@
 {
-	"TokenResponse": {
+	"MarketTradesHistoryResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -15,24 +15,32 @@
 								"items": {
 									"type": "object",
 									"properties": {
-										"token": {
-											"type": "string",
-											"description": ""
-										},
-										"fullname": {
-											"type": "string",
-											"description": ""
-										},
-										"decimals": {
+										"id": {
 											"type": "number",
 											"description": ""
 										},
-										"network": {
+										"symbol": {
 											"type": "string",
 											"description": ""
 										},
-										"balanceToken": {
+										"side": {
 											"type": "string",
+											"description": ""
+										},
+										"executedPrice": {
+											"type": "string",
+											"description": ""
+										},
+										"executedQuantity": {
+											"type": "string",
+											"description": ""
+										},
+										"executedTimestamp": {
+											"type": "number",
+											"description": ""
+										},
+										"source": {
+											"type": "number",
 											"description": ""
 										}
 									}

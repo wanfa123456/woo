@@ -1,5 +1,5 @@
 {
-	"TokenNetworkResponse": {
+	"FuturesResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -15,35 +15,55 @@
 								"items": {
 									"type": "object",
 									"properties": {
-										"protocol": {
+										"symbol": {
 											"type": "string",
 											"description": ""
 										},
-										"network": {
+										"indexPrice": {
 											"type": "string",
 											"description": ""
 										},
-										"token": {
+										"markPrice": {
 											"type": "string",
 											"description": ""
 										},
-										"name": {
+										"estFundingRate": {
 											"type": "string",
 											"description": ""
 										},
-										"minimumWithdrawal": {
-											"type": "number",
+										"lastFundingRate": {
+											"type": "string",
 											"description": ""
 										},
-										"withdrawalFee": {
-											"type": "number",
+										"openInterest": {
+											"type": "string",
 											"description": ""
 										},
-										"allowDeposit": {
-											"type": "number",
+										"24hOpen": {
+											"type": "string",
 											"description": ""
 										},
-										"allowWithdraw": {
+										"24hClose": {
+											"type": "string",
+											"description": ""
+										},
+										"24hHigh": {
+											"type": "string",
+											"description": ""
+										},
+										"24hLow": {
+											"type": "string",
+											"description": ""
+										},
+										"24hVolume": {
+											"type": "string",
+											"description": ""
+										},
+										"24hAmount": {
+											"type": "string",
+											"description": ""
+										},
+										"nextFundingTime": {
 											"type": "number",
 											"description": ""
 										}

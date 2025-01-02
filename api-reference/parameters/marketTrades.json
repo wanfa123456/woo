@@ -1,0 +1,25 @@
+{
+	"parameters": [
+		{
+			"name": "symbol",
+			"in": "query",
+			"description": "Symbol name",
+			"required": true,
+			"explode": true,
+			"schema": {
+				"type": "string"
+			}
+		},
+		{
+			"name": "limit",
+			"in": "query",
+			"description": "Numbers of trades you want to query. Maximum of 1000 trades allowed.",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer",
+				"default": 10
+			}
+		}
+	]
+}

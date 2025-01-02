@@ -1,0 +1,54 @@
+{
+	"get": {
+		"description": "Get the latest klines of the trading instrument.",
+		"parameters": [
+			{
+				"name": "symbol",
+				"in": "query",
+				"description": "Symbol name",
+				"required": true,
+				"explode": true,
+				"schema": {
+					"type": "string"
+				}
+			},
+			{
+				"name": "type",
+				"in": "query",
+				"description": "1m/3m/5m/15m/30m/1h/2h/4h/6h/12h/1d/1w/1mon/1y",
+				"required": true,
+				"explode": true,
+				"schema": {
+					"type": "string"
+				}
+			},
+			{
+				"name": "limit",
+				"in": "query",
+				"description": "Numbers of klines. Maximum of 1000 klines allowed.",
+				"required": false,
+				"explode": true,
+				"schema": {
+					"type": "integer",
+					"default": 100
+				}
+			}
+		],
+		"responses": {
+			"200": {
+				"description": "successful operation",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "../../responses/KlineResponse.json#/KlineResponse"
+						}
+					}
+				}
+			},
+			"400": {
+				"description": "Invalid status value"
+			}
+		},
+		"security": []
+	}
+}

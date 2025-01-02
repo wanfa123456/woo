@@ -1,24 +1,33 @@
 {
-  "get": {
-    "description": "Retrieve spot token information.",
-    "parameters": {
-      "$ref": "../../parameters/token.json#/parameters"
-    },
-    "responses": {
-      "200": {
-        "description": "successful operation",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "../../responses/TokenInfoResponse.json#/TokenInfoResponse"
-            }
-          }
-        }
-      },
-      "400": {
-        "description": "Invalid status value"
-      }
-    },
-    "security": []
-  }
+	"get": {
+		"description": "Retrieve spot token information.",
+		"parameters": [
+			{
+				"name": "token",
+				"in": "query",
+				"description": "Token name in upper case",
+				"required": false,
+				"explode": true,
+				"schema": {
+					"type": "string"
+				}
+			}
+		],
+		"responses": {
+			"200": {
+				"description": "successful operation",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "../../responses/TokenInfoResponse.json#/TokenInfoResponse"
+						}
+					}
+				}
+			},
+			"400": {
+				"description": "Invalid status value"
+			}
+		},
+		"security": []
+	}
 }

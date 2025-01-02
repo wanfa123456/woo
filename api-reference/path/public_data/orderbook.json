@@ -1,0 +1,44 @@
+{
+	"get": {
+		"description": "Get the snapshot of the symbol order book. Price of asks/bids are in descending order.",
+		"parameters": [
+			{
+				"name": "symbol",
+				"in": "query",
+				"description": "Symbol name",
+				"required": true,
+				"explode": true,
+				"schema": {
+					"type": "string"
+				}
+			},
+			{
+				"name": "maxLevel",
+				"in": "query",
+				"description": "Maximum number of levels to show on both sides",
+				"required": false,
+				"explode": true,
+				"schema": {
+					"type": "integer",
+					"default": 100
+				}
+			}
+		],
+		"responses": {
+			"200": {
+				"description": "successful operation",
+				"content": {
+					"application/json": {
+						"schema": {
+							"$ref": "../../responses/OrderbookResponse.json#/OrderbookResponse"
+						}
+					}
+				}
+			},
+			"400": {
+				"description": "Invalid status value"
+			}
+		},
+		"security": []
+	}
+}

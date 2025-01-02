@@ -1,0 +1,25 @@
+{
+	"parameters": [
+		{
+			"name": "symbol",
+			"in": "query",
+			"description": "Symbol name",
+			"required": true,
+			"explode": true,
+			"schema": {
+				"type": "string"
+			}
+		},
+		{
+			"name": "maxLevel",
+			"in": "query",
+			"description": "Maximum number of levels to show on both sides",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer",
+				"default": 100
+			}
+		}
+	]
+}

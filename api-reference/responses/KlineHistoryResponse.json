@@ -1,5 +1,5 @@
 {
-	"TokenResponse": {
+	"KlineHistoryResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -15,24 +15,44 @@
 								"items": {
 									"type": "object",
 									"properties": {
-										"token": {
+										"symbol": {
 											"type": "string",
 											"description": ""
 										},
-										"fullname": {
+										"open": {
 											"type": "string",
 											"description": ""
 										},
-										"decimals": {
+										"close": {
+											"type": "string",
+											"description": ""
+										},
+										"high": {
+											"type": "string",
+											"description": ""
+										},
+										"low": {
+											"type": "string",
+											"description": ""
+										},
+										"volume": {
+											"type": "string",
+											"description": ""
+										},
+										"amount": {
+											"type": "string",
+											"description": ""
+										},
+										"type": {
+											"type": "string",
+											"description": ""
+										},
+										"startTimestamp": {
 											"type": "number",
 											"description": ""
 										},
-										"network": {
-											"type": "string",
-											"description": ""
-										},
-										"balanceToken": {
-											"type": "string",
+										"endTimestamp": {
+											"type": "number",
 											"description": ""
 										}
 									}

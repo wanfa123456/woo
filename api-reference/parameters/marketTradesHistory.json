@@ -1,0 +1,45 @@
+{
+	"parameters": [
+		{
+			"name": "symbol",
+			"in": "query",
+			"description": "Symbol name",
+			"required": true,
+			"explode": true,
+			"schema": {
+				"type": "string"
+			}
+		},
+		{
+			"name": "before",
+			"in": "query",
+			"description": "The id cursor for fetching the previous page of results, excluding the trade associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent trades.",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer"
+			}
+		},
+		{
+			"name": "after",
+			"in": "query",
+			"description": "The id cursor for fetching the next page of results, excluding the trade associated with the cursor itself.  Either before or after can be specified.  If both are provided, before takes precedence. If neither is passed, the results default to starting from the most recent trades.",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer"
+			}
+		},
+		{
+			"name": "limit",
+			"in": "query",
+			"description": "Numbers of trades you want to query. Maximum of 1000 trades allowed.",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer",
+				"default": 100
+			}
+		}
+	]
+}

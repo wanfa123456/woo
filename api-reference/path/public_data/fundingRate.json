@@ -1,6 +1,6 @@
 {
 	"get": {
-		"description": "Retrieve a list of Spot and USDT perpetual instruments.",
+		"description": "Get predicted funding rate and the latest funding rate.",
 		"parameters": [
 			{
 				"name": "symbol",
@@ -19,7 +19,7 @@
 				"content": {
 					"application/json": {
 						"schema": {
-							"$ref": "../../responses/InstrumentsResponse.json#/InstrumentsResponse"
+							"$ref": "../../responses/FundingRateResponse.json#/FundingRateResponse"
 						}
 					}
 				}

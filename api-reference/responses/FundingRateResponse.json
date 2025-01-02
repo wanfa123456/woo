@@ -1,5 +1,5 @@
 {
-	"TokenResponse": {
+	"FundingRateResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -15,24 +15,36 @@
 								"items": {
 									"type": "object",
 									"properties": {
-										"token": {
+										"symbol": {
 											"type": "string",
 											"description": ""
 										},
-										"fullname": {
+										"estFundingRate": {
 											"type": "string",
 											"description": ""
 										},
-										"decimals": {
+										"estFundingRateTimestamp": {
 											"type": "number",
 											"description": ""
 										},
-										"network": {
+										"lastFundingRate": {
 											"type": "string",
 											"description": ""
 										},
-										"balanceToken": {
-											"type": "string",
+										"lastFundingRateTimestamp": {
+											"type": "number",
+											"description": ""
+										},
+										"nextFundingTime": {
+											"type": "number",
+											"description": ""
+										},
+										"lastFundingIntervalHours": {
+											"type": "number",
+											"description": ""
+										},
+										"estFundingIntervalHours": {
+											"type": "number",
 											"description": ""
 										}
 									}

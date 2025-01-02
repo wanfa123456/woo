@@ -5,6 +5,7 @@
         "description": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification.  You can find out more about\nSwagger at [http://swagger.io](http://swagger.io). In the third iteration of the pet store, we've switched to the design first approach!\nYou can now help us improve the API whether it's by making changes to the definition itself or to the code.\nThat way, with time, we can improve the API in general, and expose some of the new features in OAS3.\n\nSome useful links:\n- [The Pet Store repository](https://github.com/swagger-api/swagger-petstore)\n- [The source API definition for the Pet Store](https://github.com/swagger-api/swagger-petstore/blob/master/src/main/resources/openapi.yaml)",
         "termsOfService": "http://swagger.io/terms/",
         "contact": {
+            "name": "API Team",
             "email": "apiteam@swagger.io"
         },
         "license": {
@@ -19,42 +20,54 @@
     },
     "servers": [
         {
-            "url": "https://api.woo.org/"
+            "url": "https://api.woox.io/"
         }
     ],
-    
+
     "paths": {
-        "/v3/public/token": {
-            "$ref": "path/public_data/token.json"
-        },
-        "/v3/public/tokenNetwork": {
-            "$ref": "path/public_data/tokenNetwork.json"
+        "/v3/public/systemInfo": {
+          "$ref": "path/public_data/systemInfo.json"
         },
         "/v3/public/instruments": {
-            "$ref": "path/public_data/instruments.json"
+          "$ref": "path/public_data/instruments.json"
         },
-        "/v3/public/systemInfo": {
-            "$ref": "path/public_data/systemInfo.json"
+        "/v3/public/token": {
+          "$ref": "path/public_data/token.json"
+        },
+        "/v3/public/tokenNetwork": {
+          "$ref": "path/public_data/tokenNetwork.json"
         },
         "/v3/public/tokenInfo": {
-            "$ref": "path/public_data/tokenInfo.json"
+          "$ref": "path/public_data/tokenInfo.json"
         },
-        "/v3/account/referral/summary": {
-          "$ref": "path/account/summary.json"  
+        "/v3/public/marketTrades": {
+          "$ref": "path/public_data/marketTrades.json"
         },
-        "/v3/futures/defaultMarginMode": {
-          "$ref": "path/futures/defaultMarginMode.json"  
+        "/v3/public/marketTradesHistory": {
+          "$ref": "path/public_data/marketTradesHistory.json"
         },
-        "/v3/asset/token/history": {
-          "$ref": "path/asset/token_history.json"  
+        "/v3/public/orderbook": {
+          "$ref": "path/public_data/orderbook.json"
         },
-        "/v3/spotMargin/leverage": {
-          "$ref": "path/spotMargin/leverage.json"  
+        "/v3/public/kline": {
+          "$ref": "path/public_data/kline.json"
         },
-        "/v3/trade/order": {
-          "$ref": "path/trade/order.json"  
+        "/v3/public/klineHistory": {
+          "$ref": "path/public_data/klineHistory.json"
+        },
+        "/v3/public/fundingRate": {
+          "$ref": "path/public_data/fundingRate.json"
+        },
+        "/v3/public/fundingRateHistory": {
+          "$ref": "path/public_data/fundingRateHistory.json"
+        },
+        "/v3/public/futures": {
+          "$ref": "path/public_data/futures.json"
+        },
+        "/v3/public/insuranceFund": {
+          "$ref": "path/public_data/insuranceFund.json"
         }
-        
+
     },
     "components": {
       

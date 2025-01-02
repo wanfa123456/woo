@@ -65,7 +65,15 @@
         "api-reference/endpoint/public_data/token",
         "api-reference/endpoint/public_data/tokenNetwork",
         "api-reference/endpoint/public_data/tokenInfo",
-        "api-reference/endpoint/public_data/marketTrades"
+        "api-reference/endpoint/public_data/marketTrades",
+        "api-reference/endpoint/public_data/marketTradesHistory",
+        "api-reference/endpoint/public_data/orderbook",
+        "api-reference/endpoint/public_data/kline",
+        "api-reference/endpoint/public_data/klineHistory",
+        "api-reference/endpoint/public_data/fundingRate",
+        "api-reference/endpoint/public_data/fundingRateHistory",
+        "api-reference/endpoint/public_data/futures",
+        "api-reference/endpoint/public_data/insuranceFund"
       ]
     },
     {

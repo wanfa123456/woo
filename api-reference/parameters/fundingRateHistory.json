@@ -1,0 +1,56 @@
+{
+	"parameters": [
+		{
+			"name": "symbol",
+			"in": "query",
+			"description": "Symbol name",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "string"
+			}
+		},
+		{
+			"name": "startTime",
+			"in": "query",
+			"description": "Start timestamp in Unix timestamp format in milliseconds",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer"
+			}
+		},
+		{
+			"name": "endTime",
+			"in": "query",
+			"description": "End timestamp in Unix timestamp format in milliseconds",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer"
+			}
+		},
+		{
+			"name": "page",
+			"in": "query",
+			"description": "Page number",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer",
+				"default": 1
+			}
+		},
+		{
+			"name": "size",
+			"in": "query",
+			"description": "Data size per page",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "integer",
+				"default": 25
+			}
+		}
+	]
+}

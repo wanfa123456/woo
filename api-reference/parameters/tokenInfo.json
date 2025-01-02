@@ -1,0 +1,14 @@
+{
+	"parameters": [
+		{
+			"name": "token",
+			"in": "query",
+			"description": "Token name in upper case",
+			"required": false,
+			"explode": true,
+			"schema": {
+				"type": "string"
+			}
+		}
+	]
+}

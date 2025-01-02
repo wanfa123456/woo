@@ -1,5 +1,5 @@
 {
-	"TokenResponse": {
+	"OrderbookResponse": {
 		"allOf": [
 			{
 				"$ref": "../common/commonResponse.json#/CommonResponse"
@@ -10,28 +10,32 @@
 					"data": {
 						"type": "object",
 						"properties": {
-							"rows": {
+							"asks": {
 								"type": "array",
 								"items": {
 									"type": "object",
 									"properties": {
-										"token": {
+										"price": {
 											"type": "string",
 											"description": ""
 										},
-										"fullname": {
+										"quantity": {
+											"type": "string",
+											"description": ""
+										}
+									}
+								}
+							},
+							"bids": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"price": {
 											"type": "string",
 											"description": ""
 										},
-										"decimals": {
-											"type": "number",
-											"description": ""
-										},
-										"network": {
-											"type": "string",
-											"description": ""
-										},
-										"balanceToken": {
+										"quantity": {
 											"type": "string",
 											"description": ""
 										}
