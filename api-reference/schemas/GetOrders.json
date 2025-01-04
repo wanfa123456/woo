@@ -1,0 +1,20 @@
+{
+    "GetOrders": {
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "Symbol name"
+            },
+            "side": {
+                "type": "string",
+                "description": "BUY/SELL"
+            },
+            "positionSide": {
+                "type": "string",
+                "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Only applicable to perpetual instruments"
+            }
+            
+        }
+    }
+}

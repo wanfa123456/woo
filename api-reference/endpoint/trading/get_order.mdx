@@ -1,0 +1,69 @@
+---
+title: 'Get order'
+openapi: 'GET /v3/trade/order'
+---
+### **Limit: 5 requests per 1 symbol per 1 second**
+
+
+<ResponseExample>
+
+```bash
+# if withRealizedPnl is True
+{
+    "success": true,
+    "data": {
+        "symbol": "PERP_BTC_USDT",
+        "status": "FILLED",
+        "side": "SELL",
+        "positionSide": "BOTH",
+        "createdTime": 1578565539808,
+        "orderId": 13,
+        "orderTag": "default",
+        "price": "123",
+        "type": "LIMIT",
+        "quantity": "0.1",
+        "amount": "null",
+        "visible": "0.1",
+        "executed": "0.1",
+        "totalFee": "0.00123",
+        "feeAsset": "USDT",
+        "totalRebate": 0,
+        "rebateCurrency": "USDT",
+        "clientOrderId": 0,
+        "reduceOnly": false,
+        "realizedPnl": "100",
+        "averageExecutedPrice": "123",
+    },
+    "timestamp": 1721351502594
+}
+# if withRealizedPnl is False
+{
+    "success": true,
+    "data": {
+        "symbol": "PERP_BTC_USDT",
+        "status": "FILLED",
+        "side": "SELL",
+        "positionSide": "BOTH",
+        "createdTime": 1578565539808,
+        "orderId": 13,
+        "orderTag": "default",
+        "price": "123",
+        "type": "LIMIT",
+        "quantity": "0.1",
+        "amount": "null",
+        "visible": "0.1",
+        "executed": "0.1",
+        "totalFee": "0.00123",
+        "feeAsset": "USDT",
+        "totalRebate": 0,
+        "rebateCurrency": "USDT",
+        "clientOrderId": 0,
+        "reduceOnly": false,
+        "averageExecutedPrice": "123",
+    },
+    "timestamp": 1721351502594
+}
+```
+
+</ResponseExample>
+

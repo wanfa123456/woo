@@ -80,7 +80,11 @@
       "group": "Trading",
       "pages": [
         "api-reference/endpoint/trading/post_order",
-        "api-reference/endpoint/trading/cancel_order"
+        "api-reference/endpoint/trading/cancel_order",
+        "api-reference/endpoint/trading/cancel_all_order",
+        "api-reference/endpoint/trading/get_order",
+        "api-reference/endpoint/trading/get_orders"
+        
       ]
     },
     {
@@ -128,8 +132,6 @@
           "group": "Commands",
           "pages": [
             "api-reference/endpoint/websocket/subscribe",
-            "api-reference/endpoint/websocket/UnSubscribe",
-            "api-reference/endpoint/websocket/UnSubscribe_all",
             "api-reference/endpoint/websocket/List_subscription",
             "api-reference/endpoint/websocket/Additional_information"
           ]

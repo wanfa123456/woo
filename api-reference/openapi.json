@@ -66,8 +66,25 @@
         },
         "/v3/public/insuranceFund": {
           "$ref": "path/public_data/insuranceFund.json"
+        },
+        "/v3/trade/order": {
+          "$ref": "path/trade/order.json"  
+        },
+        "/v3/trade/orders": {
+          "$ref": "path/trade/orders.json"  
+        },
+        "/v3/account/referral/summary": {
+          "$ref": "path/account/summary.json"
+        },
+        "/v3/spotMargin/leverage": {
+          "$ref": "path/spot_margin/leverage.json"
+        },
+        "/v3/asset/token/history": {
+          "$ref": "path/asset/token_history.json"
+        },
+        "/v3/futures/defaultMarginMode": {
+          "$ref": "path/futures/defaultMarginMode.json"
         }
-
     },
     "components": {
       

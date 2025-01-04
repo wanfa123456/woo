@@ -1,0 +1,14 @@
+{
+    "parameters": [
+        {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ]
+}

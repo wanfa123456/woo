@@ -1,6 +1,6 @@
-{
+{  
   "get": {
-    "description": "get order",
+    "description": "get orders",
     "requestBody": {
       "description": "",
       "content": {
@@ -18,43 +18,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../../responses/GetOrderResponse.json#/GetOrderResponse"
-            }
-          }
-        }
-      },
-      "400": {
-        "description": "Invalid status value"
-      }
-    },
-    "security": [
-      {
-        "ApiKeyAuth": [],
-        "ApiSignAuth": [],
-        "ApiTimestampAuth": []
-      }
-    ]
-  },
-  "post": {
-    "description": "post order",
-    "requestBody": {
-      "description": "",
-      "content": {
-        "application/json": {
-          "schema": {
-            "$ref": "../../schemas/CreateOrder.json#/CreateOrder"
-          }
-        }
-      },
-      "required": true
-    },
-    "responses": {
-      "200": {
-        "description": "successful operation",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "../../responses/CreateOrderResponse.json#/CreateOrderResponse"
+              "$ref": "../../responses/CancelOrderResponse.json#/CancelOrderResponse"
             }
           }
         }
@@ -72,13 +36,13 @@
     ]
   },
   "delete": {
-    "description": "cancel order",
+    "description": "Cancel multiple orders",
     "requestBody": {
       "description": "",
       "content": {
         "application/x-www-form-urlencoded": {
           "schema": {
-            "$ref": "../../schemas/CancelOrder.json#/CancelOrder"
+            "$ref": "../../schemas/CancelOrders.json#/CancelOrders"
           }
         }
       },
