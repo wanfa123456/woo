@@ -71,6 +71,42 @@
       }
     ]
   },
+  "put": {
+    "description": "edit order",
+    "requestBody": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../../schemas/EditOrder.json#/EditOrder"
+          }
+        }
+      },
+      "required": true
+    },
+    "responses": {
+      "200": {
+        "description": "successful operation",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../../responses/EditOrderResponse.json#/EditOrderResponse"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Invalid status value"
+      }
+    },
+    "security": [
+      {
+        "ApiKeyAuth": [],
+        "ApiSignAuth": [],
+        "ApiTimestampAuth": []
+      }
+    ]
+  },
   "delete": {
     "description": "cancel order",
     "requestBody": {

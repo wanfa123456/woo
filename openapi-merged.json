@@ -683,6 +683,42 @@
           }
         ]
       },
+      "put": {
+        "description": "edit order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
       "delete": {
         "description": "cancel order",
         "requestBody": {
@@ -728,7 +764,7 @@
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/GetOrder"
+                "$ref": "#/components/schemas/GetOrders"
               }
             }
           },
@@ -1958,6 +1994,50 @@
           }
         ]
       },
+      "EditOrder": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "description": "Id of the order; Either orderId or clientOrderId is required. If both are passed, orderId will be used."
+          },
+          "clientOrderId": {
+            "type": "integer",
+            "description": "Client order Id as assigned by the user; Either orderId or clientOrderId is required. If both are passed, orderId will be used."
+          },
+          "price": {
+            "type": "string",
+            "description": "Only applicable to LIMIT/IOC/FOK/POST_ONLY orders;  MARKET/ASK/BID orders will ignore this field",
+            "example": ""
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Either quantity or amount is required;  If both are passed, the request will be rejected",
+            "example": ""
+          }
+        }
+      },
+      "EditOrderResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "CreateOrder": {
         "required": [
           "symbol",
@@ -2107,6 +2187,55 @@
             }
           }
         ]
+      },
+      "GetOrders": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          },
+          "side": {
+            "type": "string",
+            "description": "BUY/SELL"
+          },
+          "positionSide": {
+            "type": "string",
+            "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Only applicable to perpetual instruments"
+          },
+          "type": {
+            "type": "string",
+            "description": "LIMIT/MARKET/IOC/FOK/POST_ONLY/LIQUIDATE"
+          },
+          "orderTag": {
+            "type": "string",
+            "description": "Order tag"
+          },
+          "withRealizedPnl": {
+            "type": "boolean",
+            "description": "Whether to return order’s realized pnl; Note that realized PnL is only calculated for Perpetual close orders."
+          },
+          "status": {
+            "type": "string",
+            "description": "NEW/CANCELLED/PARTIAL_FILLED/FILLED/REJECTED/INCOMPLETE/COMPLETED"
+          },
+          "startTime": {
+            "type": "integer",
+            "description": "Start timestamp in Unix timestamp format in milliseconds"
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End timestamp in Unix timestamp format in milliseconds"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Data size per page, max 500"
+          }
+        }
       },
       "CancelOrders": {
         "type": "object",

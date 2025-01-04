@@ -1,0 +1,25 @@
+{
+    "EditOrder": {
+        "type": "object",
+        "properties": {
+            "orderId": {
+                "type": "integer",
+                "description": "Id of the order; Either orderId or clientOrderId is required. If both are passed, orderId will be used."
+            },
+            "clientOrderId": {
+                "type": "integer",
+                "description": "Client order Id as assigned by the user; Either orderId or clientOrderId is required. If both are passed, orderId will be used."
+            },
+            "price": {
+                "type": "string",
+                "description": "Only applicable to LIMIT/IOC/FOK/POST_ONLY orders;  MARKET/ASK/BID orders will ignore this field",
+                "example": ""
+            },
+            "quantity": {
+                "type": "string",
+                "description": "Either quantity or amount is required;  If both are passed, the request will be rejected",
+                "example": ""
+            }
+        }
+    }
+}
