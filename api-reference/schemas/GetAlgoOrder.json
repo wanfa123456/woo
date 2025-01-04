@@ -1,0 +1,18 @@
+{
+    "GetAlgoOrder": {
+        "type": "object",
+        "properties": {
+            "algoOrderId": {
+                "type": "integer",
+                "description": "Id of the algoorder; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+                "example": "1954766344355779056"
+            },
+            "clientAlgoOrderId": {
+                "type": "integer",
+                "description": "Client order Id as assigned by the user; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+                "example": "1954766344355779056"
+            }
+            
+        }
+    }
+}

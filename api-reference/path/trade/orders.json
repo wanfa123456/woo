@@ -18,7 +18,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../../responses/CancelOrderResponse.json#/CancelOrderResponse"
+              "$ref": "../../responses/GetOrdersResponse.json#/GetOrdersResponse"
             }
           }
         }

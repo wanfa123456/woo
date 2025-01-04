@@ -87,7 +87,9 @@
         "api-reference/endpoint/trading/edit_order",
         "api-reference/endpoint/trading/post_algo_order",
         "api-reference/endpoint/trading/cancel_algo_order",
-        "api-reference/endpoint/trading/cancel_algo_orders"
+        "api-reference/endpoint/trading/cancel_algo_orders",
+        "api-reference/endpoint/trading/cancel_orders_by_symbol",
+        "api-reference/endpoint/trading/get_algo_order"
       ]
     },
     {

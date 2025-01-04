@@ -776,7 +776,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CancelOrderResponse"
+                  "$ref": "#/components/schemas/GetOrdersResponse"
                 }
               }
             }
@@ -832,13 +832,13 @@
     },
     "/v3/trade/algoOrder": {
       "get": {
-        "description": "get order",
+        "description": "get algo order",
         "requestBody": {
           "description": "",
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/GetOrder"
+                "$ref": "#/components/schemas/GetAlgoOrder"
               }
             }
           },
@@ -850,7 +850,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetOrderResponse"
+                  "$ref": "#/components/schemas/GetAlgoOrderResponse"
                 }
               }
             }
@@ -1145,6 +1145,178 @@
             "application/x-www-form-urlencoded": {
               "schema": {
                 "$ref": "#/components/schemas/CancelAlgoOrders"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/trade/allOrders": {
+      "get": {
+        "description": "get order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "post algo order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/stop_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/oco_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/trailing_stop"
+                  },
+                  {
+                    "$ref": "#/components/schemas/positional_tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/bracket"
+                  },
+                  {
+                    "$ref": "#/components/schemas/stop_bracket"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/StopResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "edit order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Cancel all orders by symbol",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelOrdersBySymbol"
               }
             }
           },
@@ -2214,6 +2386,118 @@
           }
         }
       },
+      "GetOrderRowResponse": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "example": "PERP_BTC_USDT",
+            "description": "Trading pair, e.g., BTC/USDT perpetual contract."
+          },
+          "status": {
+            "type": "string",
+            "example": "FILLED",
+            "description": "Order status, e.g., FILLED indicates the order has been fully executed."
+          },
+          "side": {
+            "type": "string",
+            "example": "SELL",
+            "description": "Trade direction, e.g., SELL means selling, BUY means buying."
+          },
+          "positionSide": {
+            "type": "string",
+            "example": "BOTH",
+            "description": "Position direction, e.g., BOTH indicates a dual position mode."
+          },
+          "createdTime": {
+            "type": "integer",
+            "format": "int64",
+            "example": 1578565539808,
+            "description": "Order creation time in Unix timestamp (milliseconds)."
+          },
+          "orderId": {
+            "type": "integer",
+            "example": 13,
+            "description": "Unique identifier for the order."
+          },
+          "orderTag": {
+            "type": "string",
+            "example": "default",
+            "description": "Order tag, e.g., default."
+          },
+          "price": {
+            "type": "string",
+            "example": "123",
+            "description": "Price of the limit order (price per unit of the asset)."
+          },
+          "type": {
+            "type": "string",
+            "example": "LIMIT",
+            "description": "Order type, e.g., LIMIT represents a limit order."
+          },
+          "quantity": {
+            "type": "string",
+            "example": "0.1",
+            "description": "Total quantity of the order, representing the number of assets."
+          },
+          "amount": {
+            "type": "string",
+            "nullable": true,
+            "example": null,
+            "description": "Total order amount, may be null."
+          },
+          "visible": {
+            "type": "string",
+            "example": "0.1",
+            "description": "Visible quantity, representing the portion of the order shown to the market."
+          },
+          "executed": {
+            "type": "string",
+            "example": "0.1",
+            "description": "Quantity that has been executed."
+          },
+          "totalFee": {
+            "type": "string",
+            "example": "0.00123",
+            "description": "Total fee charged for the order, denominated in the fee asset."
+          },
+          "feeAsset": {
+            "type": "string",
+            "example": "USDT",
+            "description": "Asset type used to pay fees."
+          },
+          "totalRebate": {
+            "type": "number",
+            "example": 0,
+            "description": "Total rebate amount."
+          },
+          "rebateCurrency": {
+            "type": "string",
+            "example": "USDT",
+            "description": "Asset type for the rebate."
+          },
+          "clientOrderId": {
+            "type": "integer",
+            "example": 0,
+            "description": "Client-defined order ID."
+          },
+          "reduceOnly": {
+            "type": "boolean",
+            "example": false,
+            "description": "Indicates whether the order is reduce-only."
+          },
+          "realizedPnl": {
+            "type": "string",
+            "example": "100",
+            "description": "Realized profit and loss, e.g., 100 means a profit of 100 USDT."
+          },
+          "averageExecutedPrice": {
+            "type": "string",
+            "example": "123",
+            "description": "Average price at which the order was executed."
+          }
+        }
+      },
       "GetOrderResponse": {
         "allOf": [
           {
@@ -2223,116 +2507,7 @@
             "type": "object",
             "properties": {
               "data": {
-                "type": "object",
-                "properties": {
-                  "symbol": {
-                    "type": "string",
-                    "example": "PERP_BTC_USDT",
-                    "description": "交易对，例如 BTC/USDT 永续合约"
-                  },
-                  "status": {
-                    "type": "string",
-                    "example": "FILLED",
-                    "description": "订单状态，例如 FILLED 表示订单已完全成交"
-                  },
-                  "side": {
-                    "type": "string",
-                    "example": "SELL",
-                    "description": "交易方向，SELL 表示卖出，BUY 表示买入"
-                  },
-                  "positionSide": {
-                    "type": "string",
-                    "example": "BOTH",
-                    "description": "持仓方向，例如 BOTH 表示双向持仓模式"
-                  },
-                  "createdTime": {
-                    "type": "integer",
-                    "format": "int64",
-                    "example": 1578565539808,
-                    "description": "订单创建时间，Unix 时间戳（毫秒）"
-                  },
-                  "orderId": {
-                    "type": "integer",
-                    "example": 13,
-                    "description": "订单编号，唯一标识订单"
-                  },
-                  "orderTag": {
-                    "type": "string",
-                    "example": "default",
-                    "description": "订单标签，例如 default"
-                  },
-                  "price": {
-                    "type": "string",
-                    "example": "123",
-                    "description": "限价订单的价格（每单位资产的价格）"
-                  },
-                  "type": {
-                    "type": "string",
-                    "example": "LIMIT",
-                    "description": "订单类型，例如 LIMIT 表示限价订单"
-                  },
-                  "quantity": {
-                    "type": "string",
-                    "example": "0.1",
-                    "description": "订单总量，表示订单的资产数量"
-                  },
-                  "amount": {
-                    "type": "string",
-                    "nullable": true,
-                    "example": "null",
-                    "description": "订单总金额，可能为 null"
-                  },
-                  "visible": {
-                    "type": "string",
-                    "example": "0.1",
-                    "description": "可见数量，表示订单中展示给市场的部分"
-                  },
-                  "executed": {
-                    "type": "string",
-                    "example": "0.1",
-                    "description": "已成交数量"
-                  },
-                  "totalFee": {
-                    "type": "string",
-                    "example": "0.00123",
-                    "description": "总手续费，单位为手续费资产类型"
-                  },
-                  "feeAsset": {
-                    "type": "string",
-                    "example": "USDT",
-                    "description": "手续费支付的资产类型"
-                  },
-                  "totalRebate": {
-                    "type": "number",
-                    "example": 0,
-                    "description": "总返佣金额"
-                  },
-                  "rebateCurrency": {
-                    "type": "string",
-                    "example": "USDT",
-                    "description": "返佣的资产类型"
-                  },
-                  "clientOrderId": {
-                    "type": "integer",
-                    "example": 0,
-                    "description": "客户自定义订单 ID"
-                  },
-                  "reduceOnly": {
-                    "type": "boolean",
-                    "example": false,
-                    "description": "是否为减仓订单"
-                  },
-                  "realizedPnl": {
-                    "type": "string",
-                    "example": "100",
-                    "description": "实现盈亏，例如 100 表示盈利 100 USDT"
-                  },
-                  "averageExecutedPrice": {
-                    "type": "string",
-                    "example": "123",
-                    "description": "平均成交价格"
-                  }
-                }
+                "$ref": "#/components/schemas/GetOrderRowResponse"
               }
             }
           }
@@ -2581,6 +2756,50 @@
           }
         }
       },
+      "Meta": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "integer",
+            "description": "Total number of record"
+          },
+          "recordsPerPage": {
+            "type": "integer",
+            "description": "Number of records per page"
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "Current page number"
+          }
+        }
+      },
+      "GetOrdersResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/GetOrderRowResponse"
+                    },
+                    "description": ""
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
       "CancelOrders": {
         "type": "object",
         "properties": {
@@ -2590,6 +2809,154 @@
             "example": "SPOT_BTC_USDT"
           }
         }
+      },
+      "GetAlgoOrder": {
+        "type": "object",
+        "properties": {
+          "algoOrderId": {
+            "type": "integer",
+            "description": "Id of the algoorder; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+            "example": "1954766344355779056"
+          },
+          "clientAlgoOrderId": {
+            "type": "integer",
+            "description": "Client order Id as assigned by the user; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+            "example": "1954766344355779056"
+          }
+        }
+      },
+      "GetAlgoOrderResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "algoOrderId": {
+                    "type": "integer",
+                    "description": "Unique identifier for the algorithmic order."
+                  },
+                  "clientAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Client-generated algorithmic order ID."
+                  },
+                  "rootAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Root algorithmic order ID."
+                  },
+                  "parentAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Parent algorithmic order ID, 0 if none."
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Trading pair identifier, e.g., SPOT_WOO_USDT."
+                  },
+                  "orderTag": {
+                    "type": "string",
+                    "description": "Tag associated with the order, e.g., 'default'."
+                  },
+                  "algoType": {
+                    "type": "string",
+                    "description": "Type of the algorithm, e.g., 'TRAILING_STOP'."
+                  },
+                  "side": {
+                    "type": "string",
+                    "description": "Order direction, e.g., 'BUY' or 'SELL'."
+                  },
+                  "positionSide": {
+                    "type": "string",
+                    "description": "Position direction, e.g., 'BOTH'."
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "description": "The quantity for the order."
+                  },
+                  "isTriggered": {
+                    "type": "boolean",
+                    "description": "Indicates if the order has been triggered."
+                  },
+                  "triggerStatus": {
+                    "type": "string",
+                    "description": "The trigger status of the order, e.g., 'USELESS'."
+                  },
+                  "type": {
+                    "type": "string",
+                    "description": "Order type, e.g., 'MARKET'."
+                  },
+                  "rootAlgoStatus": {
+                    "type": "string",
+                    "description": "Status of the root algorithmic order, e.g., 'NEW'."
+                  },
+                  "algoStatus": {
+                    "type": "string",
+                    "description": "Status of the algorithmic order, e.g., 'NEW'."
+                  },
+                  "triggerPriceType": {
+                    "type": "string",
+                    "description": "The type of price used for triggering, e.g., 'MARKET_PRICE'."
+                  },
+                  "triggerTime": {
+                    "type": "string",
+                    "description": "Timestamp for when the order is triggered, '0' if not triggered."
+                  },
+                  "totalExecutedQuantity": {
+                    "type": "string",
+                    "description": "Total quantity executed."
+                  },
+                  "averageExecutedPrice": {
+                    "type": "string",
+                    "description": "Average price of executed quantity."
+                  },
+                  "totalFee": {
+                    "type": "string",
+                    "description": "Total fee charged for the order."
+                  },
+                  "feeAsset": {
+                    "type": "string",
+                    "description": "Asset used for paying the fees."
+                  },
+                  "totalRebate": {
+                    "type": "string",
+                    "description": "Total rebate received for the order."
+                  },
+                  "rebateCurrency": {
+                    "type": "string",
+                    "description": "Currency in which rebate is paid, e.g., 'USDT'."
+                  },
+                  "reduceOnly": {
+                    "type": "boolean",
+                    "description": "Indicates if the order is reduce-only."
+                  },
+                  "createdTime": {
+                    "type": "integer",
+                    "description": "Timestamp of when the order was created."
+                  },
+                  "updatedTime": {
+                    "type": "integer",
+                    "description": "Timestamp of when the order was last updated."
+                  },
+                  "isActivated": {
+                    "type": "boolean",
+                    "description": "Indicates if the order is activated."
+                  },
+                  "callbackRate": {
+                    "type": "string",
+                    "description": "Callback rate for the algorithm, e.g., '0.03'."
+                  },
+                  "activatedPrice": {
+                    "type": "string",
+                    "description": "Activated price for the algorithm, e.g., '0.21'."
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "common_algo": {
         "type": "object",
@@ -3093,20 +3460,23 @@
           }
         }
       },
-      "Meta": {
+      "CancelOrdersBySymbol": {
+        "required": [
+          "symbol"
+        ],
         "type": "object",
         "properties": {
-          "total": {
-            "type": "integer",
-            "description": "Total number of record"
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
           },
-          "recordsPerPage": {
-            "type": "integer",
-            "description": "Number of records per page"
+          "side": {
+            "type": "string",
+            "description": "BUY/SELL"
           },
-          "currentPage": {
-            "type": "integer",
-            "description": "Current page number"
+          "positionSide": {
+            "type": "string",
+            "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Cancel both sides if not passed. Only applicable to perpetual instruments"
           }
         }
       },

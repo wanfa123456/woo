@@ -1,0 +1,116 @@
+{
+    "GetOrderRowResponse": {
+            "type": "object",
+            "properties": {
+                "symbol": {
+                    "type": "string",
+                    "example": "PERP_BTC_USDT",
+                    "description": "Trading pair, e.g., BTC/USDT perpetual contract."
+                },
+                "status": {
+                    "type": "string",
+                    "example": "FILLED",
+                    "description": "Order status, e.g., FILLED indicates the order has been fully executed."
+                },
+                "side": {
+                    "type": "string",
+                    "example": "SELL",
+                    "description": "Trade direction, e.g., SELL means selling, BUY means buying."
+                },
+                "positionSide": {
+                    "type": "string",
+                    "example": "BOTH",
+                    "description": "Position direction, e.g., BOTH indicates a dual position mode."
+                },
+                "createdTime": {
+                    "type": "integer",
+                    "format": "int64",
+                    "example": 1578565539808,
+                    "description": "Order creation time in Unix timestamp (milliseconds)."
+                },
+                "orderId": {
+                    "type": "integer",
+                    "example": 13,
+                    "description": "Unique identifier for the order."
+                },
+                "orderTag": {
+                    "type": "string",
+                    "example": "default",
+                    "description": "Order tag, e.g., default."
+                },
+                "price": {
+                    "type": "string",
+                    "example": "123",
+                    "description": "Price of the limit order (price per unit of the asset)."
+                },
+                "type": {
+                    "type": "string",
+                    "example": "LIMIT",
+                    "description": "Order type, e.g., LIMIT represents a limit order."
+                },
+                "quantity": {
+                    "type": "string",
+                    "example": "0.1",
+                    "description": "Total quantity of the order, representing the number of assets."
+                },
+                "amount": {
+                    "type": "string",
+                    "nullable": true,
+                    "example": null,
+                    "description": "Total order amount, may be null."
+                },
+                "visible": {
+                    "type": "string",
+                    "example": "0.1",
+                    "description": "Visible quantity, representing the portion of the order shown to the market."
+                },
+                "executed": {
+                    "type": "string",
+                    "example": "0.1",
+                    "description": "Quantity that has been executed."
+                },
+                "totalFee": {
+                    "type": "string",
+                    "example": "0.00123",
+                    "description": "Total fee charged for the order, denominated in the fee asset."
+                },
+                "feeAsset": {
+                    "type": "string",
+                    "example": "USDT",
+                    "description": "Asset type used to pay fees."
+                },
+                "totalRebate": {
+                    "type": "number",
+                    "example": 0,
+                    "description": "Total rebate amount."
+                },
+                "rebateCurrency": {
+                    "type": "string",
+                    "example": "USDT",
+                    "description": "Asset type for the rebate."
+                },
+                "clientOrderId": {
+                    "type": "integer",
+                    "example": 0,
+                    "description": "Client-defined order ID."
+                },
+                "reduceOnly": {
+                    "type": "boolean",
+                    "example": false,
+                    "description": "Indicates whether the order is reduce-only."
+                },
+                "realizedPnl": {
+                    "type": "string",
+                    "example": "100",
+                    "description": "Realized profit and loss, e.g., 100 means a profit of 100 USDT."
+                },
+                "averageExecutedPrice": {
+                    "type": "string",
+                    "example": "123",
+                    "description": "Average price at which the order was executed."
+                }
+            }
+        
+    }
+}
+

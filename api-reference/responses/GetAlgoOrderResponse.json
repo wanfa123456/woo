@@ -1,0 +1,49 @@
+{
+    "GetAlgoOrderResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "algoOrderId": { "type": "integer", "description": "Unique identifier for the algorithmic order." },
+                            "clientAlgoOrderId": { "type": "integer", "description": "Client-generated algorithmic order ID." },
+                            "rootAlgoOrderId": { "type": "integer", "description": "Root algorithmic order ID." },
+                            "parentAlgoOrderId": { "type": "integer", "description": "Parent algorithmic order ID, 0 if none." },
+                            "symbol": { "type": "string", "description": "Trading pair identifier, e.g., SPOT_WOO_USDT." },
+                            "orderTag": { "type": "string", "description": "Tag associated with the order, e.g., 'default'." },
+                            "algoType": { "type": "string", "description": "Type of the algorithm, e.g., 'TRAILING_STOP'." },
+                            "side": { "type": "string", "description": "Order direction, e.g., 'BUY' or 'SELL'." },
+                            "positionSide": { "type": "string", "description": "Position direction, e.g., 'BOTH'." },
+                            "quantity": { "type": "integer", "description": "The quantity for the order." },
+                            "isTriggered": { "type": "boolean", "description": "Indicates if the order has been triggered." },
+                            "triggerStatus": { "type": "string", "description": "The trigger status of the order, e.g., 'USELESS'." },
+                            "type": { "type": "string", "description": "Order type, e.g., 'MARKET'." },
+                            "rootAlgoStatus": { "type": "string", "description": "Status of the root algorithmic order, e.g., 'NEW'." },
+                            "algoStatus": { "type": "string", "description": "Status of the algorithmic order, e.g., 'NEW'." },
+                            "triggerPriceType": { "type": "string", "description": "The type of price used for triggering, e.g., 'MARKET_PRICE'." },
+                            "triggerTime": { "type": "string", "description": "Timestamp for when the order is triggered, '0' if not triggered." },
+                            "totalExecutedQuantity": { "type": "string", "description": "Total quantity executed." },
+                            "averageExecutedPrice": { "type": "string", "description": "Average price of executed quantity." },
+                            "totalFee": { "type": "string", "description": "Total fee charged for the order." },
+                            "feeAsset": { "type": "string", "description": "Asset used for paying the fees." },
+                            "totalRebate": { "type": "string", "description": "Total rebate received for the order." },
+                            "rebateCurrency": { "type": "string", "description": "Currency in which rebate is paid, e.g., 'USDT'." },
+                            "reduceOnly": { "type": "boolean", "description": "Indicates if the order is reduce-only." },
+                            "createdTime": { "type": "integer", "description": "Timestamp of when the order was created." },
+                            "updatedTime": { "type": "integer", "description": "Timestamp of when the order was last updated." },
+                            "isActivated": { "type": "boolean", "description": "Indicates if the order is activated." },
+                            "callbackRate": { "type": "string", "description": "Callback rate for the algorithm, e.g., '0.03'." },
+                            "activatedPrice": { "type": "string", "description": "Activated price for the algorithm, e.g., '0.21'." }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

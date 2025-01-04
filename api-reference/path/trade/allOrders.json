@@ -1,12 +1,12 @@
 {
     "get": {
-      "description": "get algo order",
+      "description": "get order",
       "requestBody": {
         "description": "",
         "content": {
           "application/x-www-form-urlencoded": {
             "schema": {
-              "$ref": "../../schemas/GetAlgoOrder.json#/GetAlgoOrder"
+              "$ref": "../../schemas/GetOrder.json#/GetOrder"
             }
           }
         },
@@ -18,7 +18,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../../responses/GetAlgoOrderResponse.json#/GetAlgoOrderResponse"
+                "$ref": "../../responses/GetOrderResponse.json#/GetOrderResponse"
               }
             }
           }
@@ -134,13 +134,13 @@
       ]
     },
     "delete": {
-      "description": "cancel algo order",
+      "description": "Cancel all orders by symbol",
       "requestBody": {
         "description": "",
         "content": {
           "application/x-www-form-urlencoded": {
             "schema": {
-              "$ref": "../../schemas/CancelAlgoOrder.json#/CancelAlgoOrder"
+              "$ref": "../../schemas/CancelOrdersBySymbol.json#/CancelOrdersBySymbol"
             }
           }
         },
