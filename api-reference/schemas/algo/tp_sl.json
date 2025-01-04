@@ -1,0 +1,47 @@
+{
+    "tp_sl": {
+        "description": "TP/SL order",
+        "allOf": [
+            {
+                "$ref": "../../schemas/algo/common_algo.json#/common_algo"
+            },
+            {
+                "type": "object",
+                "required": ["childOrders"],
+                "properties": {
+                    "childOrders": {
+                        "type": "array",
+                        "description": "Details of the TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "algoType": {
+                                    "type": "string",
+                                    "description": "TAKE_PROFIT/STOP_LOSS"
+                                },
+                                "side": {
+                                    "type": "string",
+                                    "description": "BUY/SELL"
+                                },
+                                "triggerPrice": {
+                                    "type": "string",
+                                    "description": "Trigger price"
+                                },
+                                "triggerPriceType": {
+                                    "type": "string",
+                                    "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                                },
+                                "type": {
+                                    "type": "string",
+                                    "description": "Only support MARKET"
+                                }
+                            },
+                            "required": ["algoType", "side","triggerPrice","type"]
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

@@ -1,0 +1,23 @@
+{
+    "AlgoBaseResponse": {
+        "type": "object",
+        "properties": {
+            "algoOrderId": {
+                "type": "integer",
+                "description": "algoOrderId"
+            },
+            "clientAlgoOrderId": {
+                "type": "integer",
+                "description": "clientAlgoOrderId"
+            },
+            "algoType": {
+                "type": "string",
+                "description": "ALGO_TYPE"
+            },
+            "quantity": {
+                "type": "string",
+                "description": "quantity"
+            }
+        }
+    }
+}

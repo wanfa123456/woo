@@ -830,6 +830,178 @@
         ]
       }
     },
+    "/v3/trade/algoOrder": {
+      "get": {
+        "description": "get order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "post algo order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/stop_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/oco_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/trailing_stop"
+                  },
+                  {
+                    "$ref": "#/components/schemas/positional_tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/bracket"
+                  },
+                  {
+                    "$ref": "#/components/schemas/stop_bracket"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/StopResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "edit order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "cancel order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/account/referral/summary": {
       "get": {
         "description": "Get referral information from each user you has referred.111",
@@ -2246,6 +2418,484 @@
             "example": "SPOT_BTC_USDT"
           }
         }
+      },
+      "common_algo": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "algoType"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          },
+          "algoType": {
+            "type": "string",
+            "description": "STOP: stop market / stop limit order\nOCO: one-cancels-the-other order\nTRAILING_STOP: trailing stop order \nPOSITIONAL_TP_SL: TP/SL that closes the full position\nTP_SL: TP/SL that closes a specified quantity\nBRACKET: bracket order with limit or market order as the initial order and an attached POSITIONAL_TP_SL or TP_SL order\nSTOP_BRACKET: bracket order with stop market or stop limit order as the initial order and an attached POSITIONAL_TP_SL or TP_SL order"
+          },
+          "clientAlgoOrderId": {
+            "type": "integer",
+            "description": "Client algo order Id as assigned by the user"
+          },
+          "algoOrderTag": {
+            "type": "string",
+            "description": "An optional tag for this order, max string length: 64"
+          },
+          "side": {
+            "type": "string",
+            "description": "BUY/SELL, not required for POSITIONAL_TP_SL or TP_SL order"
+          },
+          "positionSide": {
+            "type": "string",
+            "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Only applicable to perpetual instruments"
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Order quantity, not required for POSITIONAL_TP_SL order"
+          },
+          "visibleQuantity": {
+            "type": "string",
+            "description": "The order quantity shown on orderbook;  for POSITIONAL_TP_SL order, visibleQuantity applies directly to the child orders"
+          }
+        }
+      },
+      "stop_order": {
+        "description": "Stop order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "triggerPrice": {
+                "type": "string",
+                "description": "Only support LIMIT"
+              },
+              "triggerPriceType": {
+                "type": "string",
+                "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+              },
+              "type": {
+                "type": "string",
+                "description": "Trigger price, only support LIMIT"
+              },
+              "price": {
+                "type": "string",
+                "description": "Order price, only applicable to LIMIT type"
+              },
+              "reduceOnly": {
+                "type": "boolean",
+                "description": "Only applicable to perpetual instruments; whether the order can only reduce in position size; valid options are true/false"
+              }
+            }
+          }
+        ]
+      },
+      "oco_order": {
+        "description": "OCO order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "price",
+              "childOrders"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Trigger price, only support LIMIT"
+              },
+              "price": {
+                "type": "string",
+                "description": "Order price, only applicable to LIMIT type"
+              },
+              "reduceOnly": {
+                "type": "boolean",
+                "description": "Only applicable to perpetual instruments; whether the order can only reduce in position size; valid options are true/false"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the other order (i.e. the trigger order)",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoType": {
+                      "type": "string",
+                      "description": "Only support STOP"
+                    },
+                    "side": {
+                      "type": "string",
+                      "description": "BUY/SELL; required to be the same as the side of the LIMIT order"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "Trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Order type of the trigger order, LIMIT/MARKET"
+                    },
+                    "price": {
+                      "type": "string",
+                      "description": "Order price of the trigger order, only applicable if it's a LIMIT order"
+                    }
+                  },
+                  "required": [
+                    "algoType",
+                    "side",
+                    "triggerPrice",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trailing_stop": {
+        "description": "TRAILING STOP order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Trigger price, only support LIMIT"
+              },
+              "activatedPrice": {
+                "type": "string",
+                "description": "Activated price"
+              },
+              "callbackRate": {
+                "type": "string",
+                "description": "Either callbackValue or callbackRate is required;  If both are passed, the request will be rejected"
+              },
+              "callbackValue": {
+                "type": "string",
+                "description": "Either callbackValue or callbackRate is required;  If both are passed, the request will be rejected"
+              },
+              "reduceOnly": {
+                "type": "boolean",
+                "description": "Only applicable to perpetual instruments; whether the order can only reduce in position size; valid options are true/false"
+              }
+            }
+          }
+        ]
+      },
+      "positional_tp_sl": {
+        "description": "POSITIONAL TP/SL order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "required": [
+              "childOrders"
+            ],
+            "properties": {
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the positional TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoType": {
+                      "type": "string",
+                      "description": "TAKE_PROFIT/STOP_LOSS"
+                    },
+                    "side": {
+                      "type": "string",
+                      "description": "BUY/SELL"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "Trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Only support CLOSE_POSITION"
+                    }
+                  },
+                  "required": [
+                    "algoType",
+                    "side",
+                    "triggerPrice",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "tp_sl": {
+        "description": "TP/SL order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "required": [
+              "childOrders"
+            ],
+            "properties": {
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoType": {
+                      "type": "string",
+                      "description": "TAKE_PROFIT/STOP_LOSS"
+                    },
+                    "side": {
+                      "type": "string",
+                      "description": "BUY/SELL"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "Trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Only support MARKET"
+                    }
+                  },
+                  "required": [
+                    "algoType",
+                    "side",
+                    "triggerPrice",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "bracket": {
+        "description": "Bracket order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "price",
+              "childOrders"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "LIMIT/MARKET"
+              },
+              "price": {
+                "type": "string",
+                "description": "Order price, only applicable if LIMIT order"
+              },
+              "reduceOnly": {
+                "type": "boolean",
+                "description": "Only applicable to perpetual instruments; whether the LIMIT/MARKET order can only reduce in position size; only support false for BRACKET orders"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Attached TP/SL orders, only support 1 set of POSITIONAL_TP_SL or TP_SL",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoType": {
+                      "type": "string",
+                      "description": "TAKE_PROFIT/STOP_LOSS"
+                    },
+                    "side": {
+                      "type": "string",
+                      "description": "Required to be SELL if side of the initial order is BUY;  Required to be BUY if side of the initial order is SELL"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "Trigger price of the TP/SL"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "CLOSE_POSITION for POSITIONAL_TP_SL; MARKET for TP_SL"
+                    }
+                  },
+                  "required": [
+                    "algoType",
+                    "side",
+                    "triggerPrice",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "stop_bracket": {
+        "description": "Stop bracket order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "required": [
+              "type",
+              "price",
+              "childOrders"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "LIMIT/MARKET"
+              },
+              "price": {
+                "type": "string",
+                "description": "Order price, only applicable if LIMIT order"
+              },
+              "reduceOnly": {
+                "type": "boolean",
+                "description": "Only applicable to perpetual instruments; whether the LIMIT/MARKET order can only reduce in position size; only support false for STOP_BRACKET orders"
+              },
+              "triggerPrice": {
+                "type": "string",
+                "description": "Trigger price of the initial stop order"
+              },
+              "triggerPriceType": {
+                "type": "string",
+                "description": "Trigger price type of the initial stop order, currently only support MARKET_PRICE (i.e. last price)"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Attached TP/SL orders, only support 1 set of POSITIONAL_TP_SL or TP_SL",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoType": {
+                      "type": "string",
+                      "description": "POSITIONAL_TP_SL/TP_SL"
+                    },
+                    "childOrders": {
+                      "type": "array",
+                      "description": "Details of the TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "algoType": {
+                            "type": "string",
+                            "description": "TAKE_PROFIT/STOP_LOSS"
+                          },
+                          "side": {
+                            "type": "string",
+                            "description": "Required to be SELL if side of the initial order is BUY;  Required to be BUY if side of the initial order is SELL"
+                          },
+                          "triggerPrice": {
+                            "type": "string",
+                            "description": "Trigger price of the TP/SL"
+                          },
+                          "triggerPriceType": {
+                            "type": "string",
+                            "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                          },
+                          "type": {
+                            "type": "string",
+                            "description": "CLOSE_POSITION for POSITIONAL_TP_SL; MARKET for TP_SL"
+                          }
+                        },
+                        "required": [
+                          "algoType",
+                          "side",
+                          "triggerPrice",
+                          "type"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "algoType",
+                    "childOrders"
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AlgoBaseResponse": {
+        "type": "object",
+        "properties": {
+          "algoOrderId": {
+            "type": "integer",
+            "description": "algoOrderId"
+          },
+          "clientAlgoOrderId": {
+            "type": "integer",
+            "description": "clientAlgoOrderId"
+          },
+          "algoType": {
+            "type": "string",
+            "description": "ALGO_TYPE"
+          },
+          "quantity": {
+            "type": "string",
+            "description": "quantity"
+          }
+        }
+      },
+      "StopResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/AlgoBaseResponse"
+                    },
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "Meta": {
         "type": "object",

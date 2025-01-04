@@ -1,0 +1,102 @@
+---
+title: 'Place algo order'
+openapi: 'POST /v3/trade/algoOrder'
+---
+### **Limit: 2 requests per 1 second per symbol**
+Supported algo orders include STOP, OCO, TRAILING_STOP, POSITIONAL_TP_SL, TP_SL, BRACKET and STOP_BRACKET orders.
+
+clientAlgoOrderId behavior: needs to be unique among open algo orders. Orders with the same clientAlgoOrderId can be accepted only when the previous one is completed, otherwise the order would be rejected.  Note that it’s treated separately from the clientOrderId for ordinary orders.
+
+visibleQuantity behavior: it sets the maximum quantity to be shown on orderbook. By default, it is equal to quantity.  If it’s set to 0, the order would be hidden from the orderbook.
+
+Open algo order limit:
+
+a maximum of 100 open algo orders is allowed on a per instrument basis
+
+a maximum of 10 open TP_SL orders are permitted per instrument - this is inclusive of the TP_SL orders that are still attached to BRACKET or STOP_BRACKET order
+
+a maximum of 1 open POSITIONAL_TP_SL is allowed per instrument per side - when a second POSITIONAL_TP_SL order gets activated that’s associated with a BRACKET or a STOP_BRACKET order, this new POSITIONAL_TP_SL order will replace the previous POSITIONAL_TP_SL order
+
+
+<ResponseExample>
+
+```bash
+// STOP, OCO, TRAILING_STOP
+{
+  "success": true,
+  "data": {
+    "rows": [
+      {
+        "algoType": "string",
+        "clientAlgoOrderId": 0,
+        "algoOrderId": 0,
+        "quantity": "0"
+      }
+    ]
+  },
+  "timestamp": 1676283560233
+}
+// POSITIONAL_TP_SL, TP_SL
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+                "algoOrderId": 432132,
+                "clientAlgoOrderId": 0,
+                "algoType": "TAKE_PROFIT",
+                "quantity": "0"
+            },
+            {
+                "algoOrderId": 432133,
+                "clientAlgoOrderId": 0,
+                "algoType": "STOP_LOSS",
+                "quantity": "0"
+            },
+            {
+                "algoOrderId": 432131,
+                "clientAlgoOrderId": 0,
+                "algoType": "string",
+                "quantity": "0"
+            }
+        ]
+    },
+    "timestamp": 1676283560233
+}
+// BRACKET, STOP_BRACKET
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+                "algoOrderId": 432132,
+                "clientAlgoOrderId": 0,
+                "algoType": "TAKE_PROFIT",
+                "quantity": "0"
+            },
+            {
+                "algoOrderId": 432133,
+                "clientAlgoOrderId": 0,
+                "algoType": "STOP_LOSS",
+                "quantity": "0"
+            },
+            {
+                "orderId": 432131,
+                "clientAlgoOrderId": 0,
+                "algoType": "POSITIONAL_TP_SL",
+                "quantity": "0"
+            },
+            {
+                "algoOrderId": 432130,
+                "clientAlgoOrderId": 0,
+                "algoType": "BRACKET",
+                "quantity": "10"
+            }
+        ]
+    },
+    "timestamp": 1676283560233
+}
+```
+
+</ResponseExample>
+

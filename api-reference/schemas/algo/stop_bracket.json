@@ -1,0 +1,81 @@
+{
+    "stop_bracket": {
+        "description": "Stop bracket order",
+        "allOf": [
+            {
+                "$ref": "../../schemas/algo/common_algo.json#/common_algo"
+            },
+            {
+                "type": "object",
+                "required": ["type","price","childOrders"],
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "LIMIT/MARKET"
+                    },
+                    "price": {
+                        "type": "string",
+                        "description": "Order price, only applicable if LIMIT order"
+                    },
+                    "reduceOnly": {
+                        "type": "boolean",
+                        "description": "Only applicable to perpetual instruments; whether the LIMIT/MARKET order can only reduce in position size; only support false for STOP_BRACKET orders"
+                    },
+                    "triggerPrice": {
+                        "type": "string",
+                        "description": "Trigger price of the initial stop order"
+                    },
+                    "triggerPriceType": {
+                        "type": "string",
+                        "description": "Trigger price type of the initial stop order, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "childOrders": {
+                        "type": "array",
+                        "description": "Attached TP/SL orders, only support 1 set of POSITIONAL_TP_SL or TP_SL",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "algoType": {
+                                    "type": "string",
+                                    "description": "POSITIONAL_TP_SL/TP_SL"
+                                },
+                                "childOrders": {
+                                    "type": "array",
+                                    "description": "Details of the TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "algoType": {
+                                                "type": "string",
+                                                "description": "TAKE_PROFIT/STOP_LOSS"
+                                            },
+                                            "side": {
+                                                "type": "string",
+                                                "description": "Required to be SELL if side of the initial order is BUY;  Required to be BUY if side of the initial order is SELL"
+                                            },
+                                            "triggerPrice": {
+                                                "type": "string",
+                                                "description": "Trigger price of the TP/SL"
+                                            },
+                                            "triggerPriceType": {
+                                                "type": "string",
+                                                "description": "Trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                                            },
+                                            "type": {
+                                                "type": "string",
+                                                "description": "CLOSE_POSITION for POSITIONAL_TP_SL; MARKET for TP_SL"
+                                            }
+                                        },
+                                        "required": ["algoType", "side","triggerPrice","type"]
+                                    }
+                                }
+                            },
+                            "required": ["algoType", "childOrders"]
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

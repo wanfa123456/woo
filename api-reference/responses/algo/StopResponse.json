@@ -1,0 +1,27 @@
+{
+    "StopResponse": {
+        "allOf": [
+            {
+                "$ref": "../../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                     "$ref": "../../responses/algo/algoBaseResponse.json#/AlgoBaseResponse"
+                                },
+                                "description": ""
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+
