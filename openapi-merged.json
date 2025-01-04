@@ -966,13 +966,185 @@
         ]
       },
       "delete": {
-        "description": "cancel order",
+        "description": "cancel algo order",
         "requestBody": {
           "description": "",
           "content": {
             "application/x-www-form-urlencoded": {
               "schema": {
-                "$ref": "#/components/schemas/CancelOrder"
+                "$ref": "#/components/schemas/CancelAlgoOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/trade/algoOrders": {
+      "get": {
+        "description": "get order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "post algo order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/stop_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/oco_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/trailing_stop"
+                  },
+                  {
+                    "$ref": "#/components/schemas/positional_tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/bracket"
+                  },
+                  {
+                    "$ref": "#/components/schemas/stop_bracket"
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/StopResponse"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "edit order",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EditOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "cancel multiple algo orders",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelAlgoOrders"
               }
             }
           },
@@ -2896,6 +3068,30 @@
             }
           }
         ]
+      },
+      "CancelAlgoOrder": {
+        "type": "object",
+        "properties": {
+          "algoOrderId": {
+            "type": "integer",
+            "description": "Id of the algoorder; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+            "example": "1954766344355779056"
+          },
+          "clientAlgoOrderId": {
+            "type": "integer",
+            "description": "Client order Id as assigned by the user; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used.",
+            "example": "1954766344355779056"
+          }
+        }
+      },
+      "CancelAlgoOrders": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          }
+        }
       },
       "Meta": {
         "type": "object",
