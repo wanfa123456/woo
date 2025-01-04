@@ -1,0 +1,60 @@
+{
+    "GetAlgoOrders": {
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "Symbol name"
+            },
+            "side": {
+                "type": "string",
+                "description": "BUY/SELL"
+            },
+            "positionSide": {
+                "type": "string",
+                "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Only applicable to perpetual instruments"
+            },
+            "algoType": {
+                "type": "string",
+                "description": "STOP/OCO/TRAILING_STOP/POSITIONAL_TP_SL/TP_SL/BRACKET/STOP_BRACKET"
+            },
+            "orderType": {
+                "type": "string",
+                "description": "LIMIT/MARKET"
+            },
+            "isTriggered": {
+                "type": "string",
+                "description": "true/false"
+            },
+            "algoOrderTag": {
+                "type": "string",
+                "description": "Order tag"
+            },
+            "realizedPnl": {
+                "type": "boolean",
+                "description": "Whether to return order’s realized pnl"
+            },
+            "status": {
+                "type": "string",
+                "description": "NEW/CANCELLED/PARTIAL_FILLED/FILLED/REJECTED/INCOMPLETE/COMPLETED"
+            },
+            "startTime": {
+                "type": "integer",
+                "description": "Start timestamp in Unix timestamp format in milliseconds"
+            },
+            "endTime": {
+                "type": "integer",
+                "description": "End timestamp in Unix timestamp format in milliseconds"
+            },
+            "page": {
+                "type": "integer",
+                "description": "Page number"
+            },
+            "size": {
+                "type": "integer",
+                "description": "Data size per page, max 500"
+            }
+            
+        }
+    }
+}

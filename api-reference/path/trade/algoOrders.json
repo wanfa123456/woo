@@ -1,12 +1,12 @@
 {
     "get": {
-      "description": "get order",
+      "description": "get algo orders",
       "requestBody": {
         "description": "",
         "content": {
           "application/x-www-form-urlencoded": {
             "schema": {
-              "$ref": "../../schemas/GetOrder.json#/GetOrder"
+              "$ref": "../../schemas/GetAlgoOrders.json#/GetAlgoOrders"
             }
           }
         },
@@ -18,7 +18,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../../responses/GetOrderResponse.json#/GetOrderResponse"
+                "$ref": "../../responses/GetAlgoOrdersResponse.json#/GetAlgoOrdersResponse"
               }
             }
           }

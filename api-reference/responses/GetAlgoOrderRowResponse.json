@@ -1,0 +1,127 @@
+{
+    "GetAlgoOrderRowResponse": {
+            "type": "object",
+            "properties": {
+               "algoOrderId": {
+                    "type": "integer",
+                    "description": "Unique identifier for the algorithmic order."
+                },
+                "clientAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Client-generated unique identifier for the algorithmic order."
+                },
+                "rootAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Root algorithmic order ID, linking to the original order."
+                },
+                "parentAlgoOrderId": {
+                    "type": "integer",
+                    "description": "Parent algorithmic order ID, 0 if there is no parent order."
+                },
+                "symbol": {
+                    "type": "string",
+                    "description": "Trading pair symbol, e.g., SPOT_WOO_USDT."
+                },
+                "algoOrderTag": {
+                    "type": "string",
+                    "description": "Tag associated with the algorithmic order, e.g., 'default'."
+                },
+                "algoType": {
+                    "type": "string",
+                    "description": "Type of algorithmic order, e.g., TRAILING_STOP."
+                },
+                "side": {
+                    "type": "string",
+                    "description": "Trade direction, e.g., SELL indicates selling."
+                },
+                "positionSide": {
+                    "type": "string",
+                    "description": "Position side, e.g., BOTH indicates a dual position mode."
+                },
+                "quantity": {
+                    "type": "integer",
+                    "description": "Quantity for the algorithmic order."
+                },
+                "isTriggered": {
+                    "type": "boolean",
+                    "description": "Indicates whether the order has been triggered."
+                },
+                "triggerStatus": {
+                    "type": "string",
+                    "description": "Trigger status of the order, e.g., USELESS."
+                },
+                "type": {
+                    "type": "string",
+                    "description": "Order type, e.g., MARKET."
+                },
+                "rootAlgoStatus": {
+                    "type": "string",
+                    "description": "Status of the root algorithmic order, e.g., NEW."
+                },
+                "algoStatus": {
+                    "type": "string",
+                    "description": "Status of the algorithmic order, e.g., NEW."
+                },
+                "triggerPriceType": {
+                    "type": "string",
+                    "description": "Price type used for triggering, e.g., MARKET_PRICE."
+                },
+                "triggerTime": {
+                    "type": "string",
+                    "description": "Timestamp when the order was triggered, '0' if not triggered."
+                },
+                "totalExecutedQuantity": {
+                    "type": "string",
+                    "description": "Total executed quantity for the order."
+                },
+                "averageExecutedPrice": {
+                    "type": "string",
+                    "description": "Average price of the executed quantity."
+                },
+                "totalFee": {
+                    "type": "string",
+                    "description": "Total fee charged for the algorithmic order."
+                },
+                "feeAsset": {
+                    "type": "string",
+                    "description": "Asset type used for paying fees, e.g., USDT."
+                },
+                "totalRebate": {
+                    "type": "number",
+                    "description": "Total rebate received for the order."
+                },
+                "rebateCurrency": {
+                    "type": "string",
+                    "description": "Currency in which the rebate is paid, e.g., USDT."
+                },
+                "reduceOnly": {
+                    "type": "boolean",
+                    "description": "Indicates whether the order is reduce-only."
+                },
+                "createdTime": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Timestamp when the order was created (in milliseconds)."
+                },
+                "updatedTime": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Timestamp when the order was last updated (in milliseconds)."
+                },
+                "isActivated": {
+                    "type": "boolean",
+                    "description": "Indicates whether the algorithmic order is activated."
+                },
+                "callbackRate": {
+                    "type": "string",
+                    "description": "Callback rate for the algorithmic order."
+                },
+                "activatedPrice": {
+                    "type": "string",
+                    "description": "Activated price for the algorithmic order."
+                }
+            }
+        
+    }
+}
+
