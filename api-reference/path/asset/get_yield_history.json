@@ -1,0 +1,30 @@
+{
+    "get": {
+      "description": "Get Staking Yield History",
+      "parameters": {
+        "$ref": "../../parameters/get_yield_history.json#/parameters"
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/YieldHistoryResponse.json#/YieldHistoryResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

@@ -1,0 +1,54 @@
+{
+	"YieldHistoryResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "description": "Unique identifier for the staking entry."
+                                          },
+                                          "token": {
+                                            "type": "string",
+                                            "description": "The token being staked (e.g., WOO)."
+                                          },
+                                          "stakingSize": {
+                                            "type": "string",
+                                            "description": "The amount of tokens currently staked."
+                                          },
+                                          "annualReward": {
+                                            "type": "string",
+                                            "description": "The annual reward rate for the staked token."
+                                          },
+                                          "yieldAmount": {
+                                            "type": "string",
+                                            "description": "The amount of yield earned so far."
+                                          },
+                                          "yieldTime": {
+                                            "type": "string",
+                                            "description": "The timestamp (Unix epoch in seconds) for the last yield calculation or payout."
+                                          }
+									}
+								}
+							},
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

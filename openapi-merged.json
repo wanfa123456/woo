@@ -2316,6 +2316,110 @@
             "ApiTimestampAuth": []
           }
         ]
+      },
+      "delete": {
+        "description": "Cancel Withdraw Request",
+        "parameters": [
+          {
+            "name": "withdrawId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "The unique identifier of the withdrawal request to be canceled."
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {}
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/asset/staking/yieldHistory": {
+      "get": {
+        "description": "Get Staking Yield History",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "Token name in upper case",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "the page you wish to query.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "the page size you wish to query, default = 25, 1000 at max.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/YieldHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
       }
     },
     "/v3/futures/defaultMarginMode": {
@@ -5926,6 +6030,58 @@
                   "withdrawId": {
                     "type": "string",
                     "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "YieldHistoryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "Unique identifier for the staking entry."
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": "The token being staked (e.g., WOO)."
+                        },
+                        "stakingSize": {
+                          "type": "string",
+                          "description": "The amount of tokens currently staked."
+                        },
+                        "annualReward": {
+                          "type": "string",
+                          "description": "The annual reward rate for the staked token."
+                        },
+                        "yieldAmount": {
+                          "type": "string",
+                          "description": "The amount of yield earned so far."
+                        },
+                        "yieldTime": {
+                          "type": "string",
+                          "description": "The timestamp (Unix epoch in seconds) for the last yield calculation or payout."
+                        }
+                      }
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
                   }
                 }
               }

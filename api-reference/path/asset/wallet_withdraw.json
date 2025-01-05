@@ -34,5 +34,50 @@
           "ApiTimestampAuth": []
         }
       ]
+    },
+    "delete": {
+        "description": "Cancel Withdraw Request",
+        "parameters": [
+                {
+                "name": "withdrawId",
+                "in": "path",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                },
+                "description": "The unique identifier of the withdrawal request to be canceled."
+                }
+            ],
+        "requestBody": {
+            "description": "",
+            "content": {
+                "application/json": {
+                
+                }
+            },
+            "required": true
+        },
+        "responses": {
+            "200": {
+                "description": "successful operation",
+                "content": {
+                "application/json": {
+                    "schema": {
+                    "$ref": "../../common/commonResponse.json#/CommonResponse"
+                    }
+                }
+                }
+        },
+        "400": {
+            "description": "Invalid status value"
+        }
+        },
+        "security": [
+        {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+        }
+        ]
     }
   }

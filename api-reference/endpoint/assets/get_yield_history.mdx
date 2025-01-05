@@ -1,0 +1,38 @@
+---
+title: 'Get staking yield history'
+openapi: 'GET /v3/asset/staking/yieldHistory'
+---
+### **Limit 10 requests per 60 seconds**
+Get your unique deposit address by token
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+              "id": 53173,
+              "token": "WOO",
+              "stakingSize": 30100.00000000,
+              "annualReward": "0.0024294",
+              "yieldAmount": "0.20034259",
+              "yieldTime": "1673481600.000"
+            }
+        ],
+        "meta": {
+            "total": 46,
+            "recordsPerPage": 1,
+            "currentPage": 1
+        }
+    },
+    "timestamp": 1721295317627
+}
+```
+
+</ResponseExample>
+
+
+
+ 
