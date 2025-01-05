@@ -124,7 +124,9 @@
       "group": "Assets",
       "pages": [
         "api-reference/endpoint/assets/token_history",
-        "api-reference/endpoint/assets/get_transfer_history"
+        "api-reference/endpoint/assets/get_transfer_history",
+        "api-reference/endpoint/assets/transfer",
+        "api-reference/endpoint/assets/get_wallet_history"
       ]
     },
     {

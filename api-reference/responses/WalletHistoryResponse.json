@@ -1,0 +1,102 @@
+{
+	"WalletHistoryResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+                                        "createdTime": {
+                                            "type": "string",
+                                            "description": "The time the transaction was created, in Unix epoch time (seconds)."
+                                        },
+                                        "updatedTime": {
+                                            "type": "string",
+                                            "description": "The time the transaction was last updated, in Unix epoch time (seconds)."
+                                        },
+                                        "id": {
+                                            "type": "string",
+                                            "description": "The unique identifier for the transaction."
+                                        },
+                                        "externalId": {
+                                            "type": "string",
+                                            "description": "The external identifier for the transaction, if applicable."
+                                        },
+                                        "applicationId": {
+                                            "type": "string",
+                                            "description": "The application ID related to the transaction, or null if not applicable."
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "The token symbol involved in the transaction, e.g., 'ETH'."
+                                        },
+                                        "targetAddress": {
+                                            "type": "string",
+                                            "description": "The target blockchain address for the transaction."
+                                        },
+                                        "sourceAddress": {
+                                            "type": "string",
+                                            "description": "The source blockchain address for the transaction."
+                                        },
+                                        "confirmingThreshold": {
+                                            "type": "integer",
+                                            "description": "The number of confirmations required for the transaction to be considered confirmed."
+                                        },
+                                        "confirmedNumber": {
+                                            "type": "integer",
+                                            "description": "The current number of confirmations received for the transaction."
+                                        },
+                                        "extra": {
+                                            "type": "string",
+                                            "description": "Additional information about the transaction, if any."
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "description": "The transaction type, e.g., 'BALANCE'."
+                                        },
+                                        "tokenSide": {
+                                            "type": "string",
+                                            "description": "The token side for the transaction, e.g., 'DEPOSIT' or 'WITHDRAWAL'."
+                                        },
+                                        "amount": {
+                                            "type": "string",
+                                            "description": "The amount of the token involved in the transaction."
+                                        },
+                                        "txId": {
+                                            "type": "string",
+                                            "description": "The blockchain transaction ID."
+                                        },
+                                        "feeToken": {
+                                            "type": "string",
+                                            "description": "The token used to pay transaction fees, or null if not applicable."
+                                        },
+                                        "feeAmount": {
+                                            "type": "string",
+                                            "description": "The amount of fees paid for the transaction, or null if not applicable."
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "The current status of the transaction, e.g., 'CONFIRMING', 'SUCCEEDED', or 'FAILED'."
+                                        }
+									}
+								}
+							},
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

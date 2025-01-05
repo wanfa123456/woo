@@ -1,0 +1,76 @@
+{
+    "parameters": [
+        {
+            "name": "id",
+            "in": "query",
+            "description": "use when query specific transaction id (the result of withdrawal or internal transfer.)",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "network",
+            "in": "query",
+            "description": "network name you want to search (from /v1/public/token)",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "token",
+            "in": "query",
+            "description": "token name you want to search ",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "type",
+            "in": "query",
+            "description": "BALANCE/COLLATERAL",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "tokenSide",
+            "in": "query",
+            "description": "DEPOSIT/WITHDRAW",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "status",
+            "in": "query",
+            "description": "NEW/CONFIRMING/PROCESSING/COMPLETED/CANCELED",
+            "required": false,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "$ref": "../common/start_filter.json#/start_filter"
+        },
+        {
+            "$ref": "../common/end_filter.json#/end_filter"
+        },
+        {
+            "$ref": "../common/page_filter.json#/page_filter"
+        },
+        {
+            "$ref": "../common/size_filter.json#/size_filter"
+        }
+    ]
+}

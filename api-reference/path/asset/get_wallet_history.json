@@ -1,0 +1,30 @@
+{
+    "get": {
+      "description": "Get Wallet History",
+      "parameters": {
+        "$ref": "../../parameters/get_wallet_history.json#/parameters"
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/WalletHistoryResponse.json#/WalletHistoryResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

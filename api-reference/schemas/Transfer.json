@@ -1,0 +1,36 @@
+{
+    "Transfer": {
+        "required": [
+            "tradingMode"
+        ],
+        "type": "object",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "Token name in upper case"
+            },
+            "amount": {
+                "type": "number",
+                "description": "withdraw amount"
+            },
+            "from": {
+                "type": "object",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "the application which will transfer asset out"
+                    }
+                }
+            },
+            "to": {
+                "type": "object",
+                "properties": {
+                    "applicationId": {
+                        "type": "string",
+                        "description": "the application which will transfer asset in"
+                    }
+                }
+            }
+        }
+    }
+}

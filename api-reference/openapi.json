@@ -136,6 +136,12 @@
         "/v3/asset/transfer/history": {
           "$ref": "path/asset/get_transfer_history.json"
         },
+        "/v3/asset/transfer": {
+          "$ref": "path/asset/transfer.json"
+        },
+        "/v3/asset/wallet/history": {
+          "$ref": "path/asset/get_wallet_history.json"
+        },
         "/v3/futures/defaultMarginMode": {
           "$ref": "path/futures/defaultMarginMode.json"
         }

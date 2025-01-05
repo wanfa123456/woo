@@ -1,0 +1,23 @@
+{
+	"TransferResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"id": {
+                                "type": "number",
+                                "description": ""
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

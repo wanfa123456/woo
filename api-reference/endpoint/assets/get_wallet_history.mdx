@@ -1,0 +1,49 @@
+---
+title: 'Get Wallet history'
+openapi: 'GET /v3/asset/wallet/history'
+---
+### **Limit: 10 requests per 60 seconds**
+Get your unique deposit address by token
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+              "createdTime": "1579399877.041", // Unix epoch time in seconds
+              "updatedTime": "1579399877.041", // Unix epoch time in seconds
+              "id": "202029292829292",
+              "externalId": "202029292829292",
+              "applicationId": null,
+              "token": "ETH",
+              "targetAddress": "0x31d64B3230f8baDD91dE1710A65DF536aF8f7cDa",
+              "sourceAddress": "0x70fd25717f769c7f9a46b319f0f9103c0d887af0",
+              "confirmingThreshold":12,
+              "confirmedNumber":12,
+              "extra": "",
+              "type": "BALANCE",
+              "tokenSide": "DEPOSIT",
+              "amount": "1000",
+              "txId": "0x8a74c517bc104c8ebad0c3c3f64b1f302ed5f8bca598ae4459c63419038106b6",
+              "feeToken": null,
+              "feeAmount": null,
+              "status": "CONFIRMING"
+          }
+            ...
+        ],
+        "meta": {
+            "total": 46,
+            "recordsPerPage": 1,
+            "currentPage": 1
+        }
+    },
+    "timestamp": 1690192103430
+}
+
+
+```
+
+</ResponseExample>
