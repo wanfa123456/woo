@@ -98,13 +98,35 @@
       ]
     },
     "put": {
-      "description": "edit order",
+      "description": "edit algo order",
       "requestBody": {
         "description": "",
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../../schemas/EditOrder.json#/EditOrder"
+              "oneOf": [
+                    {
+                        "$ref": "../../schemas/algo/edit/stop_order.json#/stop_order"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/oco_order.json#/oco_order"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/trailing_stop.json#/trailing_stop"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/positional_tp_sl.json#/positional_tp_sl"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/tp_sl.json#/tp_sl"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/bracket.json#/bracket"
+                    },
+                    {
+                        "$ref": "../../schemas/algo/edit/stop_bracket.json#/stop_bracket"
+                    }
+                ]
             }
           }
         },

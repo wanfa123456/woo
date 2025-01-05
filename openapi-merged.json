@@ -876,25 +876,25 @@
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/stop_order"
+                    "$ref": "#/components/schemas/stop_order_stop_order"
                   },
                   {
-                    "$ref": "#/components/schemas/oco_order"
+                    "$ref": "#/components/schemas/oco_order_oco_order"
                   },
                   {
-                    "$ref": "#/components/schemas/trailing_stop"
+                    "$ref": "#/components/schemas/trailing_stop_trailing_stop"
                   },
                   {
-                    "$ref": "#/components/schemas/positional_tp_sl"
+                    "$ref": "#/components/schemas/positional_tp_sl_positional_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/tp_sl"
+                    "$ref": "#/components/schemas/tp_sl_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/bracket"
+                    "$ref": "#/components/schemas/bracket_bracket"
                   },
                   {
-                    "$ref": "#/components/schemas/stop_bracket"
+                    "$ref": "#/components/schemas/stop_bracket_stop_bracket"
                   }
                 ]
               }
@@ -930,13 +930,35 @@
         ]
       },
       "put": {
-        "description": "edit order",
+        "description": "edit algo order",
         "requestBody": {
           "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/EditOrder"
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/stop_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/oco_order"
+                  },
+                  {
+                    "$ref": "#/components/schemas/trailing_stop"
+                  },
+                  {
+                    "$ref": "#/components/schemas/positional_tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/tp_sl"
+                  },
+                  {
+                    "$ref": "#/components/schemas/bracket"
+                  },
+                  {
+                    "$ref": "#/components/schemas/stop_bracket"
+                  }
+                ]
               }
             }
           },
@@ -1048,25 +1070,25 @@
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/stop_order"
+                    "$ref": "#/components/schemas/stop_order_stop_order"
                   },
                   {
-                    "$ref": "#/components/schemas/oco_order"
+                    "$ref": "#/components/schemas/oco_order_oco_order"
                   },
                   {
-                    "$ref": "#/components/schemas/trailing_stop"
+                    "$ref": "#/components/schemas/trailing_stop_trailing_stop"
                   },
                   {
-                    "$ref": "#/components/schemas/positional_tp_sl"
+                    "$ref": "#/components/schemas/positional_tp_sl_positional_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/tp_sl"
+                    "$ref": "#/components/schemas/tp_sl_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/bracket"
+                    "$ref": "#/components/schemas/bracket_bracket"
                   },
                   {
-                    "$ref": "#/components/schemas/stop_bracket"
+                    "$ref": "#/components/schemas/stop_bracket_stop_bracket"
                   }
                 ]
               }
@@ -1220,25 +1242,25 @@
               "schema": {
                 "oneOf": [
                   {
-                    "$ref": "#/components/schemas/stop_order"
+                    "$ref": "#/components/schemas/stop_order_stop_order"
                   },
                   {
-                    "$ref": "#/components/schemas/oco_order"
+                    "$ref": "#/components/schemas/oco_order_oco_order"
                   },
                   {
-                    "$ref": "#/components/schemas/trailing_stop"
+                    "$ref": "#/components/schemas/trailing_stop_trailing_stop"
                   },
                   {
-                    "$ref": "#/components/schemas/positional_tp_sl"
+                    "$ref": "#/components/schemas/positional_tp_sl_positional_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/tp_sl"
+                    "$ref": "#/components/schemas/tp_sl_tp_sl"
                   },
                   {
-                    "$ref": "#/components/schemas/bracket"
+                    "$ref": "#/components/schemas/bracket_bracket"
                   },
                   {
-                    "$ref": "#/components/schemas/stop_bracket"
+                    "$ref": "#/components/schemas/stop_bracket_stop_bracket"
                   }
                 ]
               }
@@ -2960,6 +2982,284 @@
       },
       "common_algo": {
         "type": "object",
+        "properties": {
+          "algoOrderId": {
+            "type": "integer",
+            "description": "Algo order Id; Either algoOrderId or clientOrderId is required. If both are passed, algoOrderId will be used."
+          },
+          "clientAlgoOrderId": {
+            "type": "integer",
+            "description": "Algo order client order Id; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used."
+          },
+          "quantity": {
+            "type": "string",
+            "description": "Order quantity, not required for POSITIONAL_TP_SL order"
+          },
+          "visibleQuantity": {
+            "type": "integer",
+            "description": "The order quantity shown on orderbook;  for POSITIONAL_TP_SL order, visibleQuantity applies directly to the child orders"
+          }
+        }
+      },
+      "stop_order": {
+        "description": "Stop order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "triggerPrice": {
+                "type": "string",
+                "description": "New trigger price"
+              },
+              "triggerPriceType": {
+                "type": "string",
+                "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price) "
+              },
+              "price": {
+                "type": "string",
+                "description": "New order price, only applicable if type is LIMIT"
+              }
+            }
+          }
+        ]
+      },
+      "oco_order": {
+        "description": "OCO order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "price": {
+                "type": "string",
+                "description": "New order price of the LIMIT order"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the trigger order",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "New trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    },
+                    "price": {
+                      "type": "string",
+                      "description": "New order price, only applicable if trigger order type is LIMIT"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "trailing_stop": {
+        "description": "TRAILING STOP order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "activatedPrice": {
+                "type": "string",
+                "description": "New activated price for TRAILING_STOP order"
+              },
+              "triggerPriceType": {
+                "type": "boolean",
+                "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price);  Effective on activatedPrice "
+              },
+              "callbackRate": {
+                "type": "string",
+                "description": "New trailing rate for TRAILING_STOP order;  Editing from using callbackRate to using callbackValue or vice versa is not allowed"
+              },
+              "callbackValue": {
+                "type": "string",
+                "description": "New trailing value for TRAILING_STOP order;  Editing from using callbackRate to using callbackValue or vice versa is not allowed"
+              }
+            }
+          }
+        ]
+      },
+      "positional_tp_sl": {
+        "description": "POSITIONAL TP/SL order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the TAKE_PROFIT and the STOP_LOSS order",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoOrderId": {
+                      "type": "string",
+                      "description": "Algo order Id of the TAKE_PROFIT or the STOP_LOSS order"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "New trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "tp_sl": {
+        "description": "TP/SL order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the TAKE_PROFIT and the STOP_LOSS order",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoOrderId": {
+                      "type": "string",
+                      "description": "Algo order Id of the TAKE_PROFIT or the STOP_LOSS order"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "New trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "bracket": {
+        "description": "Bracket order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "price": {
+                "type": "string",
+                "description": "Order price of the initial order, only applicable if the initial order type is LIMIT"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Details of the Positional_TP_SL or the TP_SL order",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoOrderId": {
+                      "type": "string",
+                      "description": "Algo order Id of the Positional_TP_SL or the TP_SL order"
+                    },
+                    "triggerPrice": {
+                      "type": "string",
+                      "description": "New trigger price"
+                    },
+                    "triggerPriceType": {
+                      "type": "string",
+                      "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "stop_bracket": {
+        "description": "Stop bracket order",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/common_algo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "price": {
+                "type": "string",
+                "description": "Order price of the initial order, only applicable if the initial order type is LIMIT"
+              },
+              "triggerPrice": {
+                "type": "string",
+                "description": "Trigger price of the initial stop order"
+              },
+              "triggerPriceType": {
+                "type": "string",
+                "description": "Trigger price type of the initial stop order, currently only support MARKET_PRICE (i.e. last price)"
+              },
+              "childOrders": {
+                "type": "array",
+                "description": "Attached TP/SL orders, only support 1 set of POSITIONAL_TP_SL or TP_SL",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "algoOrderId": {
+                      "type": "string",
+                      "description": "Algo order Id of the Positional_TP_SL or the TP_SL order"
+                    },
+                    "childOrders": {
+                      "type": "array",
+                      "description": "Details of the TP/SL information, can contain at most 1 TAKE_PROFIT and 1 STOP_LOSS",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "algoOrderId": {
+                            "type": "string",
+                            "description": "Algo order Id of the TAKE_PROFIT or the STOP_LOSS order"
+                          },
+                          "triggerPrice": {
+                            "type": "string",
+                            "description": "New trigger price"
+                          },
+                          "triggerPriceType": {
+                            "type": "string",
+                            "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "common_algo_common_algo": {
+        "type": "object",
         "required": [
           "symbol",
           "algoType"
@@ -2999,11 +3299,11 @@
           }
         }
       },
-      "stop_order": {
+      "stop_order_stop_order": {
         "description": "Stop order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3032,11 +3332,11 @@
           }
         ]
       },
-      "oco_order": {
+      "oco_order_oco_order": {
         "description": "OCO order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3101,11 +3401,11 @@
           }
         ]
       },
-      "trailing_stop": {
+      "trailing_stop_trailing_stop": {
         "description": "TRAILING STOP order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3134,11 +3434,11 @@
           }
         ]
       },
-      "positional_tp_sl": {
+      "positional_tp_sl_positional_tp_sl": {
         "description": "POSITIONAL TP/SL order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3185,11 +3485,11 @@
           }
         ]
       },
-      "tp_sl": {
+      "tp_sl_tp_sl": {
         "description": "TP/SL order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3236,11 +3536,11 @@
           }
         ]
       },
-      "bracket": {
+      "bracket_bracket": {
         "description": "Bracket order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",
@@ -3301,11 +3601,11 @@
           }
         ]
       },
-      "stop_bracket": {
+      "stop_bracket_stop_bracket": {
         "description": "Stop bracket order",
         "allOf": [
           {
-            "$ref": "#/components/schemas/common_algo"
+            "$ref": "#/components/schemas/common_algo_common_algo"
           },
           {
             "type": "object",

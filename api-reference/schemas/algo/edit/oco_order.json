@@ -1,0 +1,42 @@
+{
+    "oco_order": {
+        "description": "OCO order",
+        "allOf": [
+            {
+                "$ref": "../../../schemas/algo/edit/common_algo.json#/common_algo"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "price": {
+                        "type": "string",
+                        "description": "New order price of the LIMIT order"
+                    },
+                    "childOrders": {
+                        "type": "array",
+                        "description": "Details of the trigger order",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                               
+                                "triggerPrice": {
+                                    "type": "string",
+                                    "description": "New trigger price"
+                                },
+                                "triggerPriceType": {
+                                    "type": "string",
+                                    "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price)"
+                                },
+                                "price": {
+                                    "type": "string",
+                                    "description": "New order price, only applicable if trigger order type is LIMIT"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

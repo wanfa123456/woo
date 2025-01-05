@@ -1,0 +1,28 @@
+{
+    "stop_order": {
+        "description": "Stop order",
+        "allOf": [
+            {
+                "$ref": "../../../schemas/algo/edit/common_algo.json#/common_algo"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "triggerPrice": {
+                        "type": "string",
+                        "description": "New trigger price"
+                    },
+                    "triggerPriceType": {
+                        "type": "string",
+                        "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price) "
+                    },
+                    "price": {
+                        "type": "string",
+                        "description": "New order price, only applicable if type is LIMIT"
+                    }
+                }
+            }
+        ]
+    }
+}
+

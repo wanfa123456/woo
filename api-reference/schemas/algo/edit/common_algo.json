@@ -1,0 +1,23 @@
+{
+    "common_algo": {
+        "type": "object",
+        "properties": {
+            "algoOrderId": {
+                "type": "integer",
+                "description": "Algo order Id; Either algoOrderId or clientOrderId is required. If both are passed, algoOrderId will be used."
+            },
+            "clientAlgoOrderId": {
+                "type": "integer",
+                "description": "Algo order client order Id; Either algoOrderId or clientAlgoOrderId is required. If both are passed, algoOrderId will be used."
+            },
+            "quantity": {
+                "type": "string",
+                "description": "Order quantity, not required for POSITIONAL_TP_SL order"
+            },
+            "visibleQuantity": {
+                "type": "integer",
+                "description": "The order quantity shown on orderbook;  for POSITIONAL_TP_SL order, visibleQuantity applies directly to the child orders"
+            }
+        }
+    }
+}

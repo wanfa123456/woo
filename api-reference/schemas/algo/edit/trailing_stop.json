@@ -1,0 +1,32 @@
+{
+    "trailing_stop": {
+        "description": "TRAILING STOP order",
+        "allOf": [
+            {
+                "$ref": "../../../schemas/algo/edit/common_algo.json#/common_algo"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "activatedPrice": {
+                        "type": "string",
+                        "description": "New activated price for TRAILING_STOP order"
+                    },
+                    "triggerPriceType": {
+                        "type": "boolean",
+                        "description": "New trigger price type, currently only support MARKET_PRICE (i.e. last price);  Effective on activatedPrice "
+                    },
+                    "callbackRate": {
+                        "type": "string",
+                        "description": "New trailing rate for TRAILING_STOP order;  Editing from using callbackRate to using callbackValue or vice versa is not allowed"
+                    },
+                    "callbackValue": {
+                        "type": "string",
+                        "description": "New trailing value for TRAILING_STOP order;  Editing from using callbackRate to using callbackValue or vice versa is not allowed"
+                    }
+                }
+            }
+        ]
+    }
+}
+
