@@ -1,0 +1,43 @@
+{
+    "SymbolConfigResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "symbol": {
+                                            "type": "string",
+                                            "description": "Trading pair symbol, e.g., PERP_BTC_USDT."
+                                        },
+                                        "margin_factor": {
+                                            "type": "string",
+                                            "description": "Margin factor for the trading pair, represented as a string for precision."
+                                        },
+                                        "maxLeverage": {
+                                            "type": "integer",
+                                            "description": "Maximum leverage allowed for this trading pair."
+                                        },
+                                        "maxPosition": {
+                                            "type": "integer",
+                                            "description": "Maximum position size allowed for this trading pair."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

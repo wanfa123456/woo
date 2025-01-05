@@ -1,0 +1,104 @@
+{
+    "AccountInfoResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "applicationId": {
+                                "type": "string",
+                                "description": "The ID of the application associated with the account."
+                              },
+                              "account": {
+                                "type": "string",
+                                "description": "The account identifier."
+                              },
+                              "alias": {
+                                "type": "string",
+                                "description": "Alias name for the account."
+                              },
+                              "otpauth": {
+                                "type": "boolean",
+                                "description": "Indicates whether OTP authentication is enabled for the account."
+                              },
+                              "accountMode": {
+                                "type": "string",
+                                "description": "The account mode, e.g., 'MARGIN'."
+                              },
+                              "positionMode": {
+                                "type": "string",
+                                "description": "Position mode of the account, e.g., 'ONE_WAY'."
+                              },
+                              "leverage": {
+                                "type": "integer",
+                                "description": "The leverage level set for the account."
+                              },
+                              "marginRatio": {
+                                "type": "string",
+                                "description": "The margin ratio of the account."
+                              },
+                              "openMarginRatio": {
+                                "type": "string",
+                                "description": "The open margin ratio of the account."
+                              },
+                              "initialMarginRatio": {
+                                "type": "string",
+                                "description": "The initial margin ratio of the account."
+                              },
+                              "maintenanceMarginRatio": {
+                                "type": "string",
+                                "description": "The maintenance margin ratio of the account."
+                              },
+                              "totalCollateral": {
+                                "type": "string",
+                                "description": "The total collateral value of the account."
+                              },
+                              "freeCollateral": {
+                                "type": "string",
+                                "description": "The free collateral value of the account."
+                              },
+                              "totalAccountValue": {
+                                "type": "string",
+                                "description": "The total account value."
+                              },
+                              "totalTradingValue": {
+                                "type": "string",
+                                "description": "The total trading value of the account."
+                              },
+                              "totalVaultValue": {
+                                "type": "string",
+                                "description": "The total vault value of the account."
+                              },
+                              "totalStakingValue": {
+                                "type": "string",
+                                "description": "The total staking value of the account."
+                              },
+                              "totalEarnValue": {
+                                "type": "string",
+                                "description": "The total value earned by the account."
+                              },
+                              "totalLaunchpadValue": {
+                                "type": "string",
+                                "description": "The total launchpad value of the account."
+                              },
+                              "referrerID": {
+                                "type": "string",
+                                "description": "The ID of the referrer associated with the account."
+                              },
+                              "accountType": {
+                                "type": "string",
+                                "description": "The type of the account, e.g., 'Main'."
+                              }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

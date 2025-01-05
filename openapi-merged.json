@@ -1633,7 +1633,61 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ReferralResponse"
+                  "$ref": "#/components/schemas/TokenConfigResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/account/symbolConfig": {
+      "get": {
+        "description": "Get the symbol level configurations.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SymbolConfigResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/account/info": {
+      "get": {
+        "description": "Get the account information.",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountInfoResponse"
                 }
               }
             }
@@ -4450,6 +4504,205 @@
                   },
                   "meta": {
                     "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TokenConfigResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "description": "Token symbol, e.g., BTC."
+                        },
+                        "collateralRatio": {
+                          "type": "string",
+                          "description": "The collateral ratio of the token, represented as a string."
+                        },
+                        "marginFactor": {
+                          "type": "string",
+                          "description": "The margin factor of the token, represented as a string for precision."
+                        },
+                        "collateral": {
+                          "type": "boolean",
+                          "description": "Indicates if the token is currently being used as collateral."
+                        },
+                        "canCollateral": {
+                          "type": "boolean",
+                          "description": "Indicates if the token can be used as collateral."
+                        },
+                        "canShort": {
+                          "type": "boolean",
+                          "description": "Indicates if short selling is supported for the token."
+                        },
+                        "marginMaxLeverage": {
+                          "type": "integer",
+                          "description": "Maximum leverage allowed for margin trading."
+                        },
+                        "marginMaxPosition": {
+                          "type": "integer",
+                          "description": "Maximum allowed position size for the token in margin trading."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "SymbolConfigResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": "Trading pair symbol, e.g., PERP_BTC_USDT."
+                        },
+                        "margin_factor": {
+                          "type": "string",
+                          "description": "Margin factor for the trading pair, represented as a string for precision."
+                        },
+                        "maxLeverage": {
+                          "type": "integer",
+                          "description": "Maximum leverage allowed for this trading pair."
+                        },
+                        "maxPosition": {
+                          "type": "integer",
+                          "description": "Maximum position size allowed for this trading pair."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "AccountInfoResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "applicationId": {
+                    "type": "string",
+                    "description": "The ID of the application associated with the account."
+                  },
+                  "account": {
+                    "type": "string",
+                    "description": "The account identifier."
+                  },
+                  "alias": {
+                    "type": "string",
+                    "description": "Alias name for the account."
+                  },
+                  "otpauth": {
+                    "type": "boolean",
+                    "description": "Indicates whether OTP authentication is enabled for the account."
+                  },
+                  "accountMode": {
+                    "type": "string",
+                    "description": "The account mode, e.g., 'MARGIN'."
+                  },
+                  "positionMode": {
+                    "type": "string",
+                    "description": "Position mode of the account, e.g., 'ONE_WAY'."
+                  },
+                  "leverage": {
+                    "type": "integer",
+                    "description": "The leverage level set for the account."
+                  },
+                  "marginRatio": {
+                    "type": "string",
+                    "description": "The margin ratio of the account."
+                  },
+                  "openMarginRatio": {
+                    "type": "string",
+                    "description": "The open margin ratio of the account."
+                  },
+                  "initialMarginRatio": {
+                    "type": "string",
+                    "description": "The initial margin ratio of the account."
+                  },
+                  "maintenanceMarginRatio": {
+                    "type": "string",
+                    "description": "The maintenance margin ratio of the account."
+                  },
+                  "totalCollateral": {
+                    "type": "string",
+                    "description": "The total collateral value of the account."
+                  },
+                  "freeCollateral": {
+                    "type": "string",
+                    "description": "The free collateral value of the account."
+                  },
+                  "totalAccountValue": {
+                    "type": "string",
+                    "description": "The total account value."
+                  },
+                  "totalTradingValue": {
+                    "type": "string",
+                    "description": "The total trading value of the account."
+                  },
+                  "totalVaultValue": {
+                    "type": "string",
+                    "description": "The total vault value of the account."
+                  },
+                  "totalStakingValue": {
+                    "type": "string",
+                    "description": "The total staking value of the account."
+                  },
+                  "totalEarnValue": {
+                    "type": "string",
+                    "description": "The total value earned by the account."
+                  },
+                  "totalLaunchpadValue": {
+                    "type": "string",
+                    "description": "The total launchpad value of the account."
+                  },
+                  "referrerID": {
+                    "type": "string",
+                    "description": "The ID of the referrer associated with the account."
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "description": "The type of the account, e.g., 'Main'."
                   }
                 }
               }

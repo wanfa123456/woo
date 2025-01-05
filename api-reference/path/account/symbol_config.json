@@ -1,13 +1,13 @@
 {
     "get": {
-      "description": "Get the token level configurations.",
+      "description": "Get the symbol level configurations.",
       "responses": {
         "200": {
           "description": "successful operation",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "../../responses/TokenConfigResponse.json#/TokenConfigResponse"
+                "$ref": "../../responses/SymbolConfigResponse.json#/SymbolConfigResponse"
               }
             }
           }

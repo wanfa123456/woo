@@ -1,0 +1,42 @@
+---
+title: 'Get account information'
+openapi: 'GET /v3/account/info'
+---
+### **Limit: 10 requests per 60 seconds**
+Get margin configuration and account value information.
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "applicationId": "dsa",
+        "account": "dsa",
+        "alias": "dsa",
+        "otpauth": true,
+        "accountMode": "MARGIN",
+        "positionMode": "ONE_WAY",
+        "leverage": 1,
+        "marginRatio": "1",
+        "openMarginRatio": "1",
+        "initialMarginRatio": "1",
+        "maintenanceMarginRatio": "1",
+        "totalCollateral": "1",
+        "freeCollateral": "1",
+        "totalAccountValue": "5",
+        "totalTradingValue": "1",
+        "totalVaultValue": "1",
+        "totalStakingValue": "1",
+        "totalEarnValue": "1",
+        "totalLaunchpadValue": "1",
+        "referrerID": "WOO2023", 
+        "accountType": "Main"
+    },
+    "timestamp": 1673323685109
+}
+
+```
+
+</ResponseExample>
