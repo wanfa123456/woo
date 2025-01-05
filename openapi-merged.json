@@ -1859,6 +1859,71 @@
         ]
       }
     },
+    "/v3/spotMargin/interestRate": {
+      "get": {
+        "description": "Get spot margin interest rate",
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/InterestRateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/spotMargin/interestHistory": {
+      "get": {
+        "description": "get spot margin interest history",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInterestHistory"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInterestHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/asset/token/history": {
       "get": {
         "description": "get token history",
@@ -4948,6 +5013,164 @@
             "example": "5"
           }
         }
+      },
+      "InterestRateResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "token": {
+                          "type": "string",
+                          "description": "The token symbol, e.g., 'MATIC'."
+                        },
+                        "currentHourlyBaseRate": {
+                          "type": "string",
+                          "description": "The current hourly base rate for the token."
+                        },
+                        "estHourlyBaseRate": {
+                          "type": "string",
+                          "description": "The estimated hourly base rate for the token."
+                        },
+                        "currentAnnualBaseRate": {
+                          "type": "string",
+                          "description": "The current annual base rate for the token."
+                        },
+                        "estAnnualBaseRate": {
+                          "type": "string",
+                          "description": "The estimated annual base rate for the token."
+                        },
+                        "estTime": {
+                          "type": "integer",
+                          "description": "The estimated time in Unix timestamp (milliseconds)."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "GetInterestHistory": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token name in upper case"
+          },
+          "side": {
+            "type": "string",
+            "description": "LOAN/REPAY/AUTO_REPAY"
+          },
+          "startTime": {
+            "type": "integer",
+            "description": "Start timestamp in Unix timestamp format in milliseconds"
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End timestamp in Unix timestamp format in milliseconds"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Data size per page"
+          }
+        }
+      },
+      "GetInterestHistoryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier for the loan transaction."
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": "The token symbol associated with the loan, e.g., 'USDT'."
+                        },
+                        "side": {
+                          "type": "string",
+                          "description": "The transaction side, e.g., 'LOAN' for loan transactions."
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The transaction status, e.g., 'SUCCEED' for completed transactions."
+                        },
+                        "quantity": {
+                          "type": "string",
+                          "description": "The quantity of the token involved in the loan transaction."
+                        },
+                        "userId": {
+                          "type": "integer",
+                          "description": "The unique identifier of the user involved in the transaction."
+                        },
+                        "applicationId": {
+                          "type": "string",
+                          "description": "The unique identifier for the application associated with the transaction."
+                        },
+                        "interest": {
+                          "type": "string",
+                          "description": "The interest amount incurred on the loan transaction."
+                        },
+                        "hourlyRate": {
+                          "type": "string",
+                          "description": "The hourly interest rate for the loan."
+                        },
+                        "annualRate": {
+                          "type": "string",
+                          "description": "The annual interest rate for the loan."
+                        },
+                        "createdTime": {
+                          "type": "integer",
+                          "description": "The time the loan transaction was created, represented as a Unix timestamp (milliseconds)."
+                        },
+                        "updatedTime": {
+                          "type": "integer",
+                          "description": "The time the loan transaction was last updated, represented as a Unix timestamp (milliseconds)."
+                        },
+                        "loanAmount": {
+                          "type": "string",
+                          "description": "The total loan amount involved in the transaction."
+                        }
+                      }
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "TokenHistoryResponse": {
         "allOf": [

@@ -1,0 +1,48 @@
+---
+title: 'Get margin interest rates'
+openapi: 'GET /v3/spotMargin/interestRate'
+---
+### **Limit 10 requests per 60 seconds**
+
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+                "token": "MATIC",
+                "currentHourlyBaseRate": "0.000001",
+                "estHourlyBaseRate": "0.000001",
+                "currentAnnualBaseRate": "0.00876",
+                "estAnnualBaseRate": "0.00876",
+                "estTime": 1632394800000
+            },
+            {
+                "token": "USDT",
+                "currentHourlyBaseRate": "0.000008",
+                "estHourlyBaseRate": "0.000008",
+                "currentAnnualBaseRate": "7008",
+                "estAnnualBaseRate": "0.07008%",
+                "estTime": 1632394800000
+            },
+            {
+                "token": "WOO",
+                "currentHourlyBaseRate": "0.00001",
+                "estHourlyBaseRate": "0.00001",
+                "currentAnnualBaseRate": "0.0876",
+                "estAnnualBaseRate": "0.0876",
+                "estTime": 1632394800000
+            },
+            ...
+        ]
+    },
+    "timestamp": 1721351502594
+}
+
+```
+
+</ResponseExample>

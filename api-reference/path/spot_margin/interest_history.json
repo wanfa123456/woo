@@ -1,0 +1,38 @@
+{
+    "get": {
+      "description": "get spot margin interest history",
+      "requestBody": {
+        "description": "",
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "../../schemas/GetInterestHistory.json#/GetInterestHistory"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/GetInterestHistoryResponse.json#/GetInterestHistoryResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

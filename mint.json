@@ -113,7 +113,9 @@
     {
       "group": "Spot Margin",
       "pages": [
-        "api-reference/endpoint/spot_margin/set_leverage"
+        "api-reference/endpoint/spot_margin/set_leverage",
+        "api-reference/endpoint/spot_margin/get_interest_rate",
+        "api-reference/endpoint/spot_margin/get_interest_history"
       ]
     },
     {

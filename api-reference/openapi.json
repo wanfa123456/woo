@@ -118,6 +118,12 @@
         "/v3/spotMargin/leverage": {
           "$ref": "path/spot_margin/leverage.json"
         },
+        "/v3/spotMargin/interestRate": {
+          "$ref": "path/spot_margin/interest_rate.json"
+        },
+        "/v3/spotMargin/interestHistory": {
+          "$ref": "path/spot_margin/interest_history.json"
+        },
         "/v3/asset/token/history": {
           "$ref": "path/asset/token_history.json"
         },

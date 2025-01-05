@@ -1,0 +1,51 @@
+{
+	"InterestRateResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"token": {
+                                            "type": "string",
+                                            "description": "The token symbol, e.g., 'MATIC'."
+                                        },
+                                        "currentHourlyBaseRate": {
+                                            "type": "string",
+                                            "description": "The current hourly base rate for the token."
+                                        },
+                                        "estHourlyBaseRate": {
+                                            "type": "string",
+                                            "description": "The estimated hourly base rate for the token."
+                                        },
+                                        "currentAnnualBaseRate": {
+                                            "type": "string",
+                                            "description": "The current annual base rate for the token."
+                                        },
+                                        "estAnnualBaseRate": {
+                                            "type": "string",
+                                            "description": "The estimated annual base rate for the token."
+                                        },
+                                        "estTime": {
+                                            "type": "integer",
+                                            "description": "The estimated time in Unix timestamp (milliseconds)."
+                                        }
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
+}

@@ -1,0 +1,82 @@
+{
+	"GetInterestHistoryResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+                                            "type": "integer",
+                                            "description": "The unique identifier for the loan transaction."
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "The token symbol associated with the loan, e.g., 'USDT'."
+                                        },
+                                        "side": {
+                                            "type": "string",
+                                            "description": "The transaction side, e.g., 'LOAN' for loan transactions."
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "The transaction status, e.g., 'SUCCEED' for completed transactions."
+                                        },
+                                        "quantity": {
+                                            "type": "string",
+                                            "description": "The quantity of the token involved in the loan transaction."
+                                        },
+                                        "userId": {
+                                            "type": "integer",
+                                            "description": "The unique identifier of the user involved in the transaction."
+                                        },
+                                        "applicationId": {
+                                            "type": "string",
+                                            "description": "The unique identifier for the application associated with the transaction."
+                                        },
+                                        "interest": {
+                                            "type": "string",
+                                            "description": "The interest amount incurred on the loan transaction."
+                                        },
+                                        "hourlyRate": {
+                                            "type": "string",
+                                            "description": "The hourly interest rate for the loan."
+                                        },
+                                        "annualRate": {
+                                            "type": "string",
+                                            "description": "The annual interest rate for the loan."
+                                        },
+                                        "createdTime": {
+                                            "type": "integer",
+                                            "description": "The time the loan transaction was created, represented as a Unix timestamp (milliseconds)."
+                                        },
+                                        "updatedTime": {
+                                            "type": "integer",
+                                            "description": "The time the loan transaction was last updated, represented as a Unix timestamp (milliseconds)."
+                                        },
+                                        "loanAmount": {
+                                            "type": "string",
+                                            "description": "The total loan amount involved in the transaction."
+                                        }
+									}   
+								}
+							},
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

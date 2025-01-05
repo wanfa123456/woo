@@ -1,0 +1,58 @@
+---
+title: 'Get interest history'
+openapi: 'GET /v3/spotMargin/interestHistory'
+---
+### **Limit 10 requests per 60 seconds**
+
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "meta": {
+            "total": 1865,
+            "recordsPerPage": 25,
+            "currentPage": 1
+        },
+        "rows": [
+            {
+                "id": 1649844,
+                "token": "USDT",
+                "side": "LOAN",
+                "status": "SUCCEED",
+                "quantity": "14896.05440493",
+                "userId": 10988,
+                "applicationId": "6400b4f6-d354-4e7f-844f-6153b666e2b6",
+                "interest": "-0.14896054",
+                "hourlyRate": "0.00001",
+                "annualRate": "0.0876",
+                "createdTime": 1696637410973,
+                "updatedTime": 1696637410973,
+                "loanAmount": "14896.05440493"
+            },
+            {
+                "id": 1649752,
+                "token": "USDT",
+                "side": "AUTO_REPAY",
+                "status": "SUCCEED",
+                "quantity": null,
+                "userId": 10988,
+                "applicationId": "6400b4f6-d354-4e7f-844f-6153b666e2b6",
+                "interest": "2.02039756",
+                "hourlyRate": null,
+                "annualRate": null,
+                "createdTime": 1696637405108,
+                "updatedTime": 1696637405124,
+                "loanAmount": null
+            }
+        ]
+    },
+    "timestamp": 1721351502594
+}
+
+```
+
+</ResponseExample>

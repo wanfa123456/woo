@@ -1,0 +1,32 @@
+{
+    "GetInterestHistory": {
+        "type": "object",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "Token name in upper case"
+            },
+            "side": {
+                "type": "string",
+                "description": "LOAN/REPAY/AUTO_REPAY"
+            },
+            "startTime": {
+                "type": "integer",
+                "description": "Start timestamp in Unix timestamp format in milliseconds"
+            },
+            "endTime": {
+                "type": "integer",
+                "description": "End timestamp in Unix timestamp format in milliseconds"
+            },
+            "page": {
+                "type": "integer",
+                "description": "Page number"
+            },
+            "size": {
+                "type": "integer",
+                "description": "Data size per page"
+            }
+
+        }
+    }
+}
