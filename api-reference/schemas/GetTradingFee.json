@@ -1,0 +1,13 @@
+{
+	"GetTradingFee": {
+        "required": ["symbol"],
+		"type": "object",
+		"properties": {
+			"symbol": {
+				"type": "string",
+				"description": "Symbol name",
+				"example": "SPOT_BTC_USDT"
+			}
+		}
+	}
+}

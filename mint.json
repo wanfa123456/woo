@@ -93,7 +93,8 @@
         "api-reference/endpoint/trading/get_algo_orders",
         "api-reference/endpoint/trading/edit_algo_order",
         "api-reference/endpoint/trading/get_transaction",
-        "api-reference/endpoint/trading/get_transactions"
+        "api-reference/endpoint/trading/get_transactions",
+        "api-reference/endpoint/trading/get_tradingFee"
       ]
     },
     {

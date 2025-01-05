@@ -1444,6 +1444,44 @@
         ]
       }
     },
+    "/v3/trade/tradingFee": {
+      "get": {
+        "description": "Get Trading Fee",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTradingFee"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTradingFeeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/account/referral/summary": {
       "get": {
         "description": "Get referral information from each user you has referred.111",
@@ -4176,6 +4214,48 @@
                   },
                   "meta": {
                     "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "GetTradingFee": {
+        "required": [
+          "symbol"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name",
+            "example": "SPOT_BTC_USDT"
+          }
+        }
+      },
+      "GetTradingFeeResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string",
+                    "description": "Trading pair symbol, e.g., SPOT_ETH_USDT."
+                  },
+                  "takerFee": {
+                    "type": "string",
+                    "description": "Fee rate for taker orders, represented as a string."
+                  },
+                  "makerFee": {
+                    "type": "string",
+                    "description": "Fee rate for maker orders, represented as a string."
                   }
                 }
               }

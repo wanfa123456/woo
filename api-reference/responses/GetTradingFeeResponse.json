@@ -1,0 +1,32 @@
+{
+    "GetTradingFeeResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "Trading pair symbol, e.g., SPOT_ETH_USDT."
+                            },
+                            "takerFee": {
+                                "type": "string",
+                                "description": "Fee rate for taker orders, represented as a string."
+                            },
+                            "makerFee": {
+                                "type": "string",
+                                "description": "Fee rate for maker orders, represented as a string."
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

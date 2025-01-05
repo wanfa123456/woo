@@ -88,6 +88,9 @@
         "/v3/trade/transactionHistory": {
           "$ref": "path/trade/transactions.json"  
         },
+        "/v3/trade/tradingFee": {
+          "$ref": "path/trade/tradingFee.json"  
+        },
         "/v3/account/referral/summary": {
           "$ref": "path/account/summary.json"
         },
