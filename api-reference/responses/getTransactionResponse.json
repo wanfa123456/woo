@@ -1,0 +1,66 @@
+{
+    "GetTransactionResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "description": "Unique identifier for the order execution detail."
+                              },
+                              "symbol": {
+                                "type": "string",
+                                "description": "Trading pair symbol, e.g., SPOT_BTC_USDT."
+                              },
+                              "fee": {
+                                "type": "number",
+                                "description": "Trading fee incurred during the execution."
+                              },
+                              "feeAsset": {
+                                "type": "string",
+                                "description": "Asset type used to pay the trading fee."
+                              },
+                              "side": {
+                                "type": "string",
+                                "description": "Trade direction. For one-way mode: 'BUY' or 'SELL'. For hedge mode: 'OPEN LONG', 'OPEN SHORT', 'CLOSE LONG', or 'CLOSE SHORT'."
+                              },
+                              "orderId": {
+                                "type": "integer",
+                                "description": "Identifier for the order to which this execution belongs."
+                              },
+                              "executedPrice": {
+                                "type": "string",
+                                "description": "Price at which the execution occurred."
+                              },
+                              "executedQuantity": {
+                                "type": "string",
+                                "description": "Quantity of the asset that was executed."
+                              },
+                              "isMaker": {
+                                "type": "integer",
+                                "description": "Indicates if the order was a maker order (1) or a taker order (0)."
+                              },
+                              "realizedPnl": {
+                                "type": "string",
+                                "nullable": true,
+                                "description": "Realized profit and loss. Can be null if not applicable."
+                              },
+                              "executedTimestamp": {
+                                "type": "integer",
+                                "format": "int64",
+                                "description": "Timestamp of the execution in Unix milliseconds."
+                              }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

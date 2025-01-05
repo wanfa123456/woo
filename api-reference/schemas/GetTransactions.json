@@ -1,0 +1,28 @@
+{
+    "GetTransactions": {
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "Symbol name"
+            },
+            "startTime": {
+                "type": "integer",
+                "description": "Start timestamp in Unix timestamp format in milliseconds"
+            },
+            "endTime": {
+                "type": "integer",
+                "description": "End timestamp in Unix timestamp format in milliseconds"
+            },
+            "fromId": {
+                "type": "integer",
+                "description": "Trade Id to search from"
+            },
+            "limit": {
+                "type": "integer",
+                "description": "Number of results per request"
+            }
+
+        }
+    }
+}

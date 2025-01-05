@@ -1,0 +1,59 @@
+{
+    "GetTransactionsRowResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "description": "Unique identifier for the execution detail."
+                  },
+                  "symbol": {
+                    "type": "string",
+                    "description": "Trading pair symbol, e.g., SPOT_BTC_USDT."
+                  },
+                  "orderId": {
+                    "type": "integer",
+                    "description": "Identifier for the order to which this execution belongs."
+                  },
+                  "orderTag": {
+                    "type": "string",
+                    "description": "Tag associated with the order, e.g., 'default'."
+                  },
+                  "executedPrice": {
+                    "type": "string",
+                    "description": "Price at which the execution occurred."
+                  },
+                  "executedQuantity": {
+                    "type": "string",
+                    "description": "Quantity of the asset that was executed."
+                  },
+                  "isMaker": {
+                    "type": "integer",
+                    "description": "Indicates if the order was a maker order (1) or a taker order (0)."
+                  },
+                  "side": {
+                    "type": "string",
+                    "description": "Trade direction, e.g., SELL or BUY."
+                  },
+                  "fee": {
+                    "type": "number",
+                    "description": "Trading fee incurred during the execution."
+                  },
+                  "feeAsset": {
+                    "type": "string",
+                    "description": "Asset type used to pay the trading fee."
+                  },
+                  "realizedPnl": {
+                    "type": "string",
+                    "nullable": true,
+                    "description": "Realized profit and loss. Can be null if not applicable."
+                  },
+                  "executedTimestamp": {
+                    "type": "integer",
+                    "format": "int64",
+                    "description": "Timestamp of the execution in Unix milliseconds."
+                  }
+            }
+        
+    }
+}
+

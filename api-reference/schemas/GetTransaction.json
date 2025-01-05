@@ -1,0 +1,13 @@
+{
+    "GetTransaction": {
+        "required": ["tradeId"],
+        "type": "object",
+        "properties": {
+            "tradeId": {
+                "type": "integer",
+                "description": "Trade Id",
+                "example": "1954766344355779056"
+            }
+        }
+    }
+}

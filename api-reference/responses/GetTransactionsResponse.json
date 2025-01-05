@@ -1,0 +1,30 @@
+{
+    "GetTransactionsResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                     "$ref": "../responses/GetTransactionsRowResponse.json#/GetTransactionsRowResponse"
+                                },
+                                "description": ""
+                            },
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
+

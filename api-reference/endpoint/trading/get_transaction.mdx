@@ -1,0 +1,31 @@
+---
+title: 'Get transaction by trade id (last 3 months) '
+openapi: 'GET /v3/trade/transaction'
+---
+### **Limit: 10 requests per 1 second**
+Get specific transaction detail by tradeId that’s executed in the last 3 months.
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "id": 1,
+        "symbol": "SPOT_BTC_USDT",
+        "fee": 0.0001,
+        "feeAsset": "BTC",
+        "side": "BUY",  // "BUY", "SELL" for one way mode; "OPEN LONG", "OPEN SHORT", "CLOSE LONG", "CLOSE SHORT" for hedge mode
+        "orderId": 2,
+        "executedPrice": "25000",
+        "executedQuantity": "0.05",
+        "isMaker": 0,
+        "realizedPnl": "null",
+        "executedTimestamp": 1567382400000
+    },
+    "timestamp": 1721351502594
+}
+```
+
+</ResponseExample>
+

@@ -1,0 +1,38 @@
+{
+    "get": {
+      "description": "get transaction by trade id (last 3 months)",
+      "requestBody": {
+        "description": "",
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "../../schemas/GetTransaction.json#/GetTransaction"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/GetOrderResponse.json#/GetOrderResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

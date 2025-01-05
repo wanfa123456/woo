@@ -82,6 +82,12 @@
         "/v3/trade/allOrders": {
           "$ref": "path/trade/allOrders.json"  
         },
+        "/v3/trade/transaction": {
+          "$ref": "path/trade/transaction.json"  
+        },
+        "/v3/trade/transactionHistory": {
+          "$ref": "path/trade/transactions.json"  
+        },
         "/v3/account/referral/summary": {
           "$ref": "path/account/summary.json"
         },

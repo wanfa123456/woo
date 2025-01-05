@@ -1368,6 +1368,82 @@
         ]
       }
     },
+    "/v3/trade/transaction": {
+      "get": {
+        "description": "get transaction by trade id (last 3 months)",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTransaction"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOrderResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/trade/transactionHistory": {
+      "get": {
+        "description": "Get transaction history (in the past 2 years) ",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetTransactions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTransactionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/account/referral/summary": {
       "get": {
         "description": "Get referral information from each user you has referred.111",
@@ -3986,6 +4062,126 @@
             "description": "BOTH for one way mode; LONG or SHORT for hedge mode;  Cancel both sides if not passed. Only applicable to perpetual instruments"
           }
         }
+      },
+      "GetTransaction": {
+        "required": [
+          "tradeId"
+        ],
+        "type": "object",
+        "properties": {
+          "tradeId": {
+            "type": "integer",
+            "description": "Trade Id",
+            "example": "1954766344355779056"
+          }
+        }
+      },
+      "GetTransactions": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          },
+          "startTime": {
+            "type": "integer",
+            "description": "Start timestamp in Unix timestamp format in milliseconds"
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End timestamp in Unix timestamp format in milliseconds"
+          },
+          "fromId": {
+            "type": "integer",
+            "description": "Trade Id to search from"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results per request"
+          }
+        }
+      },
+      "GetTransactionsRowResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for the execution detail."
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Trading pair symbol, e.g., SPOT_BTC_USDT."
+          },
+          "orderId": {
+            "type": "integer",
+            "description": "Identifier for the order to which this execution belongs."
+          },
+          "orderTag": {
+            "type": "string",
+            "description": "Tag associated with the order, e.g., 'default'."
+          },
+          "executedPrice": {
+            "type": "string",
+            "description": "Price at which the execution occurred."
+          },
+          "executedQuantity": {
+            "type": "string",
+            "description": "Quantity of the asset that was executed."
+          },
+          "isMaker": {
+            "type": "integer",
+            "description": "Indicates if the order was a maker order (1) or a taker order (0)."
+          },
+          "side": {
+            "type": "string",
+            "description": "Trade direction, e.g., SELL or BUY."
+          },
+          "fee": {
+            "type": "number",
+            "description": "Trading fee incurred during the execution."
+          },
+          "feeAsset": {
+            "type": "string",
+            "description": "Asset type used to pay the trading fee."
+          },
+          "realizedPnl": {
+            "type": "string",
+            "nullable": true,
+            "description": "Realized profit and loss. Can be null if not applicable."
+          },
+          "executedTimestamp": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Timestamp of the execution in Unix milliseconds."
+          }
+        }
+      },
+      "GetTransactionsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/GetTransactionsRowResponse"
+                    },
+                    "description": ""
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
       },
       "ReferralResponse": {
         "allOf": [
