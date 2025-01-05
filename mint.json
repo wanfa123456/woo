@@ -115,7 +115,9 @@
       "pages": [
         "api-reference/endpoint/spot_margin/set_leverage",
         "api-reference/endpoint/spot_margin/get_interest_rate",
-        "api-reference/endpoint/spot_margin/get_interest_history"
+        "api-reference/endpoint/spot_margin/get_interest_history",
+        "api-reference/endpoint/spot_margin/interest_repay",
+        "api-reference/endpoint/spot_margin/get_max_margin"
       ]
     },
     {

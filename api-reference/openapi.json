@@ -124,6 +124,12 @@
         "/v3/spotMargin/interestHistory": {
           "$ref": "path/spot_margin/interest_history.json"
         },
+        "/v3/spotMargin/interestRepay": {
+          "$ref": "path/spot_margin/interest_repay.json"
+        },
+        "/v3/spotMargin/maxMargin": {
+          "$ref": "path/spot_margin/max_margin.json"
+        },
         "/v3/asset/token/history": {
           "$ref": "path/asset/token_history.json"
         },

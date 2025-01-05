@@ -1924,6 +1924,82 @@
         ]
       }
     },
+    "/v3/spotMargin/interestRepay": {
+      "post": {
+        "description": "Repay your margin interest.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InterestRepay"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/spotMargin/maxMargin": {
+      "get": {
+        "description": "Get max available margin for a given spot instrument.",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/MaxMargin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetMaxMarginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/asset/token/history": {
       "get": {
         "description": "get token history",
@@ -5165,6 +5241,61 @@
                   },
                   "meta": {
                     "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "InterestRepay": {
+        "required": [
+          "token",
+          "amount"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token name in upper case"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Repay amount"
+          }
+        }
+      },
+      "MaxMargin": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name, applicable to spot instruments only"
+          }
+        }
+      },
+      "GetMaxMarginResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string",
+                    "description": "The trading pair symbol, e.g., 'SPOT_ETH_USDT'."
+                  },
+                  "availableBaseQuantity": {
+                    "type": "string",
+                    "description": "The maximum available quantity of the base token to sell into the quote token."
+                  },
+                  "availableQuoteQuantity": {
+                    "type": "string",
+                    "description": "The maximum available quantity of the quote token to buy the base token."
                   }
                 }
               }

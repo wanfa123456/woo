@@ -1,0 +1,17 @@
+{
+    "InterestRepay": {
+        "required": ["token", "amount"],
+        "type": "object",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "Token name in upper case"
+            },
+            "amount": {
+                "type": "number",
+                "description": "Repay amount"
+            }
+            
+        }
+    }
+}

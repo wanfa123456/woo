@@ -1,0 +1,24 @@
+---
+title: 'Get available margin'
+openapi: 'GET /v3/spotMargin/maxMargin'
+---
+### **Limit 10 requests per 60 seconds**
+Get max available margin for a given spot instrument.  Only supported if the account is in MARGIN mode.
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "symbol": "SPOT_ETH_USDT",
+        "availableBaseQuantity": "24.52401647",       // max available quantity of the base token to sell into the quote token
+        "availableQuoteQuantity": "15436.45960897"    // max available quantity of the quote token to buy into the base token (i.e. buying power)
+    },
+    "timestamp": 1696657422118
+}
+
+```
+
+</ResponseExample>

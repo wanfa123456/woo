@@ -1,0 +1,11 @@
+{
+    "MaxMargin": {
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "Symbol name, applicable to spot instruments only"
+            }
+        }
+    }
+}
