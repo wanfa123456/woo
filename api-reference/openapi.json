@@ -112,6 +112,9 @@
         "/v3/account/credentials": {
           "$ref": "path/account/credentials.json"
         },
+        "/v3/account/subAccounts/all": {
+          "$ref": "path/account/sub_accounts.json"
+        },
         "/v3/spotMargin/leverage": {
           "$ref": "path/spot_margin/leverage.json"
         },

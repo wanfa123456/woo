@@ -1,0 +1,31 @@
+---
+title: 'Get Sub Accounts'
+openapi: 'GET /v3/account/subAccounts/all'
+---
+### **Limit 10 requests per 60 seconds**
+Get subaccount list.
+
+Permission: Main account only.
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "rows": [
+            {
+                "applicationId": "6b43de5c-0955-4887-9862-d84e4689f9fe",
+                "name": "sub_account_2",
+                "createdTime": "1606897264.994"
+            },
+        ]
+    },
+    "timestamp": 1721295317627
+}
+
+```
+
+</ResponseExample>
+

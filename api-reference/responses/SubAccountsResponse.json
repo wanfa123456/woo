@@ -1,0 +1,39 @@
+{
+    "SubAccountsResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "applicationId": {
+                                            "type": "string",
+                                            "description": "The unique identifier for the application."
+                                        },
+                                        "name": {
+                                            "type": "string",
+                                            "description": "The name of the application or sub-account."
+                                        },
+                                        "createdTime": {
+                                            "type": "string",
+                                            "description": "The time the application was created, represented as a Unix timestamp in seconds with millisecond precision."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

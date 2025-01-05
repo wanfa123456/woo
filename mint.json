@@ -106,7 +106,8 @@
         "api-reference/endpoint/account/get_symbol_config",
         "api-reference/endpoint/account/get_account_info",
         "api-reference/endpoint/account/trading_mode",
-        "api-reference/endpoint/account/credentials"
+        "api-reference/endpoint/account/credentials",
+        "api-reference/endpoint/account/sub_accounts"
       ]
     },
     {
