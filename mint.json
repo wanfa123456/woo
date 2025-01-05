@@ -104,7 +104,9 @@
         "api-reference/endpoint/account/get_referral_reward_history",
         "api-reference/endpoint/account/get_token_config",
         "api-reference/endpoint/account/get_symbol_config",
-        "api-reference/endpoint/account/get_account_info"
+        "api-reference/endpoint/account/get_account_info",
+        "api-reference/endpoint/account/trading_mode",
+        "api-reference/endpoint/account/credentials"
       ]
     },
     {

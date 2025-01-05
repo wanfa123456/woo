@@ -1,0 +1,15 @@
+{
+    "SetTradingMode": {
+        "required": [
+            "tradingMode"
+        ],
+        "type": "object",
+        "properties": {
+            "tradingMode": {
+                "type": "string",
+                "description": "PURE_SPOT/MARGIN/FUTURES",
+                "example": "PURE_SPOT"
+            }
+        }
+    }
+}

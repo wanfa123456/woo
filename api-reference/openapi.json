@@ -106,6 +106,12 @@
         "/v3/account/info": {
           "$ref": "path/account/account_info.json"
         },
+        "/v3/account/tradingMode": {
+          "$ref": "path/account/trading_mode.json"
+        },
+        "/v3/account/credentials": {
+          "$ref": "path/account/credentials.json"
+        },
         "/v3/spotMargin/leverage": {
           "$ref": "path/spot_margin/leverage.json"
         },
