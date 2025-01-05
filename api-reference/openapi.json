@@ -97,6 +97,9 @@
         "/v3/account/referral/rewardHistory": {
           "$ref": "path/account/referral_history.json"
         },
+        "/v3/account/tokenConfig": {
+          "$ref": "path/account/token_config.json"
+        },
         "/v3/spotMargin/leverage": {
           "$ref": "path/spot_margin/leverage.json"
         },

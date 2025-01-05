@@ -1,0 +1,27 @@
+{
+    "get": {
+      "description": "Get the token level configurations.",
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/ReferralResponse.json#/ReferralResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

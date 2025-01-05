@@ -1,0 +1,59 @@
+{
+    "TokenConfigResponse": {
+        "allOf": [
+            {
+                "$ref": "../common/commonResponse.json#/CommonResponse"
+            },
+            {
+                "type": "object",
+                "properties": {
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "rows": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "description": "Token symbol, e.g., BTC."
+                                        },
+                                        "collateralRatio": {
+                                            "type": "string",
+                                            "description": "The collateral ratio of the token, represented as a string."
+                                        },
+                                        "marginFactor": {
+                                            "type": "string",
+                                            "description": "The margin factor of the token, represented as a string for precision."
+                                        },
+                                        "collateral": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the token is currently being used as collateral."
+                                        },
+                                        "canCollateral": {
+                                            "type": "boolean",
+                                            "description": "Indicates if the token can be used as collateral."
+                                        },
+                                        "canShort": {
+                                            "type": "boolean",
+                                            "description": "Indicates if short selling is supported for the token."
+                                        },
+                                        "marginMaxLeverage": {
+                                            "type": "integer",
+                                            "description": "Maximum leverage allowed for margin trading."
+                                        },
+                                        "marginMaxPosition": {
+                                            "type": "integer",
+                                            "description": "Maximum allowed position size for the token in margin trading."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

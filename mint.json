@@ -101,7 +101,8 @@
       "group": "Account",
       "pages": [
         "api-reference/endpoint/account/summary",
-        "api-reference/endpoint/account/get_referral_reward_history"
+        "api-reference/endpoint/account/get_referral_reward_history",
+        "api-reference/endpoint/account/get_token_config"
       ]
     },
     {
