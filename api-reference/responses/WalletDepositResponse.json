@@ -1,0 +1,27 @@
+{
+	"WalletDepositResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"address": {
+                                "type": "string",
+                                "description": "The deposit address for the token."
+                            },
+                            "extra": {
+                                "type": "string",
+                                "description": ""
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

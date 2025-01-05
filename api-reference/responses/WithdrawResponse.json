@@ -1,0 +1,23 @@
+{
+	"WithdrawResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"withdrawId": {
+                                "type": "string",
+                                "description": ""
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

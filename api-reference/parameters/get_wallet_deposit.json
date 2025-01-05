@@ -1,0 +1,24 @@
+{
+    "parameters": [
+        {
+            "name": "token",
+            "in": "query",
+            "description": "token name you want to search ",
+            "required": true,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        },
+        {
+            "name": "network",
+            "in": "query",
+            "description": "network name you want to search (from /v1/public/token)",
+            "required": true,
+            "explode": true,
+            "schema": {
+                "type": "string"
+            }
+        }
+    ]
+}

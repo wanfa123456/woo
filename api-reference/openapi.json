@@ -142,6 +142,12 @@
         "/v3/asset/wallet/history": {
           "$ref": "path/asset/get_wallet_history.json"
         },
+        "/v3/asset/wallet/deposit": {
+          "$ref": "path/asset/get_wallet_deposit.json"
+        },
+        "/v3/asset/wallet/withdraw": {
+          "$ref": "path/asset/wallet_withdraw.json"
+        },
         "/v3/futures/defaultMarginMode": {
           "$ref": "path/futures/defaultMarginMode.json"
         }

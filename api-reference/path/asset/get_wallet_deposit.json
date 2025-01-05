@@ -1,0 +1,30 @@
+{
+    "get": {
+      "description": "Get Token Deposit Address",
+      "parameters": {
+        "$ref": "../../parameters/get_wallet_deposit.json#/parameters"
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/WalletDepositResponse.json#/WalletDepositResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

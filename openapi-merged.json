@@ -2231,6 +2231,93 @@
         ]
       }
     },
+    "/v3/asset/wallet/deposit": {
+      "get": {
+        "description": "Get Token Deposit Address",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "query",
+            "description": "token name you want to search ",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "network",
+            "in": "query",
+            "description": "network name you want to search (from /v1/public/token)",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WalletDepositResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/asset/wallet/withdraw": {
+      "post": {
+        "description": "withdraw assets",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Withdraw"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WithdrawResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/futures/defaultMarginMode": {
       "get": {
         "description": "get account level default margin mode",
@@ -5759,6 +5846,86 @@
                   },
                   "meta": {
                     "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "WalletDepositResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "address": {
+                    "type": "string",
+                    "description": "The deposit address for the token."
+                  },
+                  "extra": {
+                    "type": "string",
+                    "description": ""
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "Withdraw": {
+        "required": [
+          "token",
+          "network",
+          "amount",
+          "address"
+        ],
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "description": "Token name in upper case"
+          },
+          "network": {
+            "type": "string",
+            "description": "Network name (from /v3/public/token)"
+          },
+          "amount": {
+            "type": "number",
+            "description": "withdraw amount",
+            "example": ""
+          },
+          "extra": {
+            "type": "string",
+            "description": "address extra information such as MEMO or TAG",
+            "example": ""
+          },
+          "address": {
+            "type": "string",
+            "description": "the address you want to withdraw",
+            "example": ""
+          }
+        }
+      },
+      "WithdrawResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "withdrawId": {
+                    "type": "string",
+                    "description": ""
                   }
                 }
               }

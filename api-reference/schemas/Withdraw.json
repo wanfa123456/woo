@@ -1,0 +1,31 @@
+{
+    "Withdraw": {
+        "required": ["token", "network", "amount", "address"],
+        "type": "object",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "Token name in upper case"
+            },
+            "network": {
+                "type": "string",
+                "description": "Network name (from /v3/public/token)"
+            },
+            "amount": {
+                "type": "number",
+                "description": "withdraw amount",
+                "example": ""
+            },
+            "extra": {
+                "type": "string",
+                "description": "address extra information such as MEMO or TAG",
+                "example": ""
+            },
+            "address": {
+                "type": "string",
+                "description": "the address you want to withdraw",
+                "example": ""
+            }
+        }
+    }
+}
