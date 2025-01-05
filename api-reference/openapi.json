@@ -133,6 +133,9 @@
         "/v3/asset/token/history": {
           "$ref": "path/asset/token_history.json"
         },
+        "/v3/asset/transfer/history": {
+          "$ref": "path/asset/get_transfer_history.json"
+        },
         "/v3/futures/defaultMarginMode": {
           "$ref": "path/futures/defaultMarginMode.json"
         }

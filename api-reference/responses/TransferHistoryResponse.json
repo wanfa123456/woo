@@ -1,0 +1,82 @@
+{
+	"TransferHistoryResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+                                            "type": "integer",
+                                            "description": "The unique identifier for the transfer."
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "description": "The token symbol for the transfer, e.g., 'USDT'."
+                                        },
+                                        "amount": {
+                                            "type": "string",
+                                            "description": "The amount of the token transferred."
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "description": "The status of the transfer, e.g., 'COMPLETED'."
+                                        },
+                                        "from": {
+                                            "type": "object",
+                                            "description": "The source account details for the transfer.",
+                                            "properties": {
+                                            "applicationId": {
+                                                "type": "string",
+                                                "description": "The application ID of the source account."
+                                            },
+                                            "accountName": {
+                                                "type": "string",
+                                                "description": "The account name of the source account."
+                                            }
+                                            }
+                                        },
+                                        "to": {
+                                            "type": "object",
+                                            "description": "The destination account details for the transfer.",
+                                            "properties": {
+                                            "applicationId": {
+                                                "type": "string",
+                                                "description": "The application ID of the destination account."
+                                            },
+                                            "accountName": {
+                                                "type": "string",
+                                                "description": "The account name of the destination account."
+                                            }
+                                            }
+                                        },
+                                        "createdTime": {
+                                            "type": "string",
+                                            "description": "The time the transfer was created, represented as a string timestamp."
+                                        },
+                                        "updatedTime": {
+                                            "type": "string",
+                                            "description": "The time the transfer was last updated, represented as a string timestamp."
+                                        }
+									}
+								}
+							},
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

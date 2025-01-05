@@ -123,7 +123,8 @@
     {
       "group": "Assets",
       "pages": [
-        "api-reference/endpoint/assets/token_history"
+        "api-reference/endpoint/assets/token_history",
+        "api-reference/endpoint/assets/get_transfer_history"
       ]
     },
     {

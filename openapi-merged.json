@@ -2051,6 +2051,47 @@
         ]
       }
     },
+    "/v3/asset/transfer/history": {
+      "get": {
+        "description": "Get Transfer History",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/start_filter"
+          },
+          {
+            "$ref": "#/components/parameters/end_filter"
+          },
+          {
+            "$ref": "#/components/parameters/page_filter"
+          },
+          {
+            "$ref": "#/components/parameters/size_filter"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransferHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/futures/defaultMarginMode": {
       "get": {
         "description": "get account level default margin mode",
@@ -5338,6 +5379,86 @@
                         "timestamp": {
                           "type": "integer",
                           "description": "timestamp"
+                        }
+                      }
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "TransferHistoryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier for the transfer."
+                        },
+                        "token": {
+                          "type": "string",
+                          "description": "The token symbol for the transfer, e.g., 'USDT'."
+                        },
+                        "amount": {
+                          "type": "string",
+                          "description": "The amount of the token transferred."
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The status of the transfer, e.g., 'COMPLETED'."
+                        },
+                        "from": {
+                          "type": "object",
+                          "description": "The source account details for the transfer.",
+                          "properties": {
+                            "applicationId": {
+                              "type": "string",
+                              "description": "The application ID of the source account."
+                            },
+                            "accountName": {
+                              "type": "string",
+                              "description": "The account name of the source account."
+                            }
+                          }
+                        },
+                        "to": {
+                          "type": "object",
+                          "description": "The destination account details for the transfer.",
+                          "properties": {
+                            "applicationId": {
+                              "type": "string",
+                              "description": "The application ID of the destination account."
+                            },
+                            "accountName": {
+                              "type": "string",
+                              "description": "The account name of the destination account."
+                            }
+                          }
+                        },
+                        "createdTime": {
+                          "type": "string",
+                          "description": "The time the transfer was created, represented as a string timestamp."
+                        },
+                        "updatedTime": {
+                          "type": "string",
+                          "description": "The time the transfer was last updated, represented as a string timestamp."
                         }
                       }
                     }
