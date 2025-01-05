@@ -1553,6 +1553,77 @@
         ]
       }
     },
+    "/v3/account/referral/rewardHistory": {
+      "get": {
+        "description": "Get referral information from each user you has referred.111",
+        "parameters": [
+          {
+            "name": "startTime",
+            "in": "query",
+            "description": "start time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "description": "end time in unix timestamp",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "the page you wish to query.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "description": "the page size you wish to query, default = 25, 1000 at max.",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "integer",
+              "default": 25
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReferralResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
     "/v3/spotMargin/leverage": {
       "post": {
         "description": "set leverage",
@@ -4305,6 +4376,38 @@
                                 "description": "Token type"
                               },
                               "amount": {
+                                "type": "string",
+                                "description": "Amount earned"
+                              }
+                            }
+                          }
+                        },
+                        "extraBonus": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "token": {
+                                "type": "string",
+                                "description": "Token type"
+                              },
+                              "amount": {
+                                "type": "string",
+                                "description": "Amount earned"
+                              }
+                            }
+                          }
+                        },
+                        "previousCommission": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "token": {
+                                "type": "string",
+                                "description": "Token type"
+                              },
+                              "totalAmount": {
                                 "type": "string",
                                 "description": "Amount earned"
                               }

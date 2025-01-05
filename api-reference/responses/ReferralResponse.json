@@ -47,6 +47,38 @@
                                                 }
                                             }
                                         },
+                                        "extraBonus": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "token": {
+                                                        "type": "string",
+                                                        "description": "Token type"
+                                                    },
+                                                    "amount": {
+                                                        "type": "string",
+                                                        "description": "Amount earned"
+                                                    }
+                                                }
+                                            }
+                                        },
+                                        "previousCommission": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "token": {
+                                                        "type": "string",
+                                                        "description": "Token type"
+                                                    },
+                                                    "totalAmount": {
+                                                        "type": "string",
+                                                        "description": "Amount earned"
+                                                    }
+                                                }
+                                            }
+                                        },
                                         "email": {
                                             "type": "string",
                                             "description": "Email address"

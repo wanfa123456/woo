@@ -1,0 +1,30 @@
+{
+    "get": {
+      "description": "Get referral information from each user you has referred.111",
+      "parameters": {
+        "$ref": "../../parameters/referral_summary.json#/parameters"
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/ReferralResponse.json#/ReferralResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }
