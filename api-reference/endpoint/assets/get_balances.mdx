@@ -1,0 +1,45 @@
+---
+title: 'Get balances'
+openapi: 'GET /v3/asset/balances'
+---
+### **Limit: 10 requests per 1 seconds**
+Get account balances in trading wallet, vault, staking and earn products.
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "holding": [
+            {
+                "token": "WOO",
+                "holding": "1",
+                "frozen": "0",
+                "staked": "0",
+                "unbonding": "0",
+                "vault": "0",
+                "interest": "0",
+                "earn": "0",
+                "pendingShortQty": "0",
+                "pendingLongQty": "0",
+                "availableBalance": "0",
+                "averageOpenPrice": "0.23432",
+                "markPrice": "0.25177",
+                "pnl24H": "0.0",
+                "fee24H": "0.0",
+                "timestamp": 1673323746259
+            },
+            ...
+        ]
+    },
+    "timestamp": 1673323746259
+}
+
+
+```
+
+</ResponseExample>
+
+
+  

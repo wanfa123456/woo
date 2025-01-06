@@ -1,0 +1,11 @@
+{
+    "GetBalances": {
+        "type": "object",
+        "properties": {
+            "token": {
+                "type": "string",
+                "description": "Token to query"
+            }
+        }
+    }
+}

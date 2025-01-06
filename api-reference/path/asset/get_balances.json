@@ -1,0 +1,38 @@
+{
+    "get": {
+      "description": "Get balances",
+      "requestBody": {
+        "description": "",
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "../../schemas/GetBalances.json#/GetBalances"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/GetBalancesResponse.json#/GetBalancesResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

@@ -151,6 +151,9 @@
         "/v3/asset/staking/yieldHistory": {
           "$ref": "path/asset/get_yield_history.json"
         },
+        "/v3/asset/balances": {
+          "$ref": "path/asset/get_balances.json"
+        },
         "/v3/futures/defaultMarginMode": {
           "$ref": "path/futures/defaultMarginMode.json"
         }

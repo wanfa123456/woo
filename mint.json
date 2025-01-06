@@ -130,7 +130,8 @@
         "api-reference/endpoint/assets/get_wallet_deposit",
         "api-reference/endpoint/assets/wallet_withdraw",
         "api-reference/endpoint/assets/cancel_withdraw",
-        "api-reference/endpoint/assets/get_yield_history"
+        "api-reference/endpoint/assets/get_yield_history",
+        "api-reference/endpoint/assets/get_balances"
       ]
     },
     {

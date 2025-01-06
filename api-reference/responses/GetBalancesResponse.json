@@ -1,0 +1,92 @@
+{
+	"GetBalancesResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"holding": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"token": {
+                                            "type": "string",
+                                            "description": "The token symbol (e.g., WOO)."
+                                        },
+                                        "holding": {
+                                            "type": "string",
+                                            "description": "The total amount of the token currently held by the user."
+                                        },
+                                        "frozen": {
+                                            "type": "string",
+                                            "description": "The amount of the token that is frozen (e.g., due to open orders or other restrictions)."
+                                        },
+                                        "staked": {
+                                            "type": "string",
+                                            "description": "The amount of the token that is currently staked."
+                                        },
+                                        "unbonding": {
+                                            "type": "string",
+                                            "description": "The amount of the token that is in the unbonding period."
+                                        },
+                                        "vault": {
+                                            "type": "string",
+                                            "description": "The amount of the token in the vault."
+                                        },
+                                        "interest": {
+                                            "type": "string",
+                                            "description": "The interest earned from holding the token."
+                                        },
+                                        "earn": {
+                                            "type": "string",
+                                            "description": "The amount of the token earned from yield or other programs."
+                                        },
+                                        "pendingShortQty": {
+                                            "type": "string",
+                                            "description": "The pending quantity for short positions."
+                                        },
+                                        "pendingLongQty": {
+                                            "type": "string",
+                                            "description": "The pending quantity for long positions."
+                                        },
+                                        "availableBalance": {
+                                            "type": "string",
+                                            "description": "The available balance of the token for trading or withdrawal."
+                                        },
+                                        "averageOpenPrice": {
+                                            "type": "string",
+                                            "description": "The average open price of the user's positions in the token."
+                                        },
+                                        "markPrice": {
+                                            "type": "string",
+                                            "description": "The current market price of the token."
+                                        },
+                                        "pnl24H": {
+                                            "type": "string",
+                                            "description": "The profit or loss in the past 24 hours for this token."
+                                        },
+                                        "fee24H": {
+                                            "type": "string",
+                                            "description": "The total fees incurred in the past 24 hours for this token."
+                                        },
+                                        "timestamp": {
+                                            "type": "integer",
+                                            "format": "int64",
+                                            "description": "The timestamp (Unix epoch in milliseconds) of the data snapshot."
+                                        }
+									}   
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
+}
