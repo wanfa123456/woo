@@ -142,7 +142,11 @@
         "api-reference/endpoint/futures/set_symbol_margin_mode",
         "api-reference/endpoint/futures/reset_defaultMarginMode",
         "api-reference/endpoint/futures/get_leverage",
-        "api-reference/endpoint/futures/set_leverage"
+        "api-reference/endpoint/futures/set_leverage",
+        "api-reference/endpoint/futures/adjust_margin",
+        "api-reference/endpoint/futures/get_fundingFee_history",
+        "api-reference/endpoint/futures/get_positions",
+        "api-reference/endpoint/futures/position_mode"
       ]
     },
     {

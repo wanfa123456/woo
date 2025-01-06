@@ -165,6 +165,18 @@
         },
         "/v3/futures/leverage": {
           "$ref": "path/futures/futures_leverage.json"
+        },
+        "/v3/isolatedMargin/margin": {
+          "$ref": "path/futures/adjust_margin.json"
+        },
+        "/v3/futures/fundingFee/history": {
+          "$ref": "path/futures/get_fundingFee_history.json"
+        },
+        "/v3/futures/positions": {
+          "$ref": "path/futures/get_positions.json"
+        },
+        "/v3/futures/positionMode": {
+          "$ref": "path/futures/position_mode.json"
         }
     },
     "components": {

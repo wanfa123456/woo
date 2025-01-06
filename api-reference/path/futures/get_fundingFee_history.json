@@ -1,0 +1,38 @@
+{
+    "get": {
+      "description": "get funding fee history",
+      "requestBody": {
+        "description": "",
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "../../schemas/GetFundingFeeHistory.json#/GetFundingFeeHistory"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/GetFundingFeeHistoryResponse.json#/GetFundingFeeHistoryResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

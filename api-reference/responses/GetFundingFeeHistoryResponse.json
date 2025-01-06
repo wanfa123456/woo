@@ -1,0 +1,73 @@
+{
+	"GetFundingFeeHistoryResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"id": {
+                                        "type": "integer",
+                                        "description": "The unique identifier for the funding transaction."
+                                        },
+                                        "symbol": {
+                                        "type": "string",
+                                        "description": "The trading pair symbol, e.g., PERP_BTC_USDT."
+                                        },
+                                        "fundingRate": {
+                                        "type": "number",
+                                        "format": "float",
+                                        "description": "The funding rate applied to the position."
+                                        },
+                                        "markPrice": {
+                                        "type": "string",
+                                        "description": "The mark price of the position at the time of funding."
+                                        },
+                                        "fundingFee": {
+                                        "type": "string",
+                                        "description": "The total funding fee for the position."
+                                        },
+                                        "fundingIntervalHours": {
+                                        "type": "integer",
+                                        "description": "The interval in hours at which funding is paid or received."
+                                        },
+                                        "paymentType": {
+                                        "type": "string",
+                                        "description": "The type of funding payment, e.g., 'Receive' or 'Pay'."
+                                        },
+                                        "status": {
+                                        "type": "string",
+                                        "description": "The status of the funding transaction, e.g., 'COMPLETED'."
+                                        },
+                                        "createdTime": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The Unix timestamp when the funding transaction was created."
+                                        },
+                                        "updatedTime": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The Unix timestamp when the funding transaction was last updated."
+                                        }
+									}   
+								}
+							},
+                            "meta": {
+                                "$ref": "../common/meta.json#/Meta"
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

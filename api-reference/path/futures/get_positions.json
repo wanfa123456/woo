@@ -1,0 +1,38 @@
+{
+    "get": {
+      "description": "get positions",
+      "requestBody": {
+        "description": "",
+        "content": {
+          "application/x-www-form-urlencoded": {
+            "schema": {
+              "$ref": "../../schemas/GetPositions.json#/GetPositions"
+            }
+          }
+        },
+        "required": true
+      },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/GetPositionsResponse.json#/GetPositionsResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

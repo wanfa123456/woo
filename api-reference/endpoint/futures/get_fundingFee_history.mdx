@@ -1,0 +1,56 @@
+---
+title: 'Get funding fee history'
+openapi: 'GET /v3/futures/fundingFee/history'
+---
+### **Limit: 20 requests per 60 seconds per user**
+Get funding fee history
+
+
+<ResponseExample>
+
+```bash
+{
+    "success": true,
+    "data": {
+        "meta": {
+            "total": 670,
+            "recordsPerPage": 25,
+            "currentPage": 1
+        },
+        "rows": [
+            {
+                "id": 1286360,
+                "symbol": "PERP_BTC_USDT",
+                "fundingRate": -0.00001445,
+                "markPrice": "26930.60000000",
+                "fundingFee": "9.56021744",
+                "fundingIntervalHours": 8,
+                "paymentType": "Pay",
+                "status": "COMPLETED",
+                "createdTime": 1696060873259,
+                "updatedTime": 1696060873286
+            },
+            {
+                "id": 1286115,
+                "symbol": "PERP_BTC_USDT",
+                "fundingRate": 0.00006526,
+                "markPrice": "26911.00000000",
+                "fundingFee": "43.14503239",
+                "fundingIntervalHours": 8,
+                "paymentType": "Receive",
+                "status": "COMPLETED",
+                "createdTime": 1696032073609,
+                "updatedTime": 1696032073643
+            },
+            ...
+        ]
+    },
+    "timestamp": 1721351502594
+}
+```
+
+</ResponseExample>
+
+
+
+

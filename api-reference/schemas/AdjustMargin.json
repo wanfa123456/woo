@@ -1,0 +1,28 @@
+{
+    "AdjustMargin": {
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": "The trading pair for the futures position."
+              },
+              "positionSide": {
+                "type": "string",
+                "description": "The side of the position (LONG or SHORT)."
+              },
+              "adjustToken": {
+                "type": "string",
+                "description": "The token used for the margin adjustment."
+              },
+              "adjustAmount": {
+                "type": "string",
+                "description": "The amount of the token to be added or removed as margin."
+              },
+              "action": {
+                "type": "string",
+                "description": "The action to take: ADD to increase margin or REMOVE to decrease margin."
+              }
+            
+        }
+    }
+}

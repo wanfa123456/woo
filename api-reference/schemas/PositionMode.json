@@ -1,0 +1,11 @@
+{
+    "PositionMode": {
+        "type": "object",
+        "properties": {
+            "positionMode": {
+                "type": "string",
+                "description": "ONE_WAY/HEDGE_MODE"
+              }
+        }
+    }
+}

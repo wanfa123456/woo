@@ -1,0 +1,80 @@
+{
+	"GetPositionsResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"rows": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"symbol": {
+                                        "type": "string",
+                                        "description": "The trading pair symbol, e.g., PERP_BTC_USDT."
+                                        },
+                                        "holding": {
+                                        "type": "string",
+                                        "description": "The current holding quantity of the asset in the position."
+                                        },
+                                        "positionSide": {
+                                        "type": "string",
+                                        "description": "The position side, such as 'BOTH' for a long and short position."
+                                        },
+                                        "pendingLongQty": {
+                                        "type": "string",
+                                        "description": "The pending quantity for a long position."
+                                        },
+                                        "pendingShortQty": {
+                                        "type": "string",
+                                        "description": "The pending quantity for a short position."
+                                        },
+                                        "settlePrice": {
+                                        "type": "string",
+                                        "description": "The price at which the position will be settled."
+                                        },
+                                        "averageOpenPrice": {
+                                        "type": "string",
+                                        "description": "The average price at which the position was opened."
+                                        },
+                                        "pnl24H": {
+                                        "type": "string",
+                                        "description": "The profit and loss (PnL) for the position in the last 24 hours."
+                                        },
+                                        "fee24H": {
+                                        "type": "string",
+                                        "description": "The total fee for the position in the last 24 hours."
+                                        },
+                                        "markPrice": {
+                                        "type": "string",
+                                        "description": "The mark price of the position."
+                                        },
+                                        "estLiqPrice": {
+                                        "type": "string",
+                                        "description": "The estimated liquidation price of the position."
+                                        },
+                                        "adlQuantile": {
+                                        "type": "integer",
+                                        "description": "The ADL quantile, a risk management factor."
+                                        },
+                                        "timestamp": {
+                                        "type": "integer",
+                                        "format": "int64",
+                                        "description": "The timestamp of the position data in Unix epoch time (milliseconds)."
+                                        }
+									}   
+								}
+							}
+						}
+					}
+				}
+			}
+		]
+	}
+}

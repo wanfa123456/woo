@@ -2719,6 +2719,158 @@
           }
         ]
       }
+    },
+    "/v3/isolatedMargin/margin": {
+      "post": {
+        "description": "Adjust Isolated Margin",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdjustMargin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/fundingFee/history": {
+      "get": {
+        "description": "get funding fee history",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetFundingFeeHistory"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetFundingFeeHistoryResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/positions": {
+      "get": {
+        "description": "get positions",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/GetPositions"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetPositionsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/positionMode": {
+      "put": {
+        "description": "Set position mode",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PositionMode"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -6577,6 +6729,223 @@
           "leverage": {
             "type": "integer",
             "description": ""
+          }
+        }
+      },
+      "AdjustMargin": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "The trading pair for the futures position."
+          },
+          "positionSide": {
+            "type": "string",
+            "description": "The side of the position (LONG or SHORT)."
+          },
+          "adjustToken": {
+            "type": "string",
+            "description": "The token used for the margin adjustment."
+          },
+          "adjustAmount": {
+            "type": "string",
+            "description": "The amount of the token to be added or removed as margin."
+          },
+          "action": {
+            "type": "string",
+            "description": "The action to take: ADD to increase margin or REMOVE to decrease margin."
+          }
+        }
+      },
+      "GetFundingFeeHistory": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          },
+          "startTime": {
+            "type": "integer",
+            "description": "Start timestamp in Unix timestamp format in milliseconds"
+          },
+          "endTime": {
+            "type": "integer",
+            "description": "End timestamp in Unix timestamp format in milliseconds"
+          },
+          "page": {
+            "type": "integer",
+            "description": "Page number"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Data size per page, max 500"
+          }
+        }
+      },
+      "GetFundingFeeHistoryResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "id": {
+                          "type": "integer",
+                          "description": "The unique identifier for the funding transaction."
+                        },
+                        "symbol": {
+                          "type": "string",
+                          "description": "The trading pair symbol, e.g., PERP_BTC_USDT."
+                        },
+                        "fundingRate": {
+                          "type": "number",
+                          "format": "float",
+                          "description": "The funding rate applied to the position."
+                        },
+                        "markPrice": {
+                          "type": "string",
+                          "description": "The mark price of the position at the time of funding."
+                        },
+                        "fundingFee": {
+                          "type": "string",
+                          "description": "The total funding fee for the position."
+                        },
+                        "fundingIntervalHours": {
+                          "type": "integer",
+                          "description": "The interval in hours at which funding is paid or received."
+                        },
+                        "paymentType": {
+                          "type": "string",
+                          "description": "The type of funding payment, e.g., 'Receive' or 'Pay'."
+                        },
+                        "status": {
+                          "type": "string",
+                          "description": "The status of the funding transaction, e.g., 'COMPLETED'."
+                        },
+                        "createdTime": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "The Unix timestamp when the funding transaction was created."
+                        },
+                        "updatedTime": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "The Unix timestamp when the funding transaction was last updated."
+                        }
+                      }
+                    }
+                  },
+                  "meta": {
+                    "$ref": "#/components/schemas/Meta"
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "GetPositions": {
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": "Symbol name"
+          }
+        }
+      },
+      "GetPositionsResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "rows": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "symbol": {
+                          "type": "string",
+                          "description": "The trading pair symbol, e.g., PERP_BTC_USDT."
+                        },
+                        "holding": {
+                          "type": "string",
+                          "description": "The current holding quantity of the asset in the position."
+                        },
+                        "positionSide": {
+                          "type": "string",
+                          "description": "The position side, such as 'BOTH' for a long and short position."
+                        },
+                        "pendingLongQty": {
+                          "type": "string",
+                          "description": "The pending quantity for a long position."
+                        },
+                        "pendingShortQty": {
+                          "type": "string",
+                          "description": "The pending quantity for a short position."
+                        },
+                        "settlePrice": {
+                          "type": "string",
+                          "description": "The price at which the position will be settled."
+                        },
+                        "averageOpenPrice": {
+                          "type": "string",
+                          "description": "The average price at which the position was opened."
+                        },
+                        "pnl24H": {
+                          "type": "string",
+                          "description": "The profit and loss (PnL) for the position in the last 24 hours."
+                        },
+                        "fee24H": {
+                          "type": "string",
+                          "description": "The total fee for the position in the last 24 hours."
+                        },
+                        "markPrice": {
+                          "type": "string",
+                          "description": "The mark price of the position."
+                        },
+                        "estLiqPrice": {
+                          "type": "string",
+                          "description": "The estimated liquidation price of the position."
+                        },
+                        "adlQuantile": {
+                          "type": "integer",
+                          "description": "The ADL quantile, a risk management factor."
+                        },
+                        "timestamp": {
+                          "type": "integer",
+                          "format": "int64",
+                          "description": "The timestamp of the position data in Unix epoch time (milliseconds)."
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "PositionMode": {
+        "type": "object",
+        "properties": {
+          "positionMode": {
+            "type": "string",
+            "description": "ONE_WAY/HEDGE_MODE"
           }
         }
       }
