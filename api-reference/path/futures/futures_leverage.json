@@ -1,0 +1,66 @@
+{
+    "get": {
+      "description": "get account leverage",
+      "parameters": {
+          "$ref": "../../parameters/leverage.json#/parameters"
+        },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../responses/LeverageResponse.json#/LeverageResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    },
+    "put": {
+        "description": "set account leverage",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../schemas/SetFuturesLeverage.json#/SetFuturesLeverage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../../common/commonResponse.json#/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+  }

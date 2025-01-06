@@ -156,6 +156,15 @@
         },
         "/v3/futures/defaultMarginMode": {
           "$ref": "path/futures/defaultMarginMode.json"
+        },
+        "/v3/futures/defaultMarginMode/{symbol}": {
+          "$ref": "path/futures/set_symbol_margin_mode.json"
+        },
+        "/v3/futures/defaultMarginMode/reset": {
+          "$ref": "path/futures/reset_defaultMarginMode.json"
+        },
+        "/v3/futures/leverage": {
+          "$ref": "path/futures/futures_leverage.json"
         }
     },
     "components": {

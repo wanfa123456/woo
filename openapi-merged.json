@@ -2333,7 +2333,12 @@
         "requestBody": {
           "description": "",
           "content": {
-            "application/json": {}
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {}
+              }
+            }
           },
           "required": true
         },
@@ -2482,6 +2487,222 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/DefaultMarginModeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "set account level default margin mode",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetAccountMarginMode"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/defaultMarginMode/{symbol}": {
+      "put": {
+        "description": "set account level default margin mode",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": ""
+          }
+        ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetAccountMarginMode"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/defaultMarginMode/reset": {
+      "post": {
+        "description": "reset account level default margin mode",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {}
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      }
+    },
+    "/v3/futures/leverage": {
+      "get": {
+        "description": "get account leverage",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "description": "Symbol name",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "marginMode",
+            "in": "query",
+            "description": "values: CROSS | ISOLATED",
+            "required": true,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "positionMode",
+            "in": "query",
+            "description": "values: ONE_WAY | HEDGE_MODE",
+            "required": false,
+            "explode": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LeverageResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid status value"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": [],
+            "ApiSignAuth": [],
+            "ApiTimestampAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "set account leverage",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetFuturesLeverage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonResponse"
                 }
               }
             }
@@ -6258,6 +6479,106 @@
             }
           }
         ]
+      },
+      "SetAccountMarginMode": {
+        "required": [
+          "defaultMarginMode"
+        ],
+        "type": "object",
+        "properties": {
+          "defaultMarginMode": {
+            "type": "string",
+            "description": "default margin mode Enums: CROSS | ISOLATED"
+          }
+        }
+      },
+      "LeverageResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/CommonResponse"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "object",
+                "properties": {
+                  "symbol": {
+                    "type": "string",
+                    "description": "The trading pair or symbol (e.g., PERP_BTC_USDT)."
+                  },
+                  "marginMode": {
+                    "type": "string",
+                    "description": "The margin mode applied for the specified symbol.",
+                    "enum": [
+                      "CROSS",
+                      "ISOLATED"
+                    ]
+                  },
+                  "positionMode": {
+                    "type": "string",
+                    "description": "The position mode applied for the specified symbol.",
+                    "enum": [
+                      "ONE_WAY",
+                      "HEDGE_MODE"
+                    ]
+                  },
+                  "details": {
+                    "type": "array",
+                    "description": "Leverage settings for each position side.",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "positionSide": {
+                          "type": "string",
+                          "description": "The position side (LONG or SHORT).",
+                          "enum": [
+                            "LONG",
+                            "SHORT"
+                          ]
+                        },
+                        "leverage": {
+                          "type": "integer",
+                          "description": "The leverage value set for this position side."
+                        }
+                      },
+                      "required": [
+                        "positionSide",
+                        "leverage"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "SetFuturesLeverage": {
+        "required": [
+          "symbol",
+          "marginMode",
+          "leverage"
+        ],
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "description": ""
+          },
+          "marginMode": {
+            "type": "string",
+            "description": "values: CROSS | ISOLATED"
+          },
+          "positionMode": {
+            "type": "string",
+            "description": "values: ONE_WAY | HEDGE_MODE Note:only required when marginMode=ISOLATED marginMode=CROSS , ignore this field"
+          },
+          "leverage": {
+            "type": "integer",
+            "description": ""
+          }
+        }
       }
     },
     "parameters": {

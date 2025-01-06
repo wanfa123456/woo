@@ -52,7 +52,10 @@
             "description": "",
             "content": {
                 "application/json": {
-                
+                    "schema": {
+                        "type": "object",
+                        "properties": {}
+                    }
                 }
             },
             "required": true

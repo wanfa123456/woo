@@ -1,0 +1,54 @@
+---
+title: 'Get Futures leverage'
+openapi: 'GET /v3/futures/leverage'
+---
+### **Limit 10 requests per 60 seconds**
+
+
+
+<ResponseExample>
+
+```bash
+// hedge mode
+{
+    "success": true,
+    "data": {
+        "symbol": "PERP_BTC_USDT",
+        "marginMode": "CROSS",
+        "positionMode": "HEDGE_MODE"
+        "details": [
+            {
+                "positionSide": "LONG",
+                "leverage": 10
+            },
+            {
+                "positionSide": "SHORT",
+                "leverage": 15
+            }
+        ]
+    },
+    "timestamp": 1711433755393
+}
+
+
+// one way
+{
+    "success": true,
+    "data": {
+        "symbol": "PERP_BTC_USDT",
+        "marginMode": "CROSS",
+        "positionMode": "ONE_WAY"
+        "details": [
+            {
+                "positionSide": "BOTH",
+                "leverage": 10
+            }
+        ]
+    },
+    "timestamp": 1711433755393
+}
+
+
+```
+
+</ResponseExample>

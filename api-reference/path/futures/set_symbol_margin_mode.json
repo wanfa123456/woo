@@ -1,0 +1,49 @@
+{
+    "put": {
+      "description": "set account level default margin mode",
+      "parameters": [
+                {
+                "name": "symbol",
+                "in": "path",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                },
+                "description": ""
+                }
+            ],
+      "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../schemas/SetAccountMarginMode.json#/SetAccountMarginMode"
+              }
+            }
+          },
+          "required": true
+        },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../common/commonResponse.json#/CommonResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }

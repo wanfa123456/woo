@@ -1,0 +1,52 @@
+{
+	"LeverageResponse": {
+		"allOf": [
+			{
+				"$ref": "../common/commonResponse.json#/CommonResponse"
+			},
+			{
+				"type": "object",
+				"properties": {
+					"data": {
+						"type": "object",
+						"properties": {
+							"symbol": {
+                                "type": "string",
+                                "description": "The trading pair or symbol (e.g., PERP_BTC_USDT)."
+                            },
+                            "marginMode": {
+                                "type": "string",
+                                "description": "The margin mode applied for the specified symbol.",
+                                "enum": ["CROSS", "ISOLATED"]
+                            },
+                            "positionMode": {
+                                "type": "string",
+                                "description": "The position mode applied for the specified symbol.",
+                                "enum": ["ONE_WAY", "HEDGE_MODE"]
+                            },
+                            "details": {
+                                "type": "array",
+                                "description": "Leverage settings for each position side.",
+                                "items": {
+                                "type": "object",
+                                "properties": {
+                                    "positionSide": {
+                                    "type": "string",
+                                    "description": "The position side (LONG or SHORT).",
+                                    "enum": ["LONG", "SHORT"]
+                                    },
+                                    "leverage": {
+                                    "type": "integer",
+                                    "description": "The leverage value set for this position side."
+                                    }
+                                },
+                                "required": ["positionSide", "leverage"]
+                                }
+                            }
+						}
+					}
+				}
+			}
+		]
+	}
+}

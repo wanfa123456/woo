@@ -1,0 +1,26 @@
+{
+    "SetFuturesLeverage": {
+        "required": [
+            "symbol","marginMode","leverage"
+        ],
+        "type": "object",
+        "properties": {
+            "symbol": {
+                "type": "string",
+                "description": ""
+            },
+            "marginMode": {
+                "type": "string",
+                "description": "values: CROSS | ISOLATED"
+            },
+            "positionMode": {
+                "type": "string",
+                "description": "values: ONE_WAY | HEDGE_MODE Note:only required when marginMode=ISOLATED marginMode=CROSS , ignore this field"
+            },
+            "leverage": {
+                "type": "integer",
+                "description": ""
+            }
+        }
+    }
+}

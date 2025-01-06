@@ -137,7 +137,12 @@
     {
       "group": "Futures",
       "pages": [
-        "api-reference/endpoint/futures/defaultMarginMode"
+        "api-reference/endpoint/futures/defaultMarginMode",
+        "api-reference/endpoint/futures/set_account_margin_mode",
+        "api-reference/endpoint/futures/set_symbol_margin_mode",
+        "api-reference/endpoint/futures/reset_defaultMarginMode",
+        "api-reference/endpoint/futures/get_leverage",
+        "api-reference/endpoint/futures/set_leverage"
       ]
     },
     {

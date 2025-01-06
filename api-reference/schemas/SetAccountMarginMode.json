@@ -1,0 +1,12 @@
+{
+    "SetAccountMarginMode": {
+        "required": ["defaultMarginMode"],
+        "type": "object",
+        "properties": {
+            "defaultMarginMode": {
+                "type": "string",
+                "description": "default margin mode Enums: CROSS | ISOLATED"
+            }
+        }
+    }
+}

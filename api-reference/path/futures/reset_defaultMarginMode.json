@@ -1,0 +1,38 @@
+{
+    "post": {
+      "description": "reset account level default margin mode",
+      "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                
+              }
+            }
+          },
+          "required": true
+        },
+      "responses": {
+        "200": {
+          "description": "successful operation",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "../../common/commonResponse.json#/CommonResponse"
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Invalid status value"
+        }
+      },
+      "security": [
+        {
+          "ApiKeyAuth": [],
+          "ApiSignAuth": [],
+          "ApiTimestampAuth": []
+        }
+      ]
+    }
+  }
