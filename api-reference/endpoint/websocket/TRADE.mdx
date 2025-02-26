@@ -1,0 +1,30 @@
+---
+title: 'trade'
+description: 'Subscribe to trades data. Every update may only contain one trade.'
+---
+
+
+
+### Push interval: real-time push
+
+### Topic: trade@{symbol} e.g., trade@SPOT_BTC_USDT
+<RequestExample>
+
+```bash
+{
+    "topic": "trade@SPOT_BTC_USDT",
+    "ts": 1618820361552,
+    "data": {
+        "s": "SPOT_BTC_USDT",  // symbol
+        "px": "42598.27",      // price
+        "sx": "300",           // size
+        "sd": "BUY",           // side
+        "src": 0,              // trade source, 1 = internal (trades on WOO X), 0 = external (trades from aggregrated sources)
+        "ts": 1618820361540    // trade generation time in engine
+    }
+}
+```
+
+</RequestExample>
+
+

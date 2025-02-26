@@ -1,0 +1,53 @@
+---
+title: 'Event'
+description: 'Subscribe for go through kyc process,go through diia-kyc process,balance changes '
+---
+
+
+
+### Push interval: real-time
+
+### Topic: event
+<RequestExample>
+
+```bash
+// go through kyc process
+{
+  "topic": "event",
+  "ts": 1730432289614,
+  "data": {
+    "et": "KYC_COMPLETE_NOTIFICATION",    // eventType
+    "ui": 16775,                          // userId
+    "ti": "",                             // txId
+    "kv": "SUMSUB"                        // kycVendor
+  }
+}
+
+// go through diia-kyc process
+
+{
+  "topic": "event",
+  "ts": 1730432289614,
+  "data": {
+    "et": "DIIA_NOTIFICATION",                                      // eventType
+    "n": "Diia documents uploaded!",                                // notification
+    "ri": "0a40f426-53e8-4543-a498-63a4cf7847da"                    // requestId
+  }
+}
+
+//  balance changes like balance transfer
+{
+  "topic": "event",
+  "ts": 1730432289614,
+  "data": {
+    "et": "BALANCE_CHANGE",               // eventType
+    "ui": 16775,                          // userId
+    "t": "USDT",                          // token
+    "a": "-1000",                           // amount
+    "bt": "",                             // "bizType"
+    "bi": ""                              // "bizId"
+  }
+}
+```
+
+</RequestExample>

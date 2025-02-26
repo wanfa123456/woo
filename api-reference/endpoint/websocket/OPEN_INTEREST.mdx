@@ -1,0 +1,29 @@
+---
+title: 'Open interest'
+description: 'Subscribe to open interest.'
+---
+
+
+### Push interval: push every 1 second if open interest change and 10 seconds force update even if no change.
+
+### Topic: openinterest@{symbol} e.g., openinterest@PERP_BTC_USDT
+
+
+
+<RequestExample>
+
+```bash
+{
+    "topic": "openinterest",
+    "ts": 1618820361552,
+    "data": {
+        "s": "PERP_BTC_USDT",  // symbol
+        "oi": "936.37",        // open interest
+        "ts": 1618820200000    // time of last update
+    }
+}
+```
+
+</RequestExample>
+
+

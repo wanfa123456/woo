@@ -1,0 +1,50 @@
+---
+title: 'Position'
+description: 'Subscribe to position updates.  Updates will be sent only when specific events occur, such as order executions, placements, or cancellations.  Updates will not be triggered by changes in the mark price.'
+---
+
+
+
+### Push interval: push on update
+
+### Topic: position
+<RequestExample>
+
+```bash
+{
+    "topic": "position",
+    "ts": 1677814655101,
+    "data":
+    {
+        "positions":
+        [
+            {
+                "s": PERP_BTC_USDT"       // symbol
+                "h": "1",                 // holding
+                "pl ": "0.0002",          // pending long quantity
+                "ps": "0.0",              // pending short quantity
+                "a": "0.0",               // average open price
+                "P": "-1.55902",          // 24h pnl
+                "F": "0.218",             // 24h fee
+                "S": "49000",             // last settle price
+                "p": "50000",             // mark price
+                "ot": 1677814653001,      // opening time
+                "pc ": "-0.0054"          // 24h pnl % change
+                "aq": 1,                  // adl quantile
+                "lv": 10,                 // leverage
+                "m": "ISOLATED",          // margin mode
+                "PS": "BOTH",             // position side
+                "it": "USDT",             // isolated margin token
+                "ia": "1000",             // isolated margin amount
+                "il": "10",               // isolated margin frozen long
+                "is": "10",               // isolated margin frozen short
+                "V": 93454,               // version
+                "ts": 1677814653001       // timestamp of actual position update
+            },
+            ...
+        ]
+    }
+}
+```
+
+</RequestExample>

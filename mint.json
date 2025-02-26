@@ -157,19 +157,38 @@
           "group": "Public Market Data",
           "pages": [
             "api-reference/endpoint/websocket/Orderbook_update",
-            "api-reference/endpoint/websocket/BBO"
+            "api-reference/endpoint/websocket/BBO",
+            "api-reference/endpoint/websocket/TRADE",
+            "api-reference/endpoint/websocket/TICKER",
+            "api-reference/endpoint/websocket/KLINE",
+            "api-reference/endpoint/websocket/INDEX_PRICE",
+            "api-reference/endpoint/websocket/MARKET_PRICE",
+            "api-reference/endpoint/websocket/FUNDING_RATE",
+            "api-reference/endpoint/websocket/OPEN_INTERETS",
+            "api-reference/endpoint/websocket/TICKERS",
+            "api-reference/endpoint/websocket/INDEX_PRICES",
+            "api-reference/endpoint/websocket/MARKET_PRICES"
           ]
         },
         {
           "group": "Private User Data",
           "pages": [
-            "api-reference/endpoint/websocket/private/Account"
+            "api-reference/endpoint/websocket/private/Account",
+            "api-reference/endpoint/websocket/private/Balance",
+            "api-reference/endpoint/websocket/private/Position",
+            "api-reference/endpoint/websocket/private/Execution_report",
+            "api-reference/endpoint/websocket/private/Algo_execution_report",
+            "api-reference/endpoint/websocket/private/Security",
+            "api-reference/endpoint/websocket/private/Event"
+            
           ]
         },
         {
           "group": "Commands",
           "pages": [
             "api-reference/endpoint/websocket/subscribe",
+            "api-reference/endpoint/websocket/Unsubscribe",
+            "api-reference/endpoint/websocket/Unsubscribe_all",
             "api-reference/endpoint/websocket/List_subscription",
             "api-reference/endpoint/websocket/Additional_information"
           ]

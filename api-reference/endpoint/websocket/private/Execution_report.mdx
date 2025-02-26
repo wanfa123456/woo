@@ -1,0 +1,93 @@
+---
+title: 'Execution report'
+description: 'Subscribe to order and execution updates for ordinary orders.'
+---
+
+
+
+### Push interval: real-time
+
+### Topic: executionreport
+<RequestExample>
+
+```bash
+// receive when order status is changed to new, partially filled or fully filled
+{
+    "topic": "executionreport",
+    "ts": 1675406261689,
+    "data":
+    {
+        "mt": 0,                   // message type, 0 = execution report
+        "s": "SPOT_BTC_USDT",      // symbol
+        "cid": 0,                  // client order id
+        "oid": 54774393,           // order id
+        "t": "MARKET",             // order type
+        "sd": "BUY",               // side
+        "ps": "BOTH",              // position side
+        "sx": "1",                 // order quantity
+        "px": "50000"              // order price
+        "tid": 56201985,           // trade id
+        "esx": "1",                // executed quantity
+        "epx": "50000",            // executed price
+        "f": "0.0001",             // transaction fee amount
+        "fa": "BTC",               // transaction fee asset
+        "tesx": "1",               // total executed quantity of the order
+        "aepx": "50000",           // average executed price of the order
+        "ss": "FILLED",            // status
+        "rs": "",                  // reason
+        "tg": "default",           // order tag
+        "tf": "0.0001"             // total fee of the order
+        "tfc": "BTC",              // fee currency of the order
+        "tr": "0",                 // total rebate of the order
+        "trc": "USDT",             // rebate currency of the order
+        "vsx": "1",                // visible quantity of the order
+        "ts": 1675406261689,       // executed timestamp
+        "ro": false,               // reduce only
+        "mk": false,               // whether it's a maker transaction
+        "lv": 10,                  // leverage
+        "m": "CROSS"               // margin mode
+    }
+}
+
+// receive when editing order request gets rejected
+{
+    "topic": "executionreport",
+    "ts": 1675406261689,
+    "data":
+    {
+        "mt": 1,                   // message type, 1 = edit reject
+        "s": "SPOT_BTC_USDT",      // symbol
+        "oid": 54774393,           // order id
+        "cid": 0,                  // client order id
+        "rs": ""                   // reason of the reject         
+    }
+}
+
+// receive when canceling order request gets rejected
+{
+    "topic": "executionreport",
+    "ts": 1675406261689,
+    "data":
+    {
+        "mt": 2,                   // message type, 2 = cancel reject
+        "s": "SPOT_BTC_USDT",      // symbol
+        "oid": 54774393,           // order id
+        "cid": 0,                  // client order id
+        "rs": ""                   // reason of the reject
+    }
+}
+
+// receive when canceling all orders request gets rejected
+{
+    "topic": "executionreport",
+    "ts": 1675406261689,
+    "data":
+    {
+        "mt": 3,                   // message type, 3 = cancel all reject
+        "s": "SPOT_BTC_USDT",      // symbol
+        "rs": ""                   // reason of the reject
+    }
+}
+```
+
+</RequestExample>

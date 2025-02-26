@@ -1,0 +1,36 @@
+---
+title: '24h tickers'
+description: 'Subscribe to 24h tickers for all symbols.'
+---
+
+
+
+### Push interval: 1s
+
+### Topic: tickers
+<RequestExample>
+
+```bash
+{
+    "topic": "tickers",
+    "ts": 1618820615000,
+    "data":[
+        {
+            "s": "SPOT_WOO_USDT",  // symbol
+            "o": "0.16112",        // open
+            "c": "0.32206",        // close
+            "h": "0.33000",        // high
+            "l": "0.14251",        // low
+            "v": "89040821.98",    // volume in base token
+            "a": "22493062.21",    // amount in USDT
+            "cnt": 15442,          // trade count
+            "ts": 1614152260000    // ticker generation time
+        },
+        ...
+    ]
+}
+```
+
+</RequestExample>
+
+

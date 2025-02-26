@@ -1,0 +1,31 @@
+---
+title: 'Estimated funding rate'
+description: 'Subscribe to estimated funding rate of the symbol.'
+---
+
+
+### Push interval: 1 min
+
+### Topic: estfundingrate@{symbol} e.g., estfundingrate@PERP_BTC_USDT
+
+
+
+
+<RequestExample>
+
+```bash
+{
+    "topic": "estfundingrate@PERP_BTC_USDT",
+    "ts": 1618820361552,
+    "data": {
+        "s": "PERP_BTC_USDT",  // symbol
+        "r": "1.27988",        // funding rate
+        "ft": 1618820360000    // next funding time
+        "ts": 1618820200000    // system timestamp
+    }
+}
+```
+
+</RequestExample>
+
+

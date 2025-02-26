@@ -1,0 +1,47 @@
+---
+title: 'Open interests'
+description: 'Subscribe to open interest across all symbols.'
+---
+
+
+### Push interval: push every 1 second if open interest change and 10 seconds force update even if no change.
+
+### Topic: openinterests
+
+
+
+<RequestExample>
+
+```bash
+{
+    "topic": "openinterest",
+    "ts": 1618820361552,
+    "data": {
+        "s": "PERP_BTC_USDT",  // symbol
+        "oi": "936.37",        // open interest
+        "ts": 1618820200000    // time of last update
+    }
+}
+
+{
+    "topic": "markprices",
+    "ts": 1618822376000,
+    "data":[
+        {
+          "s": "PERP_BTC_USDT",  // symbol
+          "oi": "936.37",        // open interest
+          "ts": 1618820200000    // time of last update
+        },
+        {
+          "s": "PERP_ETH_USDT",  // symbol
+          "oi": "123.37",        // open interest
+          "ts": 1618820200000    // time of last update
+        },
+       ...
+    ]
+}
+```
+
+</RequestExample>
+
+

@@ -1,0 +1,70 @@
+---
+title: 'Algo execution report'
+description: 'Subscribe to order and execution updates for algo orders.'
+---
+
+
+
+### Push interval: real-time
+
+### Topic: algoexecutionreport
+<RequestExample>
+
+```bash
+// receive when order status is changed to new, partially filled or fully filled
+{
+    "topic": "algoexecutionreport",
+    "ts": 1667978011834,
+    "data": [
+        {
+            "s": "SPOT_BAL_USDT",      // symbol
+            "raid": 345181,            // root algo order id
+            "paid": 0,                 // parent algo order id
+            "aid": 345181,             // algo order id
+            "caid": 0,                 // client algo order id
+            "tg": "default",           // order tag
+            "ss": "NEW",               // status
+            "at": "BRACKET",           // algo order type
+            "sd": "SELL",              // side
+            "ps": "SHORT",             // position side
+            "sx": "1",                 // quantity
+            "trp": "100",              // trigger price
+            "trpt" "MARK_PRICE",       // trigger price type
+            "tss": "SUCCESS",          // trigger status
+            "px": "50",                // price
+            "t": "LIMIT",              // order type
+            "tpx": "51",               // first trade price that triggers the algo order
+            "tt": 0,                   // trigger timestamp
+            "tid": 0,                  // trade id
+            "epx": "50"                // executed price
+            "esx": "1",                // executed quantity
+            "f": "0",                  // fee of the transaction
+            "fa": "USDT",              // fee asset of the transaction
+            "rs": "",                  // reason
+            "tesx": "1",               // total executed quantity of the order
+            "aepx": "50",              // average executed price of the order
+            "tf": "0",                 // total fee of the order
+            "tfc": "USDT",             // fee currency of the order
+            "tr": "0",                 // total rebate of the order
+            "trc": "BAL",              // rebate currency of the order
+            "vsx": "1",                // visible quantity of the order
+            "ts": 1667978011834,       // executed timestamp
+            "ro": false,               // whether the order is reduce only
+            "apx": "51",               // activated price of the algo order
+            "cr": "0.01",              // callback ratio
+            "cv": "1",                 // callback value
+            "ep": "100",               // extreme price
+            "it": false,               // is triggered
+            "ia": false,               // is activated
+            "im": false,               // is maker
+            "ras": "NEW",              // root algo status
+            "as": "NEW",               // algo status
+            "lv": 10,                  // leverage
+            "m": "CROSS"               // margin mode
+        },
+        ...
+    ]
+}
+```
+
+</RequestExample>
