@@ -3,10 +3,10 @@
   "name": "WOO",
   "apiSpec": "openapi-merged.json",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/WOO_X_Flat.svg",
+    "light": "/logo/WOO_X_Primary.svg"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/WOO_X_Additional.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
