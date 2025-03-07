@@ -212,12 +212,6 @@
       "pages": [
         "changelog/release_note"
       ]
-    },
-    {
-      "group": "Classification",
-      "pages": [
-        "changelog/classification"
-      ]
     }
   ],
   "footerSocials": {
