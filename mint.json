@@ -4,16 +4,16 @@
   "apiSpec": "openapi-merged.json",
   "logo": {
     "dark": "/logo/WOO_X_Flat.svg",
-    "light": "/logo/WOO_X_Primary.svg"
+    "light": "/logo/WOO_X_Additional.svg"
   },
-  "favicon": "/WOO_X_Additional.svg",
+  "favicon": "/logo/WOO_X_Additional.svg",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
     "dark": "#0D9373",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#07C983",
+      "to": "#0D9373"
     }
   },
   "topbarLinks": [
